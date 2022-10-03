@@ -1,9 +1,13 @@
 import React, { memo } from 'react';
 
+import { Footer, Navbar } from '../components';
+
 function Project() {
   return (
     <div>
-      <p1>hello world Project</p1>
+      <Navbar />
+
+      <Footer />
     </div>
   );
 }

@@ -6,13 +6,20 @@ import './NavbarStyles.css';
 
 function Navbar() {
   const [click, setClick] = useState(false);
+  const [color, setColor] = useState(false);
+
+  const changeColor = useCallback(() => {
+    window.scrollY >= 100 ? setColor(true) : setColor(false);
+  }, []);
 
   const handleClick = useCallback(() => {
     setClick(!click);
   }, [click]);
 
+  window.addEventListener('scroll', changeColor);
+
   return (
-    <div className="header">
+    <div className={color ? 'header header-bg' : 'header'}>
       <Link to="/">
         <h1>JW Portfolio.</h1>
       </Link>
