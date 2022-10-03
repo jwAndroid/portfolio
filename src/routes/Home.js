@@ -1,10 +1,12 @@
 import React, { memo } from 'react';
-import Navbar from '../components/Navbar';
+import { HeroImg, Navbar } from '../components';
 
 function Home() {
   return (
     <div>
       <Navbar />
+
+      <HeroImg />
     </div>
   );
 }
