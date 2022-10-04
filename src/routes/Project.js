@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import { Footer, HeroImg2, Navbar } from '../components';
+import { Footer, HeroImg2, Navbar, PricingCard, Work } from '../components';
 
 function Project() {
   return (
@@ -8,6 +8,10 @@ function Project() {
       <Navbar />
 
       <HeroImg2 heading="PROJECTS." text="my most recent works" />
+
+      <Work />
+
+      <PricingCard />
 
       <Footer />
     </div>

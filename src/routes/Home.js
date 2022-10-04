@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import { Footer, HeroImg, Navbar } from '../components';
+import { Footer, HeroImg, Navbar, Work } from '../components';
 
 function Home() {
   return (
@@ -8,6 +8,8 @@ function Home() {
       <Navbar />
 
       <HeroImg />
+
+      <Work />
 
       <Footer />
     </div>
