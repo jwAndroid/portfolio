@@ -1,13 +1,6 @@
 import { memo, useMemo } from 'react';
 import styled from '@emotion/styled';
-import {
-  FaHome,
-  FaPhone,
-  FaMailBulk,
-  FaFacebook,
-  FaTwitter,
-  FaLinkedin,
-} from 'react-icons/fa';
+import { FaPhone, FaMailBulk, FaGithub } from 'react-icons/fa';
 
 const FooterContainer = styled.div({
   width: '100%',
@@ -30,11 +23,6 @@ const Left = styled.div({
   padding: '1rem',
 });
 
-const Location = styled.div({
-  display: 'flex',
-  marginBottom: '0.8rem',
-});
-
 const Phone = styled.div({
   display: 'flex',
   marginBottom: '0.8rem',
@@ -55,7 +43,19 @@ const Right = styled.div({
 });
 
 const Social = styled.div({
+  display: 'flex',
+  flexDirection: 'row',
   marginTop: '1rem',
+});
+
+const Introduce = styled.div({
+  display: 'flex',
+  alignItems: 'center',
+  flexDirection: 'row',
+});
+
+const Text = styled.p({
+  marginLeft: '1rem',
 });
 
 function Footer() {
@@ -70,35 +70,30 @@ function Footer() {
   return (
     <FooterContainer>
       <Left>
-        <Location>
-          <FaHome size={20} style={style} />
-
-          <p>Location</p>
-        </Location>
-
         <Phone>
           <FaPhone size={20} style={style} />
 
-          <p>010-0000-0000</p>
+          <p>010-6427-8522</p>
         </Phone>
 
         <Email>
           <FaMailBulk size={20} style={style} />
 
-          <p>jwandroid@google.com</p>
+          <p>cjd9408abcd@gmail.com</p>
         </Email>
       </Left>
 
       <Right>
-        <h4>About</h4>
-        <p>안녕하세요 최지웅 입니다.</p>
+        <Introduce>
+          <h3>Introduce</h3>
+
+          <Text>안녕하세요. FrontEnd 개발자 최지웅 입니다.</Text>
+        </Introduce>
 
         <Social>
-          <FaFacebook size={20} style={style} />
+          <FaGithub size={20} style={style} />
 
-          <FaTwitter size={20} style={style} />
-
-          <FaLinkedin size={20} style={style} />
+          <p>jwandroid</p>
         </Social>
       </Right>
     </FooterContainer>

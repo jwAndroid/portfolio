@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
 import { memo, ReactNode } from 'react';
-import { NavLink, To } from 'react-router-dom';
+import styled from '@emotion/styled';
+
 import { ellipsize } from '../utils/text';
 import StyledButton from './StyledButton';
 
@@ -43,9 +43,10 @@ interface IWorkCard {
   src: string;
   title: ReactNode;
   text: ReactNode;
-  view: To;
+  view: string;
 }
 function WorkCard({ src, title, text, view }: IWorkCard) {
+  console.log(view);
   return (
     <ProjectCard>
       <ProjectImage src={src} alt="iman3" />
@@ -57,10 +58,10 @@ function WorkCard({ src, title, text, view }: IWorkCard) {
       </TextContainer>
 
       <ButtonContainer>
-        <StyledButton>
-          <NavLink to={view} className="btn">
+        <StyledButton isLight>
+          <a href={view} target="blank">
             Github
-          </NavLink>
+          </a>
         </StyledButton>
       </ButtonContainer>
     </ProjectCard>

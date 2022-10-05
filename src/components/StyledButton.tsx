@@ -1,5 +1,5 @@
+import { memo, ReactNode } from 'react';
 import styled from '@emotion/styled';
-import React, { memo } from 'react';
 
 interface IEmotionButton {
   isLight?: boolean;
@@ -21,7 +21,7 @@ const EmotionButton = styled.button<IEmotionButton>(({ isLight }) => ({
 
 interface IStyledButton {
   isLight?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 function StyledButton({ children, isLight }: IStyledButton) {
   return <EmotionButton isLight={isLight}>{children}</EmotionButton>;

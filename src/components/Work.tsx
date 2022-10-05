@@ -1,5 +1,6 @@
-import styled from '@emotion/styled';
 import { memo } from 'react';
+import styled from '@emotion/styled';
+
 import ProjectData from '../utils/data';
 import WorkCard from './WorkCard';
 
@@ -9,9 +10,9 @@ const ProjectHeading = styled.h1`
 `;
 
 const ProjectContainer = styled.div`
+  display: grid;
   max-width: 1140px;
   margin: auto;
-  display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 40px;
   padding-bottom: 5rem;

@@ -16,6 +16,8 @@ function GlobalStyle() {
           background: #1c2128;
         }
         h1,
+        h2,
+        h3,
         h4,
         p,
         a {
