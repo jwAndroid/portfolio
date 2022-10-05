@@ -1,18 +1,23 @@
+import { useTheme } from '@emotion/react';
 import { memo } from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import { Footer, NavigationBar, ProjectBackground, Work } from '../components';
+import { Background, Footer, NavigationBar, Work } from '../components';
 
 function Project() {
+  const theme = useTheme();
+
   return (
     <>
-      <Helmet>
-        <title>Project</title>
-      </Helmet>
+      <Helmet title="Project" />
 
       <NavigationBar />
 
-      <ProjectBackground />
+      <Background
+        backgroundSource={theme.image.project}
+        title="Project"
+        subTtitle="Project"
+      />
 
       <Work />
 

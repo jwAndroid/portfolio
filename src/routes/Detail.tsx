@@ -3,12 +3,10 @@ import { Helmet } from 'react-helmet-async';
 
 import { Footer, NavigationBar } from '../components';
 
-function About() {
+function Detail() {
   return (
     <>
-      <Helmet>
-        <title>About</title>
-      </Helmet>
+      <Helmet title="Detail" />
 
       <NavigationBar />
 
@@ -17,4 +15,4 @@ function About() {
   );
 }
 
-export default memo(About);
+export default memo(Detail);

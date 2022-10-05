@@ -7,13 +7,14 @@ interface IEmotionButton {
 const EmotionButton = styled.button<IEmotionButton>(({ isLight }) => ({
   padding: '1rem 3rem',
   textTransform: 'uppercase',
+  borderRadius: '10px',
   background: isLight ? 'transparent' : 'rgba(248,217,15)',
   color: isLight ? '#fff' : '#222',
   border: '1px solid #fff',
   cursor: 'pointer',
 
   '&:hover': {
-    background: 'rgba(255,255,255,0.2)',
+    background: 'rgba(255,255,255,0.1)',
     color: '#fff',
     transition: '0.3s',
   },

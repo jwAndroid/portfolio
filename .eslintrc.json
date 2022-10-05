@@ -33,6 +33,8 @@
     "object-curly-newline": "off",
     "no-shadow": "off",
     "no-console": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "global-require": "off",
+    "import/no-useless-path-segments": "off"
   }
 }

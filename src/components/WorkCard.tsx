@@ -1,51 +1,71 @@
 import { memo, ReactNode } from 'react';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 import { ellipsize } from '../utils/text';
 import StyledButton from './StyledButton';
 
-const ProjectCard = styled.div`
-  background: #1a1919;
-  padding: 1.2rem 1rem;
-`;
+const ProjectCard = styled.div(({ theme }) => ({
+  padding: '1rem',
+  background: theme.color.card,
+  borderRadius: '15px',
 
-const ProjectImage = styled.img`
-  width: 100%;
-  height: vh;
-`;
+  '@media screen and (max-width: 740px)': {
+    margin: '0rem 2rem',
+  },
+}));
 
-const ProjectTitle = styled.h2`
-  color: #fff;
-  padding: 1rem 0;
-`;
+const ProjectImage = styled.img({
+  width: '100%',
+  height: 'vh',
+  borderRadius: '15px',
+});
 
-const TextContainer = styled.div`
-  width: 100%;
-  height: 12rem;
-`;
+const ProjectTitle = styled.h2(({ theme }) => ({
+  color: theme.color.white,
+  padding: '1rem 0rem',
+}));
 
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 0.5rem 0;
-`;
+const TextContainer = styled.div({
+  width: '100%',
+  height: '5rem',
+});
+
+const ButtonContainer = styled.div({
+  display: 'flex',
+  justifyContent: 'space-between',
+  padding: '0.5rem 0',
+});
+
+const ChipContainer = styled.div(() => ({
+  display: 'flex',
+  paddingBottom: '0.2rem',
+}));
+
+const Chip = styled.div(({ theme }) => ({
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: 10,
+  padding: '0.2rem 0.5rem',
+  border: `1px solid ${theme.color.chip}`,
+}));
 
 interface IText {
-  fontSize: string;
+  fontSize?: string;
 }
-const Text = styled.p<IText>`
-  padding-bottom: 1rem;
-  font-size: ${(props) => props.fontSize};
-  text-align: justify;
-`;
+const Text = styled.p<IText>(({ fontSize }) => ({
+  fontSize,
+  textAlign: 'justify',
+}));
 
 interface IWorkCard {
   src: string;
   title: ReactNode;
   text: ReactNode;
   view: string;
+  stack: string;
 }
-function WorkCard({ src, title, text, view }: IWorkCard) {
+function WorkCard({ src, title, text, view, stack }: IWorkCard) {
   console.log(view);
   return (
     <ProjectCard>
@@ -54,10 +74,20 @@ function WorkCard({ src, title, text, view }: IWorkCard) {
       <ProjectTitle>{title}</ProjectTitle>
 
       <TextContainer>
-        <Text fontSize="1.2rem">{ellipsize(text as string, 250)}</Text>
+        <Text>{ellipsize(text as string, 100)}</Text>
       </TextContainer>
 
+      <ChipContainer>
+        <Chip>
+          <Text fontSize="12px">{stack}</Text>
+        </Chip>
+      </ChipContainer>
+
       <ButtonContainer>
+        <StyledButton isLight>
+          <Link to="/detail">Detail</Link>
+        </StyledButton>
+
         <StyledButton isLight>
           <a href={view} target="blank">
             Github

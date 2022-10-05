@@ -3,9 +3,8 @@ import styled from '@emotion/styled';
 import { FaPhone, FaMailBulk, FaGithub } from 'react-icons/fa';
 
 const FooterContainer = styled.div({
-  width: '100%',
-  margin: 'auto',
   display: 'flex',
+  margin: 'auto',
   padding: '6rem',
   backgroundColor: 'rgba(19,19,19,0.8)',
 
@@ -25,12 +24,15 @@ const Left = styled.div({
 
 const Phone = styled.div({
   display: 'flex',
+  alignItems: 'center',
   marginBottom: '0.8rem',
 });
 
 const Email = styled.div({
   display: 'flex',
+  alignItems: 'center',
   marginBottom: '0.8rem',
+  marginTop: 10,
 });
 
 const Right = styled.div({
@@ -54,9 +56,17 @@ const Introduce = styled.div({
   flexDirection: 'row',
 });
 
-const Text = styled.p({
-  marginLeft: '1rem',
-});
+const Title = styled.h4(() => ({
+  fontSize: 30,
+  paddingBottom: 5,
+}));
+interface IText {
+  marginLeft?: string;
+}
+const Text = styled.p<IText>(({ marginLeft = 0 }) => ({
+  marginLeft,
+  fontSize: 18,
+}));
 
 function Footer() {
   const style = useMemo<React.CSSProperties>(
@@ -73,27 +83,31 @@ function Footer() {
         <Phone>
           <FaPhone size={20} style={style} />
 
-          <p>010-6427-8522</p>
+          <Text>010-6427-8522</Text>
         </Phone>
 
         <Email>
           <FaMailBulk size={20} style={style} />
 
-          <p>cjd9408abcd@gmail.com</p>
+          <Text>cjd9408abcd@gmail.com</Text>
         </Email>
       </Left>
 
       <Right>
         <Introduce>
-          <h3>Introduce</h3>
+          <Title>Introduce</Title>
 
-          <Text>안녕하세요. FrontEnd 개발자 최지웅 입니다.</Text>
+          <Text marginLeft="1rem">FrontEnd 개발자 최지웅 입니다.</Text>
         </Introduce>
 
         <Social>
           <FaGithub size={20} style={style} />
 
-          <p>jwandroid</p>
+          <Text>
+            <a href="https://github.com/jwAndroid" target="blank">
+              jwandroid
+            </a>
+          </Text>
         </Social>
       </Right>
     </FooterContainer>

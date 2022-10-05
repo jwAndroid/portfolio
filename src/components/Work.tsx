@@ -26,8 +26,8 @@ const ProjectContainer = styled.div`
 
 function Work() {
   return (
-    <div>
-      <ProjectHeading>Projects</ProjectHeading>
+    <>
+      <ProjectHeading>Project</ProjectHeading>
 
       <ProjectContainer>
         {ProjectData.map((item, index) => (
@@ -37,10 +37,11 @@ function Work() {
             text={item.text}
             title={item.title}
             view={item.view}
+            stack={item.stack}
           />
         ))}
       </ProjectContainer>
-    </div>
+    </>
   );
 }
 

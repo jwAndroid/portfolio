@@ -3,10 +3,10 @@ import { Helmet } from 'react-helmet-async';
 
 import { Footer, NavigationBar } from '../components';
 
-function Contact() {
+function Experience() {
   return (
     <>
-      <Helmet title="Contact" />
+      <Helmet title="Experience" />
 
       <NavigationBar />
 
@@ -15,4 +15,4 @@ function Contact() {
   );
 }
 
-export default memo(Contact);
+export default memo(Experience);

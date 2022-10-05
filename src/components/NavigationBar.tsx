@@ -15,7 +15,7 @@ const Header = styled.div<IHeader>(({ isScroll }) => ({
   width: '100%',
   height: '90px',
   zIndex: 10,
-  backgroundColor: isScroll ? 'rgba(0,0,0,0.85)' : undefined,
+  backgroundColor: isScroll ? 'rgba(19,19,19,0.8)' : undefined,
   transition: isScroll ? '0.5s' : undefined,
 }));
 
@@ -35,8 +35,8 @@ const NavMenu = styled.ul<IUnorderedList>(({ isActive }) => ({
     top: 0,
     left: isActive ? 0 : '-100%',
     zIndex: -3,
-    transition: '0.3s',
-    background: 'rgba(0,0,0,0.9)',
+    transition: '0.5s',
+    background: 'rgba(19,19,19,0.8)',
   },
 }));
 
@@ -57,6 +57,25 @@ const Hamburger = styled.div(() => ({
     display: 'initial',
   },
 }));
+
+const data = [
+  {
+    to: '/',
+    title: 'Home',
+  },
+  {
+    to: '/project',
+    title: 'Project',
+  },
+  {
+    to: '/experience',
+    title: 'Experience',
+  },
+  {
+    to: '/contact',
+    title: 'Contact',
+  },
+];
 
 function NavigationBar() {
   const [isScroll, setIsScroll] = useState(false);
@@ -83,21 +102,11 @@ function NavigationBar() {
       </Link>
 
       <NavMenu isActive={click}>
-        <List>
-          <Link to="/">Home</Link>
-        </List>
-
-        <List>
-          <Link to="/project">Project</Link>
-        </List>
-
-        <List>
-          <Link to="/about">About</Link>
-        </List>
-
-        <List>
-          <Link to="/contact">Contact</Link>
-        </List>
+        {data.map((item, index) => (
+          <List key={`${index + 1}`}>
+            <Link to={item.to}>{item.title}</Link>
+          </List>
+        ))}
       </NavMenu>
 
       <Hamburger onClick={handleClick}>
