@@ -1,23 +1,29 @@
 import { memo } from 'react';
-import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
+import { Route, Routes } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
 import { Home, About, Contact, Project } from './routes';
 import { AppTheme } from './theme';
-import { GlobalStyled } from './components';
+import GlobalStyle from './GlobalStyle';
 
 function App() {
   return (
-    <ThemeProvider theme={AppTheme}>
-      <GlobalStyled />
+    <HelmetProvider>
+      <ThemeProvider theme={AppTheme}>
+        <GlobalStyle />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/project" element={<Project />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-    </ThemeProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+
+          <Route path="/project" element={<Project />} />
+
+          <Route path="/about" element={<About />} />
+
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

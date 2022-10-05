@@ -4,15 +4,12 @@ import React, { memo } from 'react';
 interface IEmotionButton {
   isLight?: boolean;
 }
-
 const EmotionButton = styled.button<IEmotionButton>(({ isLight }) => ({
-  padding: '12px 32px',
-  fontSize: '1rem',
+  padding: '1rem 3rem',
   textTransform: 'uppercase',
   background: isLight ? 'transparent' : 'rgba(248,217,15)',
   color: isLight ? '#fff' : '#222',
   border: '1px solid #fff',
-  fontWeight: 600,
   cursor: 'pointer',
 
   '&:hover': {
@@ -24,10 +21,10 @@ const EmotionButton = styled.button<IEmotionButton>(({ isLight }) => ({
 
 interface IStyledButton {
   isLight?: boolean;
+  children: React.ReactNode;
 }
-
-function StyledButton({ isLight }: IStyledButton) {
-  return <EmotionButton isLight={isLight} />;
+function StyledButton({ children, isLight }: IStyledButton) {
+  return <EmotionButton isLight={isLight}>{children}</EmotionButton>;
 }
 
 StyledButton.defaultProps = {

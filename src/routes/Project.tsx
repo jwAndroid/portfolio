@@ -1,14 +1,23 @@
 import { memo } from 'react';
+import { Helmet } from 'react-helmet-async';
 
-import { Footer, NavigationBar } from '../components';
+import { Footer, NavigationBar, ProjectBackground, Work } from '../components';
 
 function Project() {
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>Project</title>
+      </Helmet>
+
       <NavigationBar />
 
+      <ProjectBackground />
+
+      <Work />
+
       <Footer />
-    </div>
+    </>
   );
 }
 

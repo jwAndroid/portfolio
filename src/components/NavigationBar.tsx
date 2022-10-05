@@ -6,7 +6,6 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 interface IHeader {
   isScroll: boolean;
 }
-
 const Header = styled.div<IHeader>(({ isScroll }) => ({
   display: 'flex',
   justifyContent: 'space-between',
@@ -79,7 +78,7 @@ function NavigationBar() {
 
   return (
     <Header isScroll={isScroll}>
-      <Link to="/project">
+      <Link to="/">
         <h1>JW Portfolio.</h1>
       </Link>
 

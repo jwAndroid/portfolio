@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 import iman6 from '../assets/iman6.jpg';
+import StyledButton from './StyledButton';
 
 const Container = styled.div({
   width: '100%',
@@ -11,8 +12,10 @@ const Container = styled.div({
 
 const Mask = styled.div({
   width: '100%',
-  height: '100vh',
+  height: '90vh',
   position: 'relative',
+  opacity: 0.25,
+  backgroundColor: '#000',
 });
 
 const Image = styled.img({
@@ -31,6 +34,30 @@ const Content = styled.div({
   textAlign: 'center',
 });
 
+const Title = styled.h1(() => ({
+  fontSize: 25,
+  fontWeight: '400',
+
+  '@media screen and (max-width: 740px)': {
+    fontSize: 15,
+    fontWeight: '400',
+  },
+}));
+
+const SubTitle = styled.p({
+  fontSize: 50,
+  fontWeight: '600',
+
+  '@media screen and (max-width: 740px)': {
+    fontSize: 25,
+    fontWeight: '600',
+  },
+});
+
+const ButtonContainer = styled.div(() => ({
+  marginTop: '1rem',
+}));
+
 function Background() {
   return (
     <Container>
@@ -39,13 +66,19 @@ function Background() {
       </Mask>
 
       <Content>
-        <p>Developer JW</p>
+        <Title>Developer JW</Title>
 
-        <h1>React, React-Native, Android Developer</h1>
+        <SubTitle>Application Developer</SubTitle>
 
-        <Link to="/project">Projects</Link>
+        <ButtonContainer>
+          <StyledButton>
+            <Link to="/project">Projects</Link>
+          </StyledButton>
 
-        <Link to="/contact">Contact</Link>
+          <StyledButton isLight>
+            <Link to="/contact">Contact</Link>
+          </StyledButton>
+        </ButtonContainer>
       </Content>
     </Container>
   );

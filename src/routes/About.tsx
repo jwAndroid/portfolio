@@ -1,14 +1,19 @@
 import { memo } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 import { Footer, NavigationBar } from '../components';
 
 function About() {
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>About</title>
+      </Helmet>
+
       <NavigationBar />
 
       <Footer />
-    </div>
+    </>
   );
 }
 
