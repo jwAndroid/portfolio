@@ -1,6 +1,6 @@
 import '@emotion/react';
 
-import { icon, image } from './theme';
+import { image } from './theme';
 
 declare module '*.png';
 declare module '*.jpg';
@@ -10,7 +10,6 @@ declare module '@emotion/react' {
   export interface Theme {
     name: string;
     image: typeof image;
-    icon: typeof icon;
     color: {
       black: string;
       white: string;

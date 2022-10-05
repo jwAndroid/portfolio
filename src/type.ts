@@ -3,5 +3,5 @@ export interface ProjectEntity {
   title: string;
   text: string;
   view: string;
-  stack: string;
+  stack: string[];
 }

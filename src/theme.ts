@@ -7,12 +7,9 @@ export const image = {
   project: require('../src/assets/image/project.jpg'),
 };
 
-export const icon = {};
-
 export const AppTheme: Theme = {
   name: 'lightTheme',
   image,
-  icon,
   color: {
     black: '#000',
     white: '#fff',

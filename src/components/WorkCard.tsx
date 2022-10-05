@@ -47,6 +47,7 @@ const Chip = styled.div(({ theme }) => ({
   alignItems: 'center',
   borderRadius: 10,
   padding: '0.2rem 0.5rem',
+  marginRight: '0.5rem',
   border: `1px solid ${theme.color.chip}`,
 }));
 
@@ -63,7 +64,7 @@ interface IWorkCard {
   title: ReactNode;
   text: ReactNode;
   view: string;
-  stack: string;
+  stack: string[];
 }
 function WorkCard({ src, title, text, view, stack }: IWorkCard) {
   console.log(view);
@@ -78,9 +79,11 @@ function WorkCard({ src, title, text, view, stack }: IWorkCard) {
       </TextContainer>
 
       <ChipContainer>
-        <Chip>
-          <Text fontSize="12px">{stack}</Text>
-        </Chip>
+        {stack.map((item, index) => (
+          <Chip key={`${index + 1}`}>
+            <Text fontSize="12px">{item}</Text>
+          </Chip>
+        ))}
       </ChipContainer>
 
       <ButtonContainer>

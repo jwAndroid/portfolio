@@ -5,7 +5,7 @@ import { FaPhone, FaMailBulk, FaGithub } from 'react-icons/fa';
 const FooterContainer = styled.div({
   display: 'flex',
   margin: 'auto',
-  padding: '6rem',
+  padding: '3rem',
   backgroundColor: 'rgba(19,19,19,0.8)',
 
   '@media screen and (max-width: 1040px)': {
@@ -36,16 +36,16 @@ const Email = styled.div({
 });
 
 const Right = styled.div({
-  display: 'flex',
   flex: 1,
-  height: '100%',
+  display: 'flex',
   maxWidth: '100%',
   flexDirection: 'column',
-  padding: '1rem',
+  padding: '0rem 1rem',
 });
 
-const Social = styled.div({
+const Social = styled.a({
   display: 'flex',
+  alignItems: 'center',
   flexDirection: 'row',
   marginTop: '1rem',
 });
@@ -65,7 +65,7 @@ interface IText {
 }
 const Text = styled.p<IText>(({ marginLeft = 0 }) => ({
   marginLeft,
-  fontSize: 18,
+  fontSize: 19,
 }));
 
 function Footer() {
@@ -97,17 +97,13 @@ function Footer() {
         <Introduce>
           <Title>Introduce</Title>
 
-          <Text marginLeft="1rem">FrontEnd 개발자 최지웅 입니다.</Text>
+          <Text marginLeft="1rem"> </Text>
         </Introduce>
 
-        <Social>
-          <FaGithub size={20} style={style} />
+        <Social href="https://github.com/jwAndroid" target="blank">
+          <FaGithub size={30} style={style} />
 
-          <Text>
-            <a href="https://github.com/jwAndroid" target="blank">
-              jwandroid
-            </a>
-          </Text>
+          <Text>jwandroid</Text>
         </Social>
       </Right>
     </FooterContainer>
