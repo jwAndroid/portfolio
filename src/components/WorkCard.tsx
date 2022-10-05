@@ -28,7 +28,7 @@ const ProjectTitle = styled.h2(({ theme }) => ({
 
 const TextContainer = styled.div({
   width: '100%',
-  height: '5rem',
+  height: '7rem',
 });
 
 const ButtonContainer = styled.div({
