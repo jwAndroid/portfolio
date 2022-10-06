@@ -7,12 +7,13 @@ import { Home, Experience, Contact, Project, Detail } from './routes';
 import { AppTheme } from './theme';
 import GlobalStyle from './GlobalStyle';
 
+// a
+
 function App() {
   return (
     <HelmetProvider>
       <ThemeProvider theme={AppTheme}>
         <GlobalStyle />
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/project" element={<Project />} />
