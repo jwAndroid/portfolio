@@ -1,7 +1,13 @@
 import { memo } from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import { Footer, NavigationBar, StackCard } from '../components';
+import {
+  Chart,
+  Divider,
+  Footer,
+  NavigationBar,
+  StackCard,
+} from '../components';
 
 function Experience() {
   return (
@@ -11,6 +17,10 @@ function Experience() {
       <NavigationBar />
 
       <StackCard />
+
+      <Divider />
+
+      <Chart />
 
       <Footer />
     </>
