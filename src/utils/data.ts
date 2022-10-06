@@ -6,14 +6,14 @@ export const ProjectData = [
     title: 'What is Lorem Ipsum?',
     text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     view: 'https://www.youtube.com/watch?v=VjAGyjYbQKc',
-    stack: ['flutter', 'publish'],
+    stack: ['React', 'publish'],
   },
   {
     imgsrc: iman6,
     title: 'Why do we use it?',
     text: 'It is a long established fact that a reader will ct that a reader will be distract that a reader will be distract that a reader will be distract that a reader will be distract that a reader will be distrabe distracted by the readable content of a page when looking at its layout.',
     view: 'https://www.youtube.com/watch?v=VjAGyjYbQKc',
-    stack: ['flutter', 'publish'],
+    stack: ['flutter'],
   },
   {
     imgsrc: iman6,

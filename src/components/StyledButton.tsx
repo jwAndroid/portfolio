@@ -23,13 +23,19 @@ const EmotionButton = styled.button<IEmotionButton>(({ isLight }) => ({
 interface IStyledButton {
   isLight?: boolean;
   children: ReactNode;
+  onClick?: () => void;
 }
-function StyledButton({ children, isLight }: IStyledButton) {
-  return <EmotionButton isLight={isLight}>{children}</EmotionButton>;
+function StyledButton({ children, isLight, onClick }: IStyledButton) {
+  return (
+    <EmotionButton isLight={isLight} onClick={onClick}>
+      {children}
+    </EmotionButton>
+  );
 }
 
 StyledButton.defaultProps = {
   isLight: false,
+  onClick: null,
 };
 
 export default memo(StyledButton);
