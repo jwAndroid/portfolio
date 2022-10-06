@@ -13,11 +13,7 @@ function Project() {
 
       <NavigationBar />
 
-      <Background
-        backgroundSource={theme.image.project}
-        title="Project"
-        subTtitle="Project"
-      />
+      <Background backgroundSource={theme.image.project} />
 
       <Work />
 

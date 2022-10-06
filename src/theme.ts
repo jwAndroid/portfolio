@@ -14,7 +14,7 @@ export const image = {
   kotlin: require('../src/assets/image/kotlin.png'),
   react_query: require('../src/assets/image/react_query.png'),
   react: require('../src/assets/image/react.png'),
-  redux_thunk: require('../src/assets/image/redux_thunk.jpeg'),
+  redux_thunk: require('../src/assets/image/redux_thunk.png'),
   redux: require('../src/assets/image/redux.png'),
   rx: require('../src/assets/image/rx.png'),
   typescript: require('../src/assets/image/typescript.png'),

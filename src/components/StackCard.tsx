@@ -1,10 +1,12 @@
 import { memo } from 'react';
 import styled from '@emotion/styled';
-import { useTheme } from '@emotion/react';
+
+import CardData from '../utils/card';
 
 const Heading = styled.h1({
+  fontSize: '40px',
   textAlign: 'center',
-  paddingTop: '8rem',
+  paddingTop: '6rem',
 });
 
 const Container = styled.div({
@@ -13,7 +15,8 @@ const Container = styled.div({
   margin: 'auto',
   gridTemplateColumns: 'repeat(4, 1fr)',
   gridGap: '50px',
-  paddingTop: '5rem',
+  marginTop: '3rem',
+  marginBottom: '3rem',
 
   '@media screen and (max-width: 740px)': {
     maxWidth: '100%',
@@ -22,93 +25,63 @@ const Container = styled.div({
   },
 });
 
-const Box = styled.div({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
+interface IBox {
+  boxShadow: string;
+}
+const Box = styled.div<IBox>(({ boxShadow }) => ({
+  width: '100%',
   height: 'vh',
   borderRadius: '15px',
-  boxShadow: '1px 2px 5px #F4AAB9',
-  padding: '1rem 2rem',
+  boxShadow: `1px 2px 5px ${boxShadow}`,
+
+  '&:hover': {
+    background: 'rgba(0,0,0,0.1)',
+    color: '#fff',
+    transition: '0.3s',
+    opacity: '0.5',
+  },
 
   '@media screen and (max-width: 740px)': {
     padding: '2rem 3rem',
   },
-});
+}));
 
-const Image = styled.img({
-  width: '100px',
-  height: '90px',
-  marginTop: '1rem',
-});
-
-const OutlineBox = styled.div({
-  boxShadow: '-1px -2px 5px #878787',
-  borderRadius: '15px',
-});
-
-const ChartContainer = styled.div({
+const ImageContainer = styled.div({
+  width: '100%',
+  height: '150px',
   display: 'flex',
-  height: '400px',
-  paddingTop: '5rem',
-
-  '@media screen and (max-width: 740px)': {
-    padding: '2rem 3rem',
-  },
+  justifyContent: 'center',
+  alignItems: 'center',
 });
+
+const Image = styled.img(() => ({
+  width: '100px',
+  objectFit: 'cover',
+}));
 
 const CardText = styled.h3({
   fontSize: '20px',
-  margin: '1rem 1rem',
+  textAlign: 'center',
+  marginTop: '0.5rem',
+  marginBottom: '1rem',
 });
 
 function StackCard() {
-  const theme = useTheme();
-
   return (
     <>
-      <Heading>Stack</Heading>
+      <Heading>Experienced Stack</Heading>
 
       <Container>
-        <OutlineBox>
-          <Box>
-            <Image src={theme.image.react} alt="true" />
+        {CardData.map((item, index) => (
+          <Box key={`${index + 1}`} boxShadow={item.shadowColor}>
+            <ImageContainer>
+              <Image src={item.image} alt="true" />
+            </ImageContainer>
 
-            <CardText>React</CardText>
+            <CardText>{item.title}</CardText>
           </Box>
-        </OutlineBox>
-
-        <OutlineBox>
-          <Box>
-            <Image src={theme.image.react} alt="true" />
-
-            <CardText>React-Native</CardText>
-          </Box>
-        </OutlineBox>
-
-        <OutlineBox>
-          <Box>
-            <Image src={theme.image.redux} alt="true" />
-
-            <CardText>Redux</CardText>
-          </Box>
-        </OutlineBox>
-
-        <OutlineBox>
-          <Box>
-            <Image src={theme.image.project} alt="true" />
-
-            <CardText>Github</CardText>
-          </Box>
-        </OutlineBox>
+        ))}
       </Container>
-
-      <Heading>Stack</Heading>
-
-      <ChartContainer>
-        <p>차트</p>
-      </ChartContainer>
     </>
   );
 }

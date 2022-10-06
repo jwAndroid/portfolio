@@ -7,9 +7,9 @@ const Container = styled.div({
 });
 
 const Mask = styled.div({
+  position: 'relative',
   width: '100%',
   height: '80vh',
-  position: 'relative',
   opacity: 0.25,
   backgroundColor: '#000',
 
@@ -60,8 +60,8 @@ const SubTitle = styled.p({
 
 interface IBackground {
   backgroundSource: string;
-  title: ReactNode;
-  subTtitle: ReactNode;
+  title?: ReactNode;
+  subTtitle?: ReactNode;
 }
 function Background({ backgroundSource, title, subTtitle }: IBackground) {
   return (
@@ -78,5 +78,10 @@ function Background({ backgroundSource, title, subTtitle }: IBackground) {
     </Container>
   );
 }
+
+Background.defaultProps = {
+  title: '',
+  subTtitle: '',
+};
 
 export default memo(Background);
