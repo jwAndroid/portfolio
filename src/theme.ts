@@ -9,6 +9,7 @@ export const image = {
   eslint: require('../src/assets/image/eslint.png'),
   expo: require('../src/assets/image/expo.png'),
   firebase: require('../src/assets/image/firebase.png'),
+  github: require('../src/assets/image/github.png'),
   java: require('../src/assets/image/java.png'),
   javascript: require('../src/assets/image/javascript.png'),
   kotlin: require('../src/assets/image/kotlin.png'),
@@ -24,7 +25,7 @@ export const AppTheme: Theme = {
   image,
   color: {
     white: '#fff',
-    gray: '#878787',
+    gray: '#333333',
     yellow: '#FFDC5E',
     card: '#1a1919',
     chip: '#24ddb9',

@@ -35,6 +35,7 @@
     "no-console": "off",
     "arrow-body-style": "off",
     "global-require": "off",
-    "import/no-useless-path-segments": "off"
+    "import/no-useless-path-segments": "off",
+    "indent": "off"
   }
 }

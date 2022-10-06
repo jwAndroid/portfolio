@@ -20,8 +20,8 @@ const Container = styled.div({
 
   '@media screen and (max-width: 740px)': {
     maxWidth: '100%',
-    margin: 'auto',
-    gridTemplateColumns: '1fr',
+    margin: '2rem 3rem',
+    gridTemplateColumns: 'repeat(2, 1fr)',
   },
 });
 
@@ -42,7 +42,7 @@ const Box = styled.div<IBox>(({ boxShadow }) => ({
   },
 
   '@media screen and (max-width: 740px)': {
-    padding: '2rem 3rem',
+    padding: '0.5rem 2rem',
   },
 }));
 
@@ -74,11 +74,12 @@ function StackCard() {
       <Container>
         {CardData.map((item, index) => (
           <Box key={`${index + 1}`} boxShadow={item.shadowColor}>
-            <ImageContainer>
-              <Image src={item.image} alt="true" />
-            </ImageContainer>
-
-            <CardText>{item.title}</CardText>
+            <a href={item.url} target="blank">
+              <ImageContainer>
+                <Image src={item.image} alt="true" />
+              </ImageContainer>
+              <CardText>{item.title}</CardText>
+            </a>
           </Box>
         ))}
       </Container>
