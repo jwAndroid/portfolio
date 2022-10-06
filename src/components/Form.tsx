@@ -1,7 +1,11 @@
-import { memo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import styled from '@emotion/styled';
+import emailjs from '@emailjs/browser';
+import { toast, ToastContainer, ToastOptions } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import StyledButton from './StyledButton';
+import { PUBLICK_KEY, SERVICE_ID, TEMPLATE_ID } from '../api/emailjs';
 
 const StyledForm = styled.form({
   display: 'flex',
@@ -39,24 +43,60 @@ const Textarea = styled.textarea({
   color: '#f4f4f4',
 });
 
+const Send = styled.p({
+  fontSize: '17px',
+});
+
 function Form() {
+  const toastOption = useMemo<ToastOptions>(
+    () => ({
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    }),
+    []
+  );
+
+  const sendEmail = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+      emailjs
+        .sendForm(SERVICE_ID, TEMPLATE_ID, e.currentTarget, PUBLICK_KEY)
+        .then(
+          () => {
+            toast.success('Mail has been sent', toastOption);
+          },
+          () => {
+            toast.error('Some error ouccuerd', toastOption);
+          }
+        );
+
+      e.currentTarget.reset();
+    },
+    [toastOption]
+  );
+
   return (
-    <StyledForm>
-      <Label>Name</Label>
-      <Input type="text" />
-
-      <Label>Email</Label>
-      <Input type="email" />
-
+    <StyledForm onSubmit={sendEmail}>
       <Label>Title</Label>
-      <Input type="text" />
+      <Input type="text" name="from_name" />
 
-      <Label>Contents</Label>
-      <Textarea rows={6} placeholder="" />
+      <Label>Your Email</Label>
+      <Input type="email" name="to_name" />
 
-      <StyledButton isLight>
-        <p>Send</p>
+      <Label>Message</Label>
+      <Textarea rows={6} name="message" placeholder="" />
+
+      <StyledButton isLight marginTop="0.5rem">
+        <Send>Send</Send>
       </StyledButton>
+
+      <ToastContainer />
     </StyledForm>
   );
 }
