@@ -32,6 +32,7 @@ const Content = styled.div({
   top: '45%',
   left: '50%',
   textAlign: 'center',
+  background: 'red',
 
   '@media screen and (max-width: 740px)': {
     top: '30%',
