@@ -88,7 +88,7 @@ function WorkCard({ src, title, text, view, stack }: IWorkCard) {
 
       <ButtonContainer>
         <StyledButton isLight>
-          <Link to="/detail">Detail</Link>
+          <Link to="/project/detail">Detail</Link>
         </StyledButton>
 
         <StyledButton isLight>

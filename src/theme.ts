@@ -13,6 +13,7 @@ export const image = {
   java: require('../src/assets/image/java.png'),
   javascript: require('../src/assets/image/javascript.png'),
   kotlin: require('../src/assets/image/kotlin.png'),
+  profile: require('../src/assets/image/profile.jpg'),
   react_query: require('../src/assets/image/react_query.png'),
   react: require('../src/assets/image/react.png'),
   redux_thunk: require('../src/assets/image/redux_thunk.png'),

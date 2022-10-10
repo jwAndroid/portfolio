@@ -47,6 +47,18 @@ const Send = styled.p({
   fontSize: '17px',
 });
 
+const SubContainer = styled.div({
+  display: 'flex',
+  flexDirection: 'column',
+  paddingTop: '1rem',
+});
+
+const SubText = styled.h4({
+  fontSize: '12px',
+  color: 'gray',
+  marginTop: '0.3rem',
+});
+
 function Form() {
   const toastOption = useMemo<ToastOptions>(
     () => ({
@@ -95,6 +107,12 @@ function Form() {
       <StyledButton isLight marginTop="0.5rem">
         <Send>Send</Send>
       </StyledButton>
+
+      <SubContainer>
+        <SubText>email: cjd9408er@naver.com</SubText>
+
+        <SubText>Tel: 010 6427 8522</SubText>
+      </SubContainer>
 
       <ToastContainer />
     </StyledForm>

@@ -17,6 +17,7 @@ function Home() {
         backgroundSource={theme.image.keyboard}
         title="Application Developer"
         subTtitle="JI WOOUNG CHOI"
+        showProfile
       />
 
       <Footer />

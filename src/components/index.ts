@@ -4,6 +4,7 @@ export { default as Divider } from './Divider';
 export { default as Footer } from './Footer';
 export { default as Form } from './Form';
 export { default as NavigationBar } from './NavigationBar';
+export { default as Profile } from './Profile';
 export { default as SkillCard } from './SkillCard';
 export { default as StyledButton } from './StyledButton';
 export { default as Work } from './Work';
