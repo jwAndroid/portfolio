@@ -36,6 +36,7 @@
     "arrow-body-style": "off",
     "global-require": "off",
     "import/no-useless-path-segments": "off",
-    "indent": "off"
+    "indent": "off",
+    "implicit-arrow-linebreak": "off"
   }
 }

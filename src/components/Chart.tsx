@@ -11,7 +11,6 @@ const Container = styled.div(() => ({
 const Heading = styled.h2(() => ({
   fontSize: '40px',
   textAlign: 'center',
-  marginTop: '2rem',
 
   '@media screen and (max-width: 740px)': {
     fontSize: '20px',
@@ -38,11 +37,14 @@ interface IBar {
 }
 const Bar = styled.div<IBar>(({ width, background }) => ({
   width,
-  height: '30px',
+  padding: '1rem',
   background,
   marginLeft: '1rem',
   borderTopRightRadius: '10px',
   borderBottomRightRadius: '10px',
+  justifyItems: 'center',
+  alignItems: 'center',
+  opacity: '0.8',
 
   '@media screen and (max-width: 740px)': {
     display: 'none',
@@ -85,7 +87,7 @@ function Chart() {
 
   return (
     <Container>
-      <Heading>Tech Proficiency</Heading>
+      <Heading>Chart</Heading>
 
       <ChartContainer>
         {CardData.sort((a, b) => b.proficiency - a.proficiency).map(
