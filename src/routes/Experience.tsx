@@ -6,7 +6,7 @@ import {
   Divider,
   Footer,
   NavigationBar,
-  StackCard,
+  SkillCard,
 } from '../components';
 
 function Experience() {
@@ -16,7 +16,7 @@ function Experience() {
 
       <NavigationBar />
 
-      <StackCard />
+      <SkillCard />
 
       <Divider />
 

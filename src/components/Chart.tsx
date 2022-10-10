@@ -85,7 +85,7 @@ function Chart() {
 
   return (
     <Container>
-      <Heading>Tech Proficiency Chart</Heading>
+      <Heading>Tech Proficiency</Heading>
 
       <ChartContainer>
         {CardData.sort((a, b) => b.proficiency - a.proficiency).map(

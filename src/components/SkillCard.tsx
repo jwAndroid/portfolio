@@ -7,6 +7,11 @@ const Heading = styled.h1({
   fontSize: '40px',
   textAlign: 'center',
   paddingTop: '6rem',
+
+  '@media screen and (max-width: 740px)': {
+    fontSize: '20px',
+    paddingTop: '6.5rem',
+  },
 });
 
 const Container = styled.div({
@@ -66,10 +71,10 @@ const CardText = styled.h3({
   marginBottom: '1rem',
 });
 
-function StackCard() {
+function SkillCard() {
   return (
     <>
-      <Heading>Experienced Stack</Heading>
+      <Heading>Experienced Skills</Heading>
 
       <Container>
         {CardData.map((item, index) => (
@@ -87,4 +92,4 @@ function StackCard() {
   );
 }
 
-export default memo(StackCard);
+export default memo(SkillCard);
