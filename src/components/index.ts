@@ -7,5 +7,5 @@ export { default as NavigationBar } from './NavigationBar';
 export { default as Profile } from './Profile';
 export { default as SkillCard } from './SkillCard';
 export { default as StyledButton } from './StyledButton';
-export { default as Work } from './Work';
-export { default as WorkCard } from './WorkCard';
+export { default as Projects } from './Projects';
+export { default as ProjectsCard } from './ProjectsCard';

@@ -2,7 +2,7 @@ import { memo } from 'react';
 import styled from '@emotion/styled';
 
 import ProjectData from '../utils/data';
-import WorkCard from './WorkCard';
+import ProjectsCard from './ProjectsCard';
 
 const ProjectHeading = styled.h1({
   textAlign: 'center',
@@ -24,14 +24,14 @@ const ProjectContainer = styled.div({
   },
 });
 
-function Work() {
+function Projects() {
   return (
     <>
-      <ProjectHeading>Project</ProjectHeading>
+      <ProjectHeading>Projects</ProjectHeading>
 
       <ProjectContainer>
         {ProjectData.map((item, index) => (
-          <WorkCard
+          <ProjectsCard
             key={`${index + 1}`}
             src={item.imgsrc}
             text={item.text}
@@ -45,4 +45,4 @@ function Work() {
   );
 }
 
-export default memo(Work);
+export default memo(Projects);

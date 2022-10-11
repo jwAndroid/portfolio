@@ -2,7 +2,7 @@ import { useTheme } from '@emotion/react';
 import { memo } from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import { Background, Footer, NavigationBar, Work } from '../components';
+import { Background, Footer, NavigationBar, Projects } from '../components';
 
 function Project() {
   const theme = useTheme();
@@ -15,7 +15,7 @@ function Project() {
 
       <Background backgroundSource={theme.image.project} />
 
-      <Work />
+      <Projects />
 
       <Footer />
     </>

@@ -73,7 +73,7 @@ interface IWorkCard {
   view: string;
   stack: string[];
 }
-function WorkCard({ src, title, text, view, stack }: IWorkCard) {
+function ProjectsCard({ src, title, text, view, stack }: IWorkCard) {
   const style = useMemo<React.CSSProperties>(
     () => ({
       color: '#fff',
@@ -140,4 +140,4 @@ function WorkCard({ src, title, text, view, stack }: IWorkCard) {
   );
 }
 
-export default memo(WorkCard);
+export default memo(ProjectsCard);
