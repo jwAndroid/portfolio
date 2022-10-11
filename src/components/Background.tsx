@@ -3,21 +3,11 @@ import styled from '@emotion/styled';
 
 import Profile from './Profile';
 
-const Container = styled.div({
-  width: '100%',
-  height: '100%',
-});
-
-const Mask = styled.div({
+const ImageContainer = styled.div({
   position: 'relative',
-  width: '100%',
+  maxWidth: '100%',
   height: '80vh',
-  opacity: 0.25,
-  backgroundColor: '#000',
-
-  '@media screen and (max-width: 740px)': {
-    height: '80vh',
-  },
+  opacity: 0.2,
 });
 
 const Image = styled.img({
@@ -36,13 +26,9 @@ const Content = styled.div<IContent>(({ isProfile }) => ({
   position: 'absolute',
   transform: 'translate(-50%, -50%)',
   alignItems: 'center',
-  top: isProfile ? '35%' : '45%',
+  top: isProfile ? '40%' : '45%',
   left: '50%',
   textAlign: 'center',
-
-  '@media screen and (max-width: 740px)': {
-    top: '30%',
-  },
 }));
 
 const Title = styled.h1(() => ({
@@ -78,10 +64,10 @@ function Background({
   showProfile,
 }: IBackground) {
   return (
-    <Container>
-      <Mask>
+    <>
+      <ImageContainer>
         <Image src={backgroundSource} alt="true" />
-      </Mask>
+      </ImageContainer>
 
       <Content isProfile={showProfile ?? false}>
         <Title>{title}</Title>
@@ -90,7 +76,7 @@ function Background({
 
         {showProfile ? <Profile /> : null}
       </Content>
-    </Container>
+    </>
   );
 }
 

@@ -36,7 +36,7 @@ function Projects() {
             src={item.imgsrc}
             text={item.text}
             title={item.title}
-            view={item.view}
+            github={item.github}
             stack={item.stack}
           />
         ))}

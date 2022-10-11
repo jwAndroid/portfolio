@@ -14,7 +14,7 @@ function Home() {
       <NavigationBar />
 
       <Background
-        backgroundSource={theme.image.keyboard}
+        backgroundSource={theme.image.intro}
         title="Application Developer"
         subTtitle="JI WOOUNG CHOI"
         showProfile

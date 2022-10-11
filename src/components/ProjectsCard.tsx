@@ -1,7 +1,7 @@
 import { memo, ReactNode, useCallback, useMemo } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import { FcCancel } from 'react-icons/fc';
+import { FaBan } from 'react-icons/fa';
 import { toast, ToastContainer, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -70,10 +70,10 @@ interface IWorkCard {
   src: string;
   title: ReactNode;
   text: ReactNode;
-  view: string;
+  github: string;
   stack: string[];
 }
-function ProjectsCard({ src, title, text, view, stack }: IWorkCard) {
+function ProjectsCard({ src, title, text, github, stack }: IWorkCard) {
   const style = useMemo<React.CSSProperties>(
     () => ({
       color: '#fff',
@@ -85,8 +85,8 @@ function ProjectsCard({ src, title, text, view, stack }: IWorkCard) {
   const toastOption = useMemo<ToastOptions>(
     () => ({
       position: 'top-right',
-      autoClose: 3000,
-      hideProgressBar: false,
+      autoClose: 1500,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
@@ -122,15 +122,15 @@ function ProjectsCard({ src, title, text, view, stack }: IWorkCard) {
           <Link to="/project/detail">Detail</Link>
         </StyledButton>
 
-        {view !== '' ? (
+        {github !== '' ? (
           <StyledButton isLight>
-            <a href={view} target="blank">
+            <a href={github} target="blank">
               Github
             </a>
           </StyledButton>
         ) : (
           <StyledButton isLight onClick={onClick}>
-            <FcCancel size={20} style={style} />
+            <FaBan size={20} style={style} />
           </StyledButton>
         )}
       </ButtonContainer>

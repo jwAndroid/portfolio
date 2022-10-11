@@ -2,25 +2,10 @@ import { memo } from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '@emotion/react';
 
-const Card = styled.div({
-  marginTop: '2rem',
-  height: '200px',
-  background: 'linear-gradient(to right, #363635, #00171f)',
-  borderTopLeftRadius: '10px',
-  borderTopRightRadius: '10px',
-
-  '@media screen and (max-width: 740px)': {
-    width: '100%',
-    height: '80px',
-  },
-});
-
 const ImageContainer = styled.div({
   display: 'flex',
-  height: '60px',
   alignItems: 'center',
   justifyItems: 'center',
-  borderRadius: '50%',
   transform: 'translate(110px, 30px)',
 
   '@media screen and (max-width: 740px)': {
@@ -40,13 +25,10 @@ const Image = styled.img({
 
 const ContentsContainer = styled.div({
   display: 'flex',
-  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
   width: '300px',
-  background: '#131313',
-  paddingTop: '4.5rem',
-  paddingBottom: '2rem',
-  borderBottomLeftRadius: '10px',
-  borderBottomRightRadius: '10px',
+  paddingTop: '3rem',
 
   '@media screen and (max-width: 740px)': {
     width: '250px',
@@ -54,9 +36,7 @@ const ContentsContainer = styled.div({
 });
 
 const StyledText = styled.p({
-  fontSize: '15px',
-  fontWeight: '400',
-  padding: '0rem 1rem',
+  fontSize: '16px',
   whiteSpace: 'pre-wrap',
 
   '@media screen and (max-width: 740px)': {
@@ -68,10 +48,10 @@ function Profile() {
   const theme = useTheme();
 
   const text =
-    'React Native, Android, React \n 를 개발하는 FrontEnd 개발자 \n 최지웅 이라고 합니다.';
+    'react-native, Android, React \n 를 개발하는 FrontEnd 개발자 \n 최지웅 입니다.';
 
   return (
-    <Card>
+    <div>
       <ImageContainer>
         <Image src={theme.image.profile} alt="" />
       </ImageContainer>
@@ -79,7 +59,7 @@ function Profile() {
       <ContentsContainer>
         <StyledText>{text}</StyledText>
       </ContentsContainer>
-    </Card>
+    </div>
   );
 }
 
