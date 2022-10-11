@@ -7,9 +7,12 @@ import { store } from './redux/store';
 import { AppTheme } from './theme';
 import GlobalStyle from './GlobalStyle';
 import { Screens } from './components';
+import usePreloadEffect from './hooks/usePreloadEffect';
 
 function App() {
-  return (
+  const { preload } = usePreloadEffect();
+
+  return preload ? (
     <Provider store={store}>
       <HelmetProvider>
         <ThemeProvider theme={AppTheme}>
@@ -19,7 +22,7 @@ function App() {
         </ThemeProvider>
       </HelmetProvider>
     </Provider>
-  );
+  ) : null;
 }
 
 export default memo(App);

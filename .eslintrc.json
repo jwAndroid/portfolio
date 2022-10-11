@@ -39,6 +39,7 @@
     "indent": "off",
     "implicit-arrow-linebreak": "off",
     "operator-linebreak": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "array-callback-return": "off"
   }
 }
