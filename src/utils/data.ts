@@ -9,7 +9,7 @@ export const ProjectData = [
     route: 'chatmo',
     stack: ['react-native', 'published'],
     content: 'chatmo 컨텐츠 입니다.',
-    video: 'chatmo url',
+    videoUrl: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
   },
   {
     src: image.wetrip,
@@ -19,7 +19,7 @@ export const ProjectData = [
     route: 'wetrip',
     stack: ['react-native', 'published'],
     content: 'wetrip 컨텐츠 입니다.',
-    video: 'wetrip url',
+    videoUrl: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
   },
   {
     src: image.expo_background,
@@ -29,7 +29,7 @@ export const ProjectData = [
     route: 'expo',
     stack: ['react-native'],
     content: 'Expo 컨텐츠 입니다.',
-    video: 'Expo url',
+    videoUrl: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
   },
   {
     src: image.covid,
@@ -39,7 +39,7 @@ export const ProjectData = [
     route: 'covid',
     stack: ['Android'],
     content: 'covid 컨텐츠 입니다.',
-    video: 'covid url',
+    videoUrl: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
   },
   {
     src: image.friending,
@@ -49,7 +49,7 @@ export const ProjectData = [
     route: 'friending',
     stack: ['Android'],
     content: 'friending 컨텐츠 입니다.',
-    video: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
+    videoUrl: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
   },
   {
     src: image.noteapp,
@@ -59,7 +59,7 @@ export const ProjectData = [
     route: 'noteapp',
     stack: ['Android'],
     content: 'noteapp 컨텐츠 입니다.',
-    video: 'expo url',
+    videoUrl: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
   },
   {
     src: image.todoapp,
@@ -69,7 +69,7 @@ export const ProjectData = [
     route: 'todoapp',
     stack: ['Android'],
     content: 'todoapp 컨텐츠 입니다.',
-    video: 'todoapp url',
+    videoUrl: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
   },
   {
     src: image.coffee,
@@ -79,7 +79,7 @@ export const ProjectData = [
     route: 'coffee',
     stack: ['Android'],
     content: 'coffee 컨텐츠 입니다.',
-    video: 'coffee url',
+    videoUrl: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
   },
 ];
 

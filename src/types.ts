@@ -8,5 +8,5 @@ export interface ProjectEntity {
   route: string;
   stack: string[];
   content: string;
-  video: string;
+  videoUrl: string;
 }

@@ -1,7 +1,8 @@
-import { memo, useEffect, useState } from 'react';
+import { memo } from 'react';
 import styled from '@emotion/styled';
 
 import CardData from '../utils/card';
+import useWindowEffect from '../hooks/useWindowEffect';
 
 const Container = styled.div(() => ({
   display: 'flex',
@@ -73,17 +74,7 @@ const NumberText = styled.h4({
 });
 
 function Chart() {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
-
-    return () => {
-      window.removeEventListener('resize', () => {
-        return setWindowWidth(window.innerWidth);
-      });
-    };
-  }, [windowWidth]);
+  const { windowWidth } = useWindowEffect();
 
   return (
     <Container>

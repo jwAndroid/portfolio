@@ -10,13 +10,12 @@ const Heading = styled.h1({
 
   '@media screen and (max-width: 740px)': {
     fontSize: '20px',
-    paddingTop: '6.5rem',
   },
 });
 
 const Container = styled.div({
   display: 'grid',
-  maxWidth: '1500px',
+  maxWidth: '80%',
   margin: 'auto',
   gridTemplateColumns: 'repeat(4, 1fr)',
   gridGap: '50px',
@@ -25,7 +24,6 @@ const Container = styled.div({
 
   '@media screen and (max-width: 740px)': {
     maxWidth: '100%',
-    margin: '2rem 3rem',
     gridTemplateColumns: 'repeat(2, 1fr)',
   },
 });
@@ -69,6 +67,10 @@ const CardText = styled.h3({
   textAlign: 'center',
   marginTop: '0.5rem',
   marginBottom: '1rem',
+
+  '@media screen and (max-width: 740px)': {
+    fontSize: '10px',
+  },
 });
 
 function SkillCard() {

@@ -3,65 +3,79 @@ import styled from '@emotion/styled';
 import ReactPlayer from 'react-player/youtube';
 import { useLocation } from 'react-router-dom';
 import { ProjectEntity } from '../types';
+import useWindowEffect from '../hooks/useWindowEffect';
 
 const Heading = styled.h1({
   fontSize: '40px',
   textAlign: 'center',
-  paddingTop: '6rem',
+  paddingTop: '5rem',
 
   '@media screen and (max-width: 740px)': {
     fontSize: '20px',
-    paddingTop: '6.5rem',
   },
 });
 
 const Container = styled.div({
   display: 'flex',
-  marginBottom: '2rem',
+  padding: '10px 30px',
+  marginTop: '20px',
+  paddingBottom: '50px',
+  background: 'orange',
+
+  '@media screen and (max-width: 740px)': {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 const ContentsContainer = styled.div({
   display: 'flex',
-  width: '500px',
-  alignItems: 'center',
+  width: '430px',
+  alignItems: 'start',
   flexDirection: 'column',
-  padding: '20px 40px',
-});
+  padding: '20px',
+  marginTop: '10px',
+  marginBottom: '20px',
+  background: '#1a1919',
+  marginLeft: '20px',
 
-const Title = styled.h3({
-  fontSize: '24px',
-});
-
-const Text = styled.p({
-  fontSize: '16px',
+  '@media screen and (max-width: 740px)': {
+    width: '100%',
+    marginRight: '20px',
+  },
 });
 
 function ProjectDetail() {
-  const { title, content, video } = useLocation().state as ProjectEntity;
+  const { title, content, videoUrl } = useLocation().state as ProjectEntity;
+
+  console.log(videoUrl);
 
   const playerStyle = useMemo<React.CSSProperties>(
     () => ({ marginBottom: '20px', marginTop: '10px' }),
     []
   );
 
+  const { windowWidth } = useWindowEffect();
+
   return (
     <>
-      <Heading>Experienced Skills</Heading>
+      <Heading>{title}</Heading>
 
       <Container>
         <ReactPlayer
-          url="https://www.youtube.com/watch?v=eb05R1XN6NA"
+          url={videoUrl}
           width="100%"
-          height="700px"
+          height={windowWidth >= 740 ? '700px' : '400px'}
           style={playerStyle}
           controls
           light
         />
 
         <ContentsContainer>
-          <Title>{title}</Title>
-          <Text>{content}</Text>
-          <Text>{video}</Text>
+          <h3>{title}</h3>
+          <p>{content}</p>
+          <p>{videoUrl}</p>
         </ContentsContainer>
       </Container>
     </>
