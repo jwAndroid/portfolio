@@ -71,9 +71,10 @@ interface IWorkCard {
   title: ReactNode;
   text: ReactNode;
   github: string;
+  route: string;
   stack: string[];
 }
-function ProjectsCard({ src, title, text, github, stack }: IWorkCard) {
+function ProjectsCard({ src, title, text, github, route, stack }: IWorkCard) {
   const style = useMemo<React.CSSProperties>(
     () => ({
       color: '#fff',
@@ -99,6 +100,13 @@ function ProjectsCard({ src, title, text, github, stack }: IWorkCard) {
     toast.error('Private Github', toastOption);
   }, [toastOption]);
 
+  const onNavigate = useCallback(
+    (route: string) => () => {
+      console.log(`route name: ${route}`);
+    },
+    []
+  );
+
   return (
     <ProjectCard>
       <ProjectImage src={src} alt="iman3" />
@@ -118,8 +126,8 @@ function ProjectsCard({ src, title, text, github, stack }: IWorkCard) {
       </ChipContainer>
 
       <ButtonContainer>
-        <StyledButton isLight>
-          <Link to="/project/detail">Detail</Link>
+        <StyledButton isLight onClick={onNavigate(route)}>
+          <Link to={`/project/detail/${route}`}>Detail</Link>
         </StyledButton>
 
         {github !== '' ? (

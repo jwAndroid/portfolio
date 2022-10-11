@@ -37,6 +37,7 @@ function Projects() {
             text={item.text}
             title={item.title}
             github={item.github}
+            route={item.route}
             stack={item.stack}
           />
         ))}
