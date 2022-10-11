@@ -38,6 +38,7 @@
     "import/no-useless-path-segments": "off",
     "indent": "off",
     "implicit-arrow-linebreak": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "no-param-reassign": "off"
   }
 }

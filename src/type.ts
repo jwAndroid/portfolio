@@ -5,3 +5,9 @@ export interface ProjectEntity {
   view: string;
   stack: string[];
 }
+
+export interface DetailEntity {
+  title: string;
+  content: string;
+  video: string;
+}

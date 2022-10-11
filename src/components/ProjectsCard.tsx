@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { ellipsize } from '../utils/text';
 import StyledButton from './StyledButton';
+import { useAppDispatch } from '../hooks/useRedux';
+import { changeRoute } from '../redux/route/slice';
 
 const ProjectCard = styled.div(({ theme }) => ({
   padding: '1rem',
@@ -75,6 +77,8 @@ interface IWorkCard {
   stack: string[];
 }
 function ProjectsCard({ src, title, text, github, route, stack }: IWorkCard) {
+  const dispatch = useAppDispatch();
+
   const style = useMemo<React.CSSProperties>(
     () => ({
       color: '#fff',
@@ -102,9 +106,11 @@ function ProjectsCard({ src, title, text, github, route, stack }: IWorkCard) {
 
   const onNavigate = useCallback(
     (route: string) => () => {
-      console.log(`route name: ${route}`);
+      console.log('onNavigate click');
+
+      dispatch(changeRoute({ routeName: route }));
     },
-    []
+    [dispatch]
   );
 
   return (
@@ -127,7 +133,9 @@ function ProjectsCard({ src, title, text, github, route, stack }: IWorkCard) {
 
       <ButtonContainer>
         <StyledButton isLight onClick={onNavigate(route)}>
-          <Link to={`/project/detail/${route}`}>Detail</Link>
+          <Link to={`/project/detail/${route}`} preventScrollReset>
+            Detail
+          </Link>
         </StyledButton>
 
         {github !== '' ? (

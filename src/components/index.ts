@@ -7,6 +7,7 @@ export { default as NavigationBar } from './NavigationBar';
 export { default as Profile } from './Profile';
 export { default as Projects } from './Projects';
 export { default as ProjectsCard } from './ProjectsCard';
+export { default as ProjectDetail } from './ProjectDetail';
 export { default as Screens } from './Screens';
 export { default as SkillCard } from './SkillCard';
 export { default as StyledButton } from './StyledButton';
