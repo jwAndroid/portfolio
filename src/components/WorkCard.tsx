@@ -1,6 +1,9 @@
-import { memo, ReactNode } from 'react';
+import { memo, ReactNode, useCallback, useMemo } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import { FcCancel } from 'react-icons/fc';
+import { toast, ToastContainer, ToastOptions } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { ellipsize } from '../utils/text';
 import StyledButton from './StyledButton';
@@ -17,8 +20,12 @@ const ProjectCard = styled.div(({ theme }) => ({
 
 const ProjectImage = styled.img({
   width: '100%',
-  height: 'vh',
+  height: '180px',
   borderRadius: '15px',
+
+  '@media screen and (max-width: 740px)': {
+    height: '220px',
+  },
 });
 
 const ProjectTitle = styled.h2(({ theme }) => ({
@@ -67,7 +74,31 @@ interface IWorkCard {
   stack: string[];
 }
 function WorkCard({ src, title, text, view, stack }: IWorkCard) {
-  console.log(view);
+  const style = useMemo<React.CSSProperties>(
+    () => ({
+      color: '#fff',
+      margin: '0rem 0.7rem',
+    }),
+    []
+  );
+
+  const toastOption = useMemo<ToastOptions>(
+    () => ({
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    }),
+    []
+  );
+
+  const onClick = useCallback(() => {
+    toast.error('Private Github', toastOption);
+  }, [toastOption]);
+
   return (
     <ProjectCard>
       <ProjectImage src={src} alt="iman3" />
@@ -91,12 +122,20 @@ function WorkCard({ src, title, text, view, stack }: IWorkCard) {
           <Link to="/project/detail">Detail</Link>
         </StyledButton>
 
-        <StyledButton isLight>
-          <a href={view} target="blank">
-            Github
-          </a>
-        </StyledButton>
+        {view !== '' ? (
+          <StyledButton isLight>
+            <a href={view} target="blank">
+              Github
+            </a>
+          </StyledButton>
+        ) : (
+          <StyledButton isLight onClick={onClick}>
+            <FcCancel size={20} style={style} />
+          </StyledButton>
+        )}
       </ButtonContainer>
+
+      <ToastContainer />
     </ProjectCard>
   );
 }

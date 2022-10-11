@@ -7,8 +7,11 @@ interface IEmotionButton {
 }
 const EmotionButton = styled.button<IEmotionButton>(
   ({ isLight, marginTop }) => ({
+    display: 'flex',
     padding: '1rem 3rem',
     textTransform: 'uppercase',
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: '10px',
     background: isLight ? 'transparent' : 'rgba(248,217,15)',
     color: isLight ? '#fff' : '#222',
