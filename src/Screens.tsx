@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { useAppSelector } from '../hooks/useRedux';
-import { Contact, Detail, Experience, Home, Project } from '../routes';
+import { useAppSelector } from './hooks/useRedux';
+import { Contact, Detail, Experience, Home, Project } from './routes';
 
 function Screens() {
   const state = useAppSelector((state) => state.route);

@@ -1,4 +1,4 @@
-import { memo, ReactNode, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import { FaBan } from 'react-icons/fa';
@@ -9,6 +9,7 @@ import { ellipsize } from '../utils/text';
 import StyledButton from './StyledButton';
 import { useAppDispatch } from '../hooks/useRedux';
 import { changeRoute } from '../redux/route/slice';
+import { ProjectEntity } from '../types';
 
 const ProjectCard = styled.div(({ theme }) => ({
   padding: '1rem',
@@ -68,15 +69,10 @@ const Text = styled.p<IText>(({ fontSize }) => ({
   textAlign: 'justify',
 }));
 
-interface IWorkCard {
-  src: string;
-  title: ReactNode;
-  text: ReactNode;
-  github: string;
-  route: string;
-  stack: string[];
+interface IProjectsCard {
+  data: ProjectEntity;
 }
-function ProjectsCard({ src, title, text, github, route, stack }: IWorkCard) {
+function ProjectsCard({ data }: IProjectsCard) {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -107,26 +103,28 @@ function ProjectsCard({ src, title, text, github, route, stack }: IWorkCard) {
   }, [toastOption]);
 
   const onNavigate = useCallback(
-    (route: string) => () => {
-      dispatch(changeRoute({ routeName: route }));
+    (data: ProjectEntity) => () => {
+      if (data) {
+        dispatch(changeRoute({ routeName: data.route }));
 
-      navigate(`/project/detail/${route}`);
+        navigate(`/project/detail/${data.route}`, { state: data });
+      }
     },
     [dispatch, navigate]
   );
 
   return (
     <ProjectCard>
-      <ProjectImage src={src} alt="iman3" />
+      <ProjectImage src={data.src} alt="" />
 
-      <ProjectTitle>{title}</ProjectTitle>
+      <ProjectTitle>{data.title}</ProjectTitle>
 
       <TextContainer>
-        <Text>{ellipsize(text as string, 100)}</Text>
+        <Text>{ellipsize(data.text as string, 100)}</Text>
       </TextContainer>
 
       <ChipContainer>
-        {stack.map((item, index) => (
+        {data.stack.map((item, index) => (
           <Chip key={`${index + 1}`}>
             <Text fontSize="12px">{item}</Text>
           </Chip>
@@ -134,13 +132,13 @@ function ProjectsCard({ src, title, text, github, route, stack }: IWorkCard) {
       </ChipContainer>
 
       <ButtonContainer>
-        <StyledButton isLight onClick={onNavigate(route)}>
+        <StyledButton isLight onClick={onNavigate(data)}>
           <p>Detail</p>
         </StyledButton>
 
-        {github !== '' ? (
+        {data.github !== '' ? (
           <StyledButton isLight>
-            <a href={github} target="blank">
+            <a href={data.github} target="blank">
               Github
             </a>
           </StyledButton>

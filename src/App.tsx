@@ -6,8 +6,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import { store } from './redux/store';
 import { AppTheme } from './theme';
 import GlobalStyle from './GlobalStyle';
-import { Screens } from './components';
 import usePreloadEffect from './hooks/usePreloadEffect';
+import Screens from './Screens';
 
 function App() {
   const { preload } = usePreloadEffect();

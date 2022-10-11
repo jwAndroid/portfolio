@@ -31,15 +31,7 @@ function Projects() {
 
       <ProjectContainer>
         {ProjectData.map((item, index) => (
-          <ProjectsCard
-            key={`${index + 1}`}
-            src={item.imgsrc}
-            text={item.text}
-            title={item.title}
-            github={item.github}
-            route={item.route}
-            stack={item.stack}
-          />
+          <ProjectsCard key={`${index + 1}`} data={item} />
         ))}
       </ProjectContainer>
     </>
