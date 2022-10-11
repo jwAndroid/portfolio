@@ -2,6 +2,7 @@ import { memo, useCallback, useState } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import HeaderRoutes from '../utils/routes';
 
 interface IHeader {
   isScroll: boolean;
@@ -58,25 +59,6 @@ const Hamburger = styled.div(() => ({
   },
 }));
 
-const data = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    to: '/project',
-    title: 'Project',
-  },
-  {
-    to: '/experience',
-    title: 'Experience',
-  },
-  {
-    to: '/contact',
-    title: 'Contact',
-  },
-];
-
 function NavigationBar() {
   const [isScroll, setIsScroll] = useState(false);
   const [click, setClick] = useState(false);
@@ -102,9 +84,9 @@ function NavigationBar() {
       </Link>
 
       <NavMenu isActive={click}>
-        {data.map((item, index) => (
+        {HeaderRoutes.map((route, index) => (
           <List key={`${index + 1}`}>
-            <Link to={item.to}>{item.title}</Link>
+            <Link to={route.to}>{route.title}</Link>
           </List>
         ))}
       </NavMenu>

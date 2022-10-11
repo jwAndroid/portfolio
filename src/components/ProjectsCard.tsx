@@ -1,6 +1,6 @@
 import { memo, ReactNode, useCallback, useMemo } from 'react';
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaBan } from 'react-icons/fa';
 import { toast, ToastContainer, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -79,6 +79,8 @@ interface IWorkCard {
 function ProjectsCard({ src, title, text, github, route, stack }: IWorkCard) {
   const dispatch = useAppDispatch();
 
+  const navigate = useNavigate();
+
   const style = useMemo<React.CSSProperties>(
     () => ({
       color: '#fff',
@@ -106,11 +108,11 @@ function ProjectsCard({ src, title, text, github, route, stack }: IWorkCard) {
 
   const onNavigate = useCallback(
     (route: string) => () => {
-      console.log('onNavigate click');
-
       dispatch(changeRoute({ routeName: route }));
+
+      navigate(`/project/detail/${route}`);
     },
-    [dispatch]
+    [dispatch, navigate]
   );
 
   return (
@@ -133,9 +135,7 @@ function ProjectsCard({ src, title, text, github, route, stack }: IWorkCard) {
 
       <ButtonContainer>
         <StyledButton isLight onClick={onNavigate(route)}>
-          <Link to={`/project/detail/${route}`} preventScrollReset>
-            Detail
-          </Link>
+          <p>Detail</p>
         </StyledButton>
 
         {github !== '' ? (
