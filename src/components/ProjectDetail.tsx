@@ -4,9 +4,19 @@ import ReactPlayer from 'react-player/youtube';
 import { useLocation } from 'react-router-dom';
 import { ProjectEntity } from '../types';
 
+const Heading = styled.h1({
+  fontSize: '40px',
+  textAlign: 'center',
+  paddingTop: '6rem',
+
+  '@media screen and (max-width: 740px)': {
+    fontSize: '20px',
+    paddingTop: '6.5rem',
+  },
+});
+
 const Container = styled.div({
   display: 'flex',
-  paddingTop: '7rem',
   marginBottom: '2rem',
 });
 
@@ -27,9 +37,7 @@ const Text = styled.p({
 });
 
 function ProjectDetail() {
-  const data = useLocation().state as ProjectEntity;
-
-  console.log(data);
+  const { title, content, video } = useLocation().state as ProjectEntity;
 
   const playerStyle = useMemo<React.CSSProperties>(
     () => ({ marginBottom: '20px', marginTop: '10px' }),
@@ -37,22 +45,26 @@ function ProjectDetail() {
   );
 
   return (
-    <Container>
-      <ReactPlayer
-        url="https://www.youtube.com/watch?v=eb05R1XN6NA"
-        width="100%"
-        height="700px"
-        style={playerStyle}
-        controls
-        light
-      />
+    <>
+      <Heading>Experienced Skills</Heading>
 
-      <ContentsContainer>
-        <Title>타이틀</Title>
-        <Text>컨텐츠</Text>
-        <Text>비디오</Text>
-      </ContentsContainer>
-    </Container>
+      <Container>
+        <ReactPlayer
+          url="https://www.youtube.com/watch?v=eb05R1XN6NA"
+          width="100%"
+          height="700px"
+          style={playerStyle}
+          controls
+          light
+        />
+
+        <ContentsContainer>
+          <Title>{title}</Title>
+          <Text>{content}</Text>
+          <Text>{video}</Text>
+        </ContentsContainer>
+      </Container>
+    </>
   );
 }
 

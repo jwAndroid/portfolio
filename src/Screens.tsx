@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ScrollToTop } from './components';
 
 import { useAppSelector } from './hooks/useRedux';
 import { Contact, Detail, Experience, Home, Project } from './routes';
@@ -9,6 +10,8 @@ function Screens() {
 
   return (
     <Router>
+      <ScrollToTop />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/project" element={<Project />} />

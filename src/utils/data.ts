@@ -8,8 +8,8 @@ export const ProjectData = [
     github: 'https://github.com/jwAndroid/ChatMo.v2',
     route: 'chatmo',
     stack: ['react-native', 'published'],
-    content: 'expo 컨텐츠 입니다.',
-    video: 'expo url',
+    content: 'chatmo 컨텐츠 입니다.',
+    video: 'chatmo url',
   },
   {
     src: image.wetrip,
@@ -18,8 +18,8 @@ export const ProjectData = [
     github: '',
     route: 'wetrip',
     stack: ['react-native', 'published'],
-    content: 'expo 컨텐츠 입니다.',
-    video: 'expo url',
+    content: 'wetrip 컨텐츠 입니다.',
+    video: 'wetrip url',
   },
   {
     src: image.expo_background,
@@ -28,8 +28,8 @@ export const ProjectData = [
     github: 'https://github.com/jwAndroid/expo-rn',
     route: 'expo',
     stack: ['react-native'],
-    content: 'expo 컨텐츠 입니다.',
-    video: 'expo url',
+    content: 'Expo 컨텐츠 입니다.',
+    video: 'Expo url',
   },
   {
     src: image.covid,
@@ -38,8 +38,8 @@ export const ProjectData = [
     github: 'https://github.com/jwAndroid/Covid19_SB',
     route: 'covid',
     stack: ['Android'],
-    content: 'expo 컨텐츠 입니다.',
-    video: 'expo url',
+    content: 'covid 컨텐츠 입니다.',
+    video: 'covid url',
   },
   {
     src: image.friending,
@@ -48,8 +48,8 @@ export const ProjectData = [
     github: 'https://github.com/jwAndroid/Friending',
     route: 'friending',
     stack: ['Android'],
-    content: 'expo 컨텐츠 입니다.',
-    video: 'expo url',
+    content: 'friending 컨텐츠 입니다.',
+    video: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
   },
   {
     src: image.noteapp,
@@ -58,7 +58,7 @@ export const ProjectData = [
     github: 'https://github.com/jwAndroid/Noteapp',
     route: 'noteapp',
     stack: ['Android'],
-    content: 'expo 컨텐츠 입니다.',
+    content: 'noteapp 컨텐츠 입니다.',
     video: 'expo url',
   },
   {
@@ -68,8 +68,8 @@ export const ProjectData = [
     github: 'https://github.com/jwAndroid/TodoList',
     route: 'todoapp',
     stack: ['Android'],
-    content: 'expo 컨텐츠 입니다.',
-    video: 'expo url',
+    content: 'todoapp 컨텐츠 입니다.',
+    video: 'todoapp url',
   },
   {
     src: image.coffee,
@@ -78,8 +78,8 @@ export const ProjectData = [
     github: 'https://github.com/jwAndroid/CoffeeDream',
     route: 'coffee',
     stack: ['Android'],
-    content: 'expo 컨텐츠 입니다.',
-    video: 'expo url',
+    content: 'coffee 컨텐츠 입니다.',
+    video: 'coffee url',
   },
 ];
 
