@@ -50,6 +50,7 @@ const StyledText = styled.p({
   marginTop: '20px',
   whiteSpace: 'pre-wrap',
   textAlign: 'center',
+  fontWeight: '500',
 
   '@media screen and (max-width: 640px)': {
     fontSize: '14px',
@@ -60,12 +61,12 @@ function Profile() {
   const theme = useTheme();
 
   const intro =
-    'react-native, React, Android \n 를 개발하고 애용하는 front-end 개발자 \n 최지웅 입니다.';
+    'react-native, React, Android 를 \n 개발하고 애용하는 front-end 개발자 \n 최지웅 입니다.';
 
   const style = useMemo<React.CSSProperties>(
     () => ({
       color: '#fff',
-      marginTop: '20px',
+      marginTop: '25px',
       cursor: 'pointer',
     }),
     []

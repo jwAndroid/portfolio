@@ -6,7 +6,7 @@ import ProjectsCard from './ProjectsCard';
 
 const ProjectHeading = styled.h1({
   textAlign: 'center',
-  padding: '4rem 0 2rem 0',
+  padding: '30px 0px',
 });
 
 const ProjectContainer = styled.div({
@@ -17,9 +17,7 @@ const ProjectContainer = styled.div({
   gridGap: '40px',
   paddingBottom: '5rem',
 
-  '@media screen and (max-width: 740px)': {
-    maxWidth: '100%',
-    margin: 'auto',
+  '@media screen and (max-width: 640px)': {
     gridTemplateColumns: '1fr',
   },
 });

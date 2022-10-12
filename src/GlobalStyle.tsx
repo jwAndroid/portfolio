@@ -13,7 +13,7 @@ function GlobalStyle() {
           font-family: 'Outfit', sans-serif;
         }
         body {
-          background: #1c2128;
+          background: #111827;
         }
         h1,
         h2,

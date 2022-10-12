@@ -12,12 +12,13 @@ import { changeRoute } from '../redux/route/slice';
 import { ProjectEntity } from '../types';
 
 const ProjectCard = styled.div(({ theme }) => ({
-  padding: '1rem',
+  padding: '15px',
   background: theme.color.card,
   borderRadius: '15px',
+  boxShadow: '1px 2px 15px #011627',
 
   '@media screen and (max-width: 740px)': {
-    margin: '0rem 2rem',
+    margin: '0px 15px',
   },
 }));
 
@@ -25,26 +26,44 @@ const ProjectImage = styled.img({
   width: '100%',
   height: '180px',
   borderRadius: '15px',
-
-  '@media screen and (max-width: 740px)': {
-    height: '220px',
-  },
 });
 
 const ProjectTitle = styled.h2(({ theme }) => ({
   color: theme.color.white,
-  padding: '1rem 0rem',
+  padding: '10px 0px',
+  fontSize: '25px',
+
+  '@media screen and (max-width: 740px)': {
+    fontSize: '18px',
+  },
+}));
+
+interface IContentsText {
+  fontSize?: string;
+}
+const ContentsText = styled.p<IContentsText>(({ fontSize }) => ({
+  fontSize,
+  textAlign: 'justify',
+  fontWeight: '500',
+
+  '@media screen and (max-width: 740px)': {
+    fontSize: '13px',
+  },
 }));
 
 const TextContainer = styled.div({
   width: '100%',
-  height: '7rem',
+  height: '120px',
+
+  '@media screen and (max-width: 740px)': {
+    height: '100px',
+  },
 });
 
 const ButtonContainer = styled.div({
   display: 'flex',
   justifyContent: 'space-between',
-  padding: '0.5rem 0',
+  padding: '8px 0px',
 });
 
 const ChipContainer = styled.div(() => ({
@@ -59,14 +78,6 @@ const Chip = styled.div(({ theme }) => ({
   padding: '0.2rem 0.5rem',
   marginRight: '0.5rem',
   border: `1px solid ${theme.color.chip}`,
-}));
-
-interface IText {
-  fontSize?: string;
-}
-const Text = styled.p<IText>(({ fontSize }) => ({
-  fontSize,
-  textAlign: 'justify',
 }));
 
 interface IProjectsCard {
@@ -120,13 +131,13 @@ function ProjectsCard({ data }: IProjectsCard) {
       <ProjectTitle>{data.title}</ProjectTitle>
 
       <TextContainer>
-        <Text>{ellipsize(data.text as string, 100)}</Text>
+        <ContentsText>{ellipsize(data.text as string, 100)}</ContentsText>
       </TextContainer>
 
       <ChipContainer>
         {data.stack.map((item, index) => (
           <Chip key={`${index + 1}`}>
-            <Text fontSize="12px">{item}</Text>
+            <ContentsText fontSize="12px">{item}</ContentsText>
           </Chip>
         ))}
       </ChipContainer>

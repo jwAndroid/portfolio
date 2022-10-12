@@ -36,7 +36,7 @@ export const AppTheme: Theme = {
     white: '#fff',
     gray: '#333333',
     yellow: '#FFDC5E',
-    card: '#1a1919',
+    card: '#374151',
     chip: '#24ddb9',
   },
 };
