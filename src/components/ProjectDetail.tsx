@@ -20,7 +20,6 @@ const Container = styled.div({
   padding: '10px 30px',
   marginTop: '20px',
   paddingBottom: '50px',
-  background: 'orange',
 
   '@media screen and (max-width: 740px)': {
     flexDirection: 'column',
@@ -69,13 +68,12 @@ function ProjectDetail() {
           height={windowWidth >= 740 ? '700px' : '400px'}
           style={playerStyle}
           controls
-          light
+          muted
         />
 
         <ContentsContainer>
           <h3>{title}</h3>
           <p>{content}</p>
-          <p>{videoUrl}</p>
         </ContentsContainer>
       </Container>
     </>

@@ -39,7 +39,7 @@ export const ProjectData = [
     route: 'covid',
     stack: ['Android'],
     content: 'covid 컨텐츠 입니다.',
-    videoUrl: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
+    videoUrl: 'https://youtu.be/RYS7znuBms0',
   },
   {
     src: image.friending,
@@ -49,7 +49,7 @@ export const ProjectData = [
     route: 'friending',
     stack: ['Android'],
     content: 'friending 컨텐츠 입니다.',
-    videoUrl: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
+    videoUrl: 'https://youtu.be/TBmoY7VScXw',
   },
   {
     src: image.noteapp,
@@ -59,7 +59,7 @@ export const ProjectData = [
     route: 'noteapp',
     stack: ['Android'],
     content: 'noteapp 컨텐츠 입니다.',
-    videoUrl: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
+    videoUrl: 'https://youtu.be/6zO93LqUv5o',
   },
   {
     src: image.todoapp,
@@ -69,7 +69,7 @@ export const ProjectData = [
     route: 'todoapp',
     stack: ['Android'],
     content: 'todoapp 컨텐츠 입니다.',
-    videoUrl: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
+    videoUrl: 'https://youtu.be/hghQlCLq7Cc',
   },
   {
     src: image.coffee,
@@ -79,7 +79,7 @@ export const ProjectData = [
     route: 'coffee',
     stack: ['Android'],
     content: 'coffee 컨텐츠 입니다.',
-    videoUrl: 'https://www.youtube.com/watch?v=TBmoY7VScXw',
+    videoUrl: 'https://youtu.be/UJg6s28bgf0',
   },
 ];
 
