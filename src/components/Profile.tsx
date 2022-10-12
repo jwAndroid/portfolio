@@ -1,25 +1,34 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '@emotion/react';
+import { FaGithub } from 'react-icons/fa';
 
 const ProfileContainer = styled.div({
   display: 'flex',
   flex: 1,
   flexDirection: 'column',
   alignItems: 'center',
-  paddingTop: '60px',
+  justifyContent: 'center',
   background: '#111827',
 });
 
 const Title = styled.h1({
   fontSize: '50px',
   color: '#fff',
+
+  '@media screen and (max-width: 640px)': {
+    fontSize: '20px',
+  },
 });
 
 const SubTitle = styled.h3({
   fontSize: '30px',
   color: '#fff',
   fontWeight: '500',
+
+  '@media screen and (max-width: 640px)': {
+    fontSize: '15px',
+  },
 });
 
 const ProfileImage = styled.img({
@@ -28,6 +37,11 @@ const ProfileImage = styled.img({
   marginTop: '20px',
   borderRadius: '50%',
   boxShadow: '0px 0px 7px #fff',
+
+  '@media screen and (max-width: 640px)': {
+    width: '80px',
+    height: '80px',
+  },
 });
 
 const StyledText = styled.p({
@@ -36,6 +50,10 @@ const StyledText = styled.p({
   marginTop: '20px',
   whiteSpace: 'pre-wrap',
   textAlign: 'center',
+
+  '@media screen and (max-width: 640px)': {
+    fontSize: '14px',
+  },
 });
 
 function Profile() {
@@ -43,6 +61,15 @@ function Profile() {
 
   const intro =
     'react-native, React, Android \n 를 개발하고 애용하는 front-end 개발자 \n 최지웅 입니다.';
+
+  const style = useMemo<React.CSSProperties>(
+    () => ({
+      color: '#fff',
+      marginTop: '20px',
+      cursor: 'pointer',
+    }),
+    []
+  );
 
   return (
     <ProfileContainer>
@@ -53,6 +80,10 @@ function Profile() {
       <ProfileImage src={theme.image.profile} alt="" />
 
       <StyledText>{intro}</StyledText>
+
+      <a target="_blank" rel="noreferrer" href="https://github.com/jwAndroid">
+        <FaGithub size={50} style={style} />
+      </a>
     </ProfileContainer>
   );
 }
