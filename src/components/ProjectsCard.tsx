@@ -1,12 +1,11 @@
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback } from 'react';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
-import { FaBan } from 'react-icons/fa';
-import { toast, ToastContainer, ToastOptions } from 'react-toastify';
+
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { ellipsize } from '../utils/text';
-import StyledButton from './StyledButton';
 import { useAppDispatch } from '../hooks/useRedux';
 import { changeRoute } from '../redux/route/slice';
 import { ProjectEntity } from '../types';
@@ -16,9 +15,15 @@ const ProjectCard = styled.div(({ theme }) => ({
   background: theme.color.card,
   borderRadius: '15px',
   boxShadow: '1px 2px 15px #011627',
+  cursor: 'pointer',
 
   '@media screen and (max-width: 740px)': {
     margin: '0px 15px',
+  },
+
+  '&:hover': {
+    background: 'rgba(255,255,255,0.1)',
+    transition: '0.3s',
   },
 }));
 
@@ -60,12 +65,6 @@ const TextContainer = styled.div({
   },
 });
 
-const ButtonContainer = styled.div({
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '8px 0px',
-});
-
 const ChipContainer = styled.div(() => ({
   display: 'flex',
   paddingBottom: '0.2rem',
@@ -88,31 +87,6 @@ function ProjectsCard({ data }: IProjectsCard) {
 
   const navigate = useNavigate();
 
-  const style = useMemo<React.CSSProperties>(
-    () => ({
-      color: '#fff',
-      margin: '0rem 0.7rem',
-    }),
-    []
-  );
-
-  const toastOption = useMemo<ToastOptions>(
-    () => ({
-      position: 'top-right',
-      autoClose: 1500,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    }),
-    []
-  );
-
-  const onClick = useCallback(() => {
-    toast.error('Private Github', toastOption);
-  }, [toastOption]);
-
   const onNavigate = useCallback(
     (data: ProjectEntity) => () => {
       if (data) {
@@ -125,13 +99,13 @@ function ProjectsCard({ data }: IProjectsCard) {
   );
 
   return (
-    <ProjectCard>
+    <ProjectCard onClick={onNavigate(data)}>
       <ProjectImage src={data.src} alt="" />
 
       <ProjectTitle>{data.title}</ProjectTitle>
 
       <TextContainer>
-        <ContentsText>{ellipsize(data.text as string, 100)}</ContentsText>
+        <ContentsText>{ellipsize(data.text as string, 50)}</ContentsText>
       </TextContainer>
 
       <ChipContainer>
@@ -141,24 +115,6 @@ function ProjectsCard({ data }: IProjectsCard) {
           </Chip>
         ))}
       </ChipContainer>
-
-      <ButtonContainer>
-        <StyledButton isLight onClick={onNavigate(data)}>
-          <p>Detail</p>
-        </StyledButton>
-
-        {data.github !== '' ? (
-          <StyledButton isLight>
-            <a href={data.github} target="blank">
-              Github
-            </a>
-          </StyledButton>
-        ) : (
-          <StyledButton isLight onClick={onClick}>
-            <FaBan size={20} style={style} />
-          </StyledButton>
-        )}
-      </ButtonContainer>
 
       <ToastContainer />
     </ProjectCard>

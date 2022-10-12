@@ -6,13 +6,10 @@ import { HelmetProvider } from 'react-helmet-async';
 import { store } from './redux/store';
 import { AppTheme } from './theme';
 import GlobalStyle from './GlobalStyle';
-import usePreloadEffect from './hooks/usePreloadEffect';
 import Screens from './Screens';
 
 function App() {
-  const { preload } = usePreloadEffect();
-
-  return preload ? (
+  return (
     <Provider store={store}>
       <HelmetProvider>
         <ThemeProvider theme={AppTheme}>
@@ -22,7 +19,7 @@ function App() {
         </ThemeProvider>
       </HelmetProvider>
     </Provider>
-  ) : null;
+  );
 }
 
 export default memo(App);
