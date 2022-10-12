@@ -4,7 +4,7 @@ import { memo } from 'react';
 const StyledDivider = styled.div(({ theme }) => ({
   display: 'flex',
   height: '0.5px',
-  margin: '0rem 3rem',
+  margin: '0px 30px',
   background: theme.color.gray,
 }));
 

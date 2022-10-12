@@ -2,64 +2,58 @@ import { memo } from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '@emotion/react';
 
-const ImageContainer = styled.div({
+const ProfileContainer = styled.div({
   display: 'flex',
+  flex: 1,
+  flexDirection: 'column',
   alignItems: 'center',
-  justifyItems: 'center',
-  transform: 'translate(110px, 30px)',
-
-  '@media screen and (max-width: 740px)': {
-    transform: 'translate(90px, 30px)',
-  },
+  paddingTop: '60px',
+  background: '#111827',
 });
 
-const Image = styled.img({
-  height: '80px',
+const Title = styled.h1({
+  fontSize: '50px',
+  color: '#fff',
+});
+
+const SubTitle = styled.h3({
+  fontSize: '30px',
+  color: '#fff',
+  fontWeight: '500',
+});
+
+const ProfileImage = styled.img({
+  width: '100px',
+  height: '100px',
+  marginTop: '20px',
   borderRadius: '50%',
-  boxShadow: '0px 0px 10px 1px #fff',
-
-  '@media screen and (max-width: 740px)': {
-    height: '70px',
-  },
-});
-
-const ContentsContainer = styled.div({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '300px',
-  paddingTop: '3rem',
-
-  '@media screen and (max-width: 740px)': {
-    width: '250px',
-  },
+  boxShadow: '0px 0px 7px #fff',
 });
 
 const StyledText = styled.p({
-  fontSize: '16px',
+  fontSize: '17px',
+  color: '#fff',
+  marginTop: '20px',
   whiteSpace: 'pre-wrap',
-
-  '@media screen and (max-width: 740px)': {
-    fontSize: '12px',
-  },
+  textAlign: 'center',
 });
 
 function Profile() {
   const theme = useTheme();
 
-  const text =
-    'react-native, Android, React \n 를 개발하는 FrontEnd 개발자 \n 최지웅 입니다.';
+  const intro =
+    'react-native, React, Android \n 를 개발하고 애용하는 front-end 개발자 \n 최지웅 입니다.';
 
   return (
-    <div>
-      <ImageContainer>
-        <Image src={theme.image.profile} alt="" />
-      </ImageContainer>
+    <ProfileContainer>
+      <Title>Application Developer</Title>
 
-      <ContentsContainer>
-        <StyledText>{text}</StyledText>
-      </ContentsContainer>
-    </div>
+      <SubTitle>JIWOOUNG CHOI</SubTitle>
+
+      <ProfileImage src={theme.image.profile} alt="" />
+
+      <StyledText>{intro}</StyledText>
+    </ProfileContainer>
   );
 }
 
