@@ -29,7 +29,7 @@ const ChartBar = styled.div({
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
-  marginTop: '1rem',
+  marginTop: '20px',
 });
 
 interface IBar {
@@ -70,7 +70,7 @@ const NumberText = styled.h4({
   width: '120px',
   fontSize: '20px',
   fontWeight: '500',
-  marginLeft: '1rem',
+  marginLeft: '10px',
 });
 
 function Chart() {

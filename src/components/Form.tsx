@@ -16,13 +16,13 @@ const StyledForm = styled.form({
   height: '80vh',
 
   '@media screen and (max-width: 740px)': {
-    padding: '7rem 5rem',
+    padding: '50px 30px',
   },
 });
 
 const Label = styled.label({
   color: '#fff',
-  marginBottom: '0.5rem',
+  marginBottom: '10px',
 });
 
 const Input = styled.input({

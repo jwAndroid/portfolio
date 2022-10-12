@@ -7,7 +7,10 @@ import HeaderRoutes from '../utils/routes';
 import { RouteEntity } from '../types';
 import useWindowEffect from '../hooks/useWindowEffect';
 
-const HeaderContainer = styled.header({
+interface IHeaderContainer {
+  isScroll: boolean;
+}
+const HeaderContainer = styled.header<IHeaderContainer>(({ isScroll }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -15,8 +18,9 @@ const HeaderContainer = styled.header({
   height: '70px',
   padding: '0px 20px',
   top: 0,
-  backgroundColor: '#1F2937',
-});
+  backgroundColor: isScroll ? 'rgba(31,41,55,0.8)' : undefined,
+  opacity: isScroll ? '0.8' : undefined,
+}));
 
 const HeaderTtitle = styled.h1({
   fontSize: '30px',
@@ -90,6 +94,7 @@ function Header() {
   const navigate = useNavigate();
 
   const [isMore, setIsMore] = useState(false);
+  const [isScroll, setIsScroll] = useState(false);
 
   const { windowWidth } = useWindowEffect();
 
@@ -105,6 +110,16 @@ function Header() {
     }),
     []
   );
+
+  const changeColor = useCallback(() => {
+    if (window.scrollY >= 100) {
+      setIsScroll(true);
+    } else {
+      setIsScroll(false);
+    }
+  }, []);
+
+  window.addEventListener('scroll', changeColor);
 
   const onNavigate = useCallback(
     (route: RouteEntity) => () => {
@@ -128,7 +143,7 @@ function Header() {
   }, [navigate]);
 
   return (
-    <HeaderContainer>
+    <HeaderContainer isScroll={isScroll}>
       {windowWidth >= 640 ? (
         <HeaderTtitle onClick={onClickH1}>JW Portfoilo</HeaderTtitle>
       ) : (
