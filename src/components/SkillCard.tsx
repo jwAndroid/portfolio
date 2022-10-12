@@ -6,7 +6,7 @@ import CardData from '../utils/card';
 const Heading = styled.h1({
   fontSize: '40px',
   textAlign: 'center',
-  paddingTop: '6rem',
+  marginTop: '50px',
 
   '@media screen and (max-width: 740px)': {
     fontSize: '20px',
@@ -15,16 +15,16 @@ const Heading = styled.h1({
 
 const Container = styled.div({
   display: 'grid',
-  maxWidth: '80%',
+  maxWidth: '1140px',
   margin: 'auto',
   gridTemplateColumns: 'repeat(4, 1fr)',
   gridGap: '50px',
-  marginTop: '3rem',
-  marginBottom: '3rem',
+  marginTop: '20px',
+  marginBottom: '50px',
+  padding: '30px',
 
-  '@media screen and (max-width: 740px)': {
-    maxWidth: '100%',
-    gridTemplateColumns: 'repeat(2, 1fr)',
+  '@media screen and (max-width: 640px)': {
+    gridTemplateColumns: '1fr',
   },
 });
 
@@ -33,8 +33,8 @@ interface IBox {
 }
 const Box = styled.div<IBox>(({ boxShadow }) => ({
   width: '100%',
-  height: 'vh',
   borderRadius: '15px',
+  padding: '20px',
   boxShadow: `1px 2px 5px ${boxShadow}`,
 
   '&:hover': {
@@ -51,10 +51,11 @@ const Box = styled.div<IBox>(({ boxShadow }) => ({
 
 const ImageContainer = styled.div({
   width: '100%',
-  height: '150px',
+  height: '120px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  padding: '10px 0px',
 });
 
 const Image = styled.img(() => ({
@@ -65,8 +66,8 @@ const Image = styled.img(() => ({
 const CardText = styled.h3({
   fontSize: '20px',
   textAlign: 'center',
-  marginTop: '0.5rem',
-  marginBottom: '1rem',
+  marginTop: '10px',
+  marginBottom: '10px',
 
   '@media screen and (max-width: 740px)': {
     fontSize: '10px',
