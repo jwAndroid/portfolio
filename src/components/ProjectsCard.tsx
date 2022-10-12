@@ -12,6 +12,7 @@ import { ProjectEntity } from '../types';
 
 const ProjectCard = styled.div(({ theme }) => ({
   padding: '15px',
+  margin: '20px',
   background: theme.color.card,
   borderRadius: '15px',
   boxShadow: '1px 2px 15px #011627',
@@ -24,6 +25,7 @@ const ProjectCard = styled.div(({ theme }) => ({
   '&:hover': {
     background: 'rgba(255,255,255,0.1)',
     transition: '0.3s',
+    opacity: '0.4',
   },
 }));
 
@@ -105,7 +107,9 @@ function ProjectsCard({ data }: IProjectsCard) {
       <ProjectTitle>{data.title}</ProjectTitle>
 
       <TextContainer>
-        <ContentsText>{ellipsize(data.text as string, 50)}</ContentsText>
+        <ContentsText fontSize="14px">
+          {ellipsize(data.text as string, 50)}
+        </ContentsText>
       </TextContainer>
 
       <ChipContainer>

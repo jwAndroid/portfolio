@@ -13,7 +13,7 @@ const ProfileContainer = styled.div({
 });
 
 const Title = styled.h1({
-  fontSize: '50px',
+  fontSize: '60px',
   color: '#fff',
 
   '@media screen and (max-width: 640px)': {
@@ -22,7 +22,7 @@ const Title = styled.h1({
 });
 
 const SubTitle = styled.h3({
-  fontSize: '30px',
+  fontSize: '40px',
   color: '#fff',
   fontWeight: '500',
 
@@ -60,8 +60,7 @@ const StyledText = styled.p({
 function Profile() {
   const theme = useTheme();
 
-  const intro =
-    'react-native, React, Android 를 \n 개발하고 애용하는 front-end 개발자 \n 최지웅 입니다.';
+  const intro = 'react-native, React, Android \n front-end developer';
 
   const style = useMemo<React.CSSProperties>(
     () => ({
@@ -78,9 +77,9 @@ function Profile() {
 
       <SubTitle>JIWOOUNG CHOI</SubTitle>
 
-      <ProfileImage src={theme.image.profile} alt="" />
-
       <StyledText>{intro}</StyledText>
+
+      <ProfileImage src={theme.image.profile} alt="" />
 
       <a target="_blank" rel="noreferrer" href="https://github.com/jwAndroid">
         <FaGithub size={50} style={style} />
