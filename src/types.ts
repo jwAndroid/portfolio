@@ -10,3 +10,8 @@ export interface ProjectEntity {
   content: string;
   videoUrl: string;
 }
+
+export interface RouteEntity {
+  routeName: string;
+  name: string;
+}
