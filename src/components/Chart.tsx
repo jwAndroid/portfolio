@@ -21,8 +21,8 @@ const Heading = styled.h2(() => ({
 const ChartContainer = styled.div({
   display: 'flex',
   flexDirection: 'column',
+  padding: '30px 0px',
   margin: 'auto',
-  padding: '2rem 0rem',
 });
 
 const ChartBar = styled.div({
@@ -38,9 +38,9 @@ interface IBar {
 }
 const Bar = styled.div<IBar>(({ width, background }) => ({
   width,
-  padding: '1rem',
+  padding: '15px',
   background,
-  marginLeft: '1rem',
+  marginLeft: '15px',
   borderTopRightRadius: '10px',
   borderBottomRightRadius: '10px',
   justifyItems: 'center',
@@ -56,13 +56,13 @@ interface ITitle {
   color: string;
 }
 const Title = styled.h4<ITitle>(({ color }) => ({
-  width: '130px',
-  fontSize: '20px',
+  width: '90px',
+  fontSize: '15px',
   fontWeight: '500',
   color,
 
   '@media screen and (max-width: 740px)': {
-    fontSize: '10px',
+    fontSize: '12px',
   },
 }));
 

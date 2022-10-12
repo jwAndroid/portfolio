@@ -123,15 +123,17 @@ function Header() {
     setIsMore((prev) => !prev);
   }, []);
 
+  const onClickH1 = useCallback(() => {
+    navigate('/');
+  }, [navigate]);
+
   return (
     <HeaderContainer>
-      <HeaderTtitle>
-        {windowWidth >= 640 ? (
-          'JW Portfoilo'
-        ) : (
-          <GiHamburgerMenu size={20} style={style} onClick={onClickMenu} />
-        )}
-      </HeaderTtitle>
+      {windowWidth >= 640 ? (
+        <HeaderTtitle onClick={onClickH1}>JW Portfoilo</HeaderTtitle>
+      ) : (
+        <GiHamburgerMenu size={20} style={style} onClick={onClickMenu} />
+      )}
 
       <NavigationContainer>
         {HeaderRoutes.map((route, index) => (

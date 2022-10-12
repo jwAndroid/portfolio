@@ -13,7 +13,6 @@ export const image = {
   firebase: require('../src/assets/image/firebase.png'),
   friending: require('../src/assets/image/friending.png'),
   github: require('../src/assets/image/github.png'),
-  intro: require('../src/assets/image/intro.jpg'),
   java: require('../src/assets/image/java.png'),
   javascript: require('../src/assets/image/javascript.png'),
   kotlin: require('../src/assets/image/kotlin.png'),
