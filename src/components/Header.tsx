@@ -1,19 +1,19 @@
-import { memo } from 'react';
 import styled from '@emotion/styled';
+import { memo } from 'react';
 
 const Container = styled.div({
   display: 'flex',
   width: '100%',
-  height: '40vh',
-  backgroundColor: '#131313',
+  height: '60px',
+  background: 'gray',
 });
 
-function Footer() {
+function Header() {
   return (
     <Container>
-      <p>footer</p>
+      <p>header</p>
     </Container>
   );
 }
 
-export default memo(Footer);
+export default memo(Header);
