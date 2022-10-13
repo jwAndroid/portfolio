@@ -45,7 +45,7 @@ const Box = styled.div<IBox>(({ boxShadow }) => ({
   },
 
   '@media screen and (max-width: 740px)': {
-    padding: '0.5rem 2rem',
+    padding: '10px 20px',
   },
 }));
 

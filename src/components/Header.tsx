@@ -19,7 +19,8 @@ const HeaderContainer = styled.header<IHeaderContainer>(({ isScroll }) => ({
   padding: '0px 20px',
   top: 0,
   backgroundColor: isScroll ? 'rgba(31,41,55,0.8)' : undefined,
-  opacity: isScroll ? '0.8' : undefined,
+  opacity: isScroll ? '0.9' : undefined,
+  transition: '0.3s',
 }));
 
 const HeaderTtitle = styled.h1({

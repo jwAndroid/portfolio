@@ -54,7 +54,7 @@ function StyledButton({
 StyledButton.defaultProps = {
   isLight: false,
   onClick: null,
-  marginTop: '0rem',
+  marginTop: '0px',
 };
 
 export default memo(StyledButton);

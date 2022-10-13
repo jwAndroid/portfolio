@@ -68,15 +68,14 @@ const TextContainer = styled.div({
 
 const ChipContainer = styled.div(() => ({
   display: 'flex',
-  paddingBottom: '0.2rem',
 }));
 
 const Chip = styled.div(({ theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   borderRadius: 10,
-  padding: '0.2rem 0.5rem',
-  marginRight: '0.5rem',
+  padding: '3px 10px',
+  marginRight: '10px',
   border: `1px solid ${theme.color.chip}`,
 }));
 

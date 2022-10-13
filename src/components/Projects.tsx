@@ -15,10 +15,10 @@ const ProjectContainer = styled.div({
   margin: 'auto',
   gridTemplateColumns: 'repeat(3, 1fr)',
   gridGap: '40px',
-  paddingBottom: '5rem',
 
   '@media screen and (max-width: 640px)': {
     gridTemplateColumns: '1fr',
+    paddingBottom: '30px',
   },
 });
 
