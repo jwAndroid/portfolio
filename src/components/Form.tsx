@@ -5,7 +5,6 @@ import { toast, ToastContainer, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import StyledButton from './StyledButton';
-import { PUBLICK_KEY, SERVICE_ID, TEMPLATE_ID } from '../api/emailjs';
 
 const StyledForm = styled.form({
   display: 'flex',
@@ -78,7 +77,12 @@ function Form() {
       e.preventDefault();
 
       emailjs
-        .sendForm(SERVICE_ID, TEMPLATE_ID, e.currentTarget, PUBLICK_KEY)
+        .sendForm(
+          `${process.env.REACT_APP_SERVICE_ID}`,
+          `${process.env.REACT_APP_TEMPLATE_ID}`,
+          e.currentTarget,
+          `${process.env.REACT_APP_PUBLICK_KEY}`
+        )
         .then(
           () => {
             toast.success('Mail has been sent', toastOption);
