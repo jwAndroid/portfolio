@@ -16,6 +16,7 @@ const HeaderContainer = styled.header(() => ({
   padding: '0px 20px',
   top: 0,
   backgroundColor: '#1f2937',
+  zIndex: 1,
 }));
 
 const HeaderTtitle = styled.h1({

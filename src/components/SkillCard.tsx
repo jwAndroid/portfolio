@@ -41,7 +41,6 @@ const Box = styled.div<IBox>(({ boxShadow }) => ({
 
   '&:hover': {
     background: 'rgba(0,0,0,0.1)',
-    color: '#fff',
     transition: '0.3s',
     opacity: '0.5',
   },
