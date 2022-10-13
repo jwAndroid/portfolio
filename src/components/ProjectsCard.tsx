@@ -1,8 +1,10 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import { ellipsize } from '../utils/text';
 import { useAppDispatch } from '../hooks/useRedux';
@@ -28,9 +30,9 @@ const ProjectCard = styled.div(({ theme }) => ({
   },
 }));
 
-const ProjectImage = styled.img({
+const ProjectImage = styled(LazyLoadImage)({
   width: '100%',
-  height: '180px',
+  height: '160px',
   borderRadius: '15px',
 });
 
@@ -87,6 +89,8 @@ function ProjectsCard({ data }: IProjectsCard) {
 
   const navigate = useNavigate();
 
+  const src = useMemo(() => data.src, [data.src]);
+
   const onNavigate = useCallback(
     (data: ProjectEntity) => () => {
       if (data) {
@@ -100,7 +104,7 @@ function ProjectsCard({ data }: IProjectsCard) {
 
   return (
     <ProjectCard onClick={onNavigate(data)}>
-      <ProjectImage src={data.src} alt="" />
+      <ProjectImage alt={src} effect="blur" src={src} />
 
       <ProjectTitle>{data.title}</ProjectTitle>
 

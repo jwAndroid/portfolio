@@ -8,7 +8,7 @@ const ProfileContainer = styled.div({
   flex: 1,
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center',
+  paddingTop: '8%',
   background: '#111827',
 });
 

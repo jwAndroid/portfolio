@@ -24,7 +24,7 @@ const CardData = [
   },
   {
     title: 'Expo',
-    image: image.expo,
+    image: image.expo_background,
     shadowColor: '#FFFFFF',
     url: 'https://expo.dev',
     proficiency: 0,

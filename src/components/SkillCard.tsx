@@ -1,5 +1,7 @@
 import { memo } from 'react';
 import styled from '@emotion/styled';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import CardData from '../utils/card';
 
@@ -58,7 +60,7 @@ const ImageContainer = styled.div({
   padding: '10px 0px',
 });
 
-const Image = styled.img(() => ({
+const Image = styled(LazyLoadImage)(() => ({
   width: '100px',
   objectFit: 'cover',
 }));
@@ -84,7 +86,7 @@ function SkillCard() {
           <Box key={`${index + 1}`} boxShadow={item.shadowColor}>
             <a href={item.url} target="blank">
               <ImageContainer>
-                <Image src={item.image} alt="true" />
+                <Image alt={item.image} effect="blur" src={item.image} />
               </ImageContainer>
               <CardText>{item.title}</CardText>
             </a>

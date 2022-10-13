@@ -36,7 +36,7 @@ export const ProjectData = [
     },
   },
   {
-    src: image.expo_background,
+    src: image.expo,
     title: 'Expo',
     text: 'React Native 와 Expo 환경에서의 개발을 공부한 내용입니다.',
     github: 'https://github.com/jwAndroid/expo-rn',
