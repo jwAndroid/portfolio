@@ -9,6 +9,7 @@ function GlobalStyle() {
       margin: 0;
       padding: 0;
       font-family: 'Outfit', sans-serif;
+      scroll-behavior: smooth;
     }
     body {
       background: #111827;
