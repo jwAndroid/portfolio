@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import styled from '@emotion/styled';
 
 import ProjectsCard from './ProjectsCard';
@@ -23,15 +23,22 @@ const ProjectContainer = styled.div({
 });
 
 function Projects() {
-  const projects = useAppSelector((state) => state.project.posts);
+  const projects = useAppSelector((state) => state.project.posts.data);
+
+  const data = useMemo(
+    () =>
+      projects &&
+      projects.map((item) => item).sort((a, b) => a.index - b.index),
+    [projects]
+  );
 
   return (
     <>
       <ProjectHeading>Projects</ProjectHeading>
 
       <ProjectContainer>
-        {projects.data &&
-          projects.data.map((item, index) => (
+        {data &&
+          data.map((item, index) => (
             <ProjectsCard key={`${index + 1}`} data={item} />
           ))}
       </ProjectContainer>

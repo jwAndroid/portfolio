@@ -28,3 +28,11 @@ export interface RouteEntity {
   routeName: string;
   name: string;
 }
+
+export interface CardEntity {
+  titlye: string;
+  image: string;
+  shadowColor: string;
+  url: string;
+  proficiency: number;
+}

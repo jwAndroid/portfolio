@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import { FaGithub } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-import HeaderRoutes from '../utils/routes';
 import { RouteEntity } from '../types';
+import HeaderRoutes from '../routes/routes';
 
 const Container = styled.div({
   display: 'flex',

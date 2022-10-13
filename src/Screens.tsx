@@ -1,15 +1,17 @@
 import { memo } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { ScrollToTop } from './components';
-import useLoadEffect from './hooks/useLoadEffect';
 
-import { useAppSelector } from './hooks/useRedux';
 import { Contact, Detail, Experience, Home, Project } from './routes';
+import useProjectLoadEffect from './hooks/useProjectLoadEffect';
+import { useAppSelector } from './hooks/useRedux';
+import { ScrollToTop } from './components';
+import useCardLoadEffect from './hooks/useCardLoadEffect';
 
 function Screens() {
   const state = useAppSelector((state) => state.route);
 
-  useLoadEffect();
+  useProjectLoadEffect();
+  useCardLoadEffect();
 
   return (
     <Router>

@@ -1,8 +1,8 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import styled from '@emotion/styled';
 
-import CardData from '../utils/card';
 import useWindowEffect from '../hooks/useWindowEffect';
+import { useAppSelector } from '../hooks/useRedux';
 
 const Container = styled.div(() => ({
   display: 'flex',
@@ -74,15 +74,24 @@ const NumberText = styled.h4({
 });
 
 function Chart() {
+  const cards = useAppSelector((state) => state.card.posts.data);
+
   const { windowWidth } = useWindowEffect();
+
+  const data = useMemo(
+    () =>
+      cards &&
+      cards.map((item) => item).sort((a, b) => b.proficiency - a.proficiency),
+    [cards]
+  );
 
   return (
     <Container>
       <Heading>Chart</Heading>
 
       <ChartContainer>
-        {CardData.sort((a, b) => b.proficiency - a.proficiency).map(
-          (item, index) => {
+        {data &&
+          data.map((item, index) => {
             if (item.proficiency !== 0) {
               return (
                 <ChartBar key={`${index + 1}`}>
@@ -103,8 +112,7 @@ function Chart() {
             }
 
             return null;
-          }
-        )}
+          })}
       </ChartContainer>
     </Container>
   );

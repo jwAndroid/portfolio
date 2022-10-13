@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { addDoc, collection } from 'firebase/firestore';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
-import HeaderRoutes from '../utils/routes';
 import { RouteEntity } from '../types';
 import useWindowEffect from '../hooks/useWindowEffect';
 import { db } from '../firebase/config';
+import HeaderRoutes from '../routes/routes';
 
 interface IHeaderContainer {
   isScroll: boolean;
@@ -147,25 +147,15 @@ function Header() {
 
   const onAdd = async () => {
     const data = {
-      src: 'https://firebasestorage.googleapis.com/v0/b/portfoilo-29cc4.appspot.com/o/coffee.png?alt=media&token=78b54b05-1a50-496a-bfcc-3389f7fee765',
-      title: 'CoffeeDream',
-      text: '매장홍보를 위한 카페홍보용 앱 입니다.',
-      github: 'https://github.com/jwAndroid/CoffeeDream',
-      route: 'coffee',
-      stack: ['Android'],
-      content: {
-        text: '처음으로 해본 ~~~ 챗모앱~~~~ 오늘 배포되었찌~~',
-        devYear: '2011~2012',
-        published: true,
-        publishedUrl: { android: 'androidUrl', ios: 'iosUrl' },
-        isCompany: false,
-        createdAt: '2022-10-12',
-        videoUrl: 'https://www.youtube.com/watch?v=Uigw-spcSD4',
-      },
-      index: 7,
+      title: 'ReactiveX',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/portfoilo-29cc4.appspot.com/o/rx.png?alt=media&token=4839d16b-ab50-4e39-92a6-14f6c0915ed5',
+      shadowColor: '#FF0088',
+      url: 'https://reactivex.io/',
+      proficiency: 200,
     };
 
-    await addDoc(collection(db, 'project'), data);
+    await addDoc(collection(db, 'card'), data);
   };
 
   return (

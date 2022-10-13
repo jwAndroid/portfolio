@@ -18,7 +18,7 @@ const projectSlice = createSlice({
   name: 'project',
   initialState,
   reducers: {
-    fulfilled(state, action: PayloadAction<ProjectEntity[]>) {
+    fulfilledProject(state, action: PayloadAction<ProjectEntity[]>) {
       state.posts.data = action.payload;
     },
   },
@@ -26,4 +26,4 @@ const projectSlice = createSlice({
 
 export default projectSlice.reducer;
 
-export const { fulfilled } = projectSlice.actions;
+export const { fulfilledProject } = projectSlice.actions;

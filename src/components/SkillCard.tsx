@@ -1,9 +1,9 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import styled from '@emotion/styled';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-import CardData from '../utils/card';
+import { useAppSelector } from '../hooks/useRedux';
 
 const Heading = styled.h1({
   fontSize: '40px',
@@ -76,22 +76,35 @@ const CardText = styled.h3({
   },
 });
 
+const StyledAnchor = styled.a({});
+
 function SkillCard() {
+  const cards = useAppSelector((state) => state.card.posts.data);
+
+  const data = useMemo(
+    () =>
+      cards &&
+      cards.map((item) => item).sort((a, b) => b.proficiency - a.proficiency),
+    [cards]
+  );
+
   return (
     <>
       <Heading>Experienced Skills</Heading>
 
       <Container>
-        {CardData.map((item, index) => (
-          <Box key={`${index + 1}`} boxShadow={item.shadowColor}>
-            <a href={item.url} target="blank">
-              <ImageContainer>
-                <Image alt={item.image} effect="blur" src={item.image} />
-              </ImageContainer>
-              <CardText>{item.title}</CardText>
-            </a>
-          </Box>
-        ))}
+        {data &&
+          data.map((item, index) => (
+            <Box key={`${index + 1}`} boxShadow={item.shadowColor}>
+              <StyledAnchor href={item.url} target="blank">
+                <ImageContainer>
+                  <Image alt={item.image} effect="blur" src={item.image} />
+                </ImageContainer>
+
+                <CardText>{item.title}</CardText>
+              </StyledAnchor>
+            </Box>
+          ))}
       </Container>
     </>
   );

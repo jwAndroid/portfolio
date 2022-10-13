@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 
 import { useAppDispatch } from './useRedux';
-import { fulfilled } from '../redux/project/slice';
+import { fulfilledProject } from '../redux/project/slice';
 import { db } from '../firebase/config';
 import { ProjectEntity } from '../types';
 
-export default function useLoadEffect() {
+export default function useProjectLoadEffect() {
   const dispatch = useAppDispatch();
 
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isProjectLoaded, setIsProjectLoaded] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -22,15 +22,15 @@ export default function useLoadEffect() {
         []
       );
 
-      dispatch(fulfilled(prepared));
+      dispatch(fulfilledProject(prepared));
 
       if (prepared.length > 0) {
-        setIsLoaded(true);
+        setIsProjectLoaded(true);
       }
     })();
   }, [dispatch]);
 
   return {
-    isLoaded,
+    isProjectLoaded,
   };
 }
