@@ -30,9 +30,20 @@ const ProjectCard = styled.div(({ theme }) => ({
   },
 }));
 
+const ImageContainer = styled.div({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  height: '150px',
+  overflow: 'hidden',
+});
+
 const ProjectImage = styled(LazyLoadImage)({
   width: '100%',
-  height: '160px',
+  maxWidth: '100%',
+  height: 'auto',
+  display: 'block',
   borderRadius: '15px',
 });
 
@@ -104,7 +115,9 @@ function ProjectsCard({ data }: IProjectsCard) {
 
   return (
     <ProjectCard onClick={onNavigate(data)}>
-      <ProjectImage alt={src} effect="blur" src={src} />
+      <ImageContainer>
+        <ProjectImage alt={src} effect="blur" src={src} />
+      </ImageContainer>
 
       <ProjectTitle>{data.title}</ProjectTitle>
 
