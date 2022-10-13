@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import styled from '@emotion/styled';
 
-import ProjectData from '../utils/data';
 import ProjectsCard from './ProjectsCard';
+import { useAppSelector } from '../hooks/useRedux';
 
 const ProjectHeading = styled.h1({
   textAlign: 'center',
@@ -23,14 +23,17 @@ const ProjectContainer = styled.div({
 });
 
 function Projects() {
+  const projects = useAppSelector((state) => state.project.posts);
+
   return (
     <>
       <ProjectHeading>Projects</ProjectHeading>
 
       <ProjectContainer>
-        {ProjectData.map((item, index) => (
-          <ProjectsCard key={`${index + 1}`} data={item} />
-        ))}
+        {projects.data &&
+          projects.data.map((item, index) => (
+            <ProjectsCard key={`${index + 1}`} data={item} />
+          ))}
       </ProjectContainer>
     </>
   );

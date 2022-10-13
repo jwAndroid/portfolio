@@ -1,10 +1,14 @@
 import { ReactNode } from 'react';
 
-export interface ContentEntity {
+interface IPublishedUrl {
+  android: string;
+  ios: string;
+}
+export interface IContent {
   text: string;
   devYear: string;
   published: boolean;
-  publishedUrl: string;
+  publishedUrl: IPublishedUrl;
   isCompany: boolean;
   createdAt: string;
   videoUrl: string;
@@ -16,7 +20,8 @@ export interface ProjectEntity {
   github: string;
   route: string;
   stack: string[];
-  content: ContentEntity;
+  content: IContent;
+  index: number;
 }
 
 export interface RouteEntity {
