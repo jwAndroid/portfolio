@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux';
 
-import { route } from './route';
-import { project } from './project';
 import { card } from './card';
+import { profile } from './profile';
+import { project } from './project';
+import { route } from './route';
 
 const rootReducer = combineReducers({
-  route,
-  project,
   card,
+  project,
+  profile,
+  route,
 });
 
 export default rootReducer;

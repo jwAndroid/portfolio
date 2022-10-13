@@ -36,3 +36,9 @@ export interface CardEntity {
   url: string;
   proficiency: number;
 }
+
+export interface ProfileEntity {
+  name: string;
+  imageUrl: string;
+  url: string;
+}

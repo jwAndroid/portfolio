@@ -1,12 +1,10 @@
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
-import { addDoc, collection } from 'firebase/firestore';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
 import { RouteEntity } from '../types';
 import useWindowEffect from '../hooks/useWindowEffect';
-import { db } from '../firebase/config';
 import HeaderRoutes from '../routes/routes';
 
 interface IHeaderContainer {
@@ -145,19 +143,6 @@ function Header() {
     navigate('/');
   }, [navigate]);
 
-  const onAdd = async () => {
-    const data = {
-      title: 'ReactiveX',
-      image:
-        'https://firebasestorage.googleapis.com/v0/b/portfoilo-29cc4.appspot.com/o/rx.png?alt=media&token=4839d16b-ab50-4e39-92a6-14f6c0915ed5',
-      shadowColor: '#FF0088',
-      url: 'https://reactivex.io/',
-      proficiency: 200,
-    };
-
-    await addDoc(collection(db, 'card'), data);
-  };
-
   return (
     <HeaderContainer isScroll={isScroll}>
       {windowWidth >= 640 ? (
@@ -183,10 +168,6 @@ function Header() {
           ))}
         </Menubox>
       ) : null}
-
-      <button type="button" onClick={onAdd}>
-        +
-      </button>
     </HeaderContainer>
   );
 }
