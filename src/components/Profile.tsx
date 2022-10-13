@@ -1,65 +1,90 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '@emotion/react';
+import { FaGithub } from 'react-icons/fa';
 
-const ImageContainer = styled.div({
+const ProfileContainer = styled.div({
   display: 'flex',
+  flex: 1,
+  flexDirection: 'column',
   alignItems: 'center',
-  justifyItems: 'center',
-  transform: 'translate(110px, 30px)',
+  paddingTop: '8%',
+  background: '#111827',
+});
 
-  '@media screen and (max-width: 740px)': {
-    transform: 'translate(90px, 30px)',
+const Title = styled.h1({
+  fontSize: '60px',
+  color: '#fff',
+
+  '@media screen and (max-width: 640px)': {
+    fontSize: '20px',
   },
 });
 
-const Image = styled.img({
-  height: '80px',
+const SubTitle = styled.h3({
+  fontSize: '40px',
+  color: '#fff',
+  fontWeight: '500',
+
+  '@media screen and (max-width: 640px)': {
+    fontSize: '15px',
+  },
+});
+
+const ProfileImage = styled.img({
+  width: '100px',
+  height: '100px',
+  marginTop: '20px',
   borderRadius: '50%',
-  boxShadow: '0px 0px 10px 1px #fff',
+  boxShadow: '0px 0px 7px #fff',
 
-  '@media screen and (max-width: 740px)': {
-    height: '70px',
-  },
-});
-
-const ContentsContainer = styled.div({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '300px',
-  paddingTop: '3rem',
-
-  '@media screen and (max-width: 740px)': {
-    width: '250px',
+  '@media screen and (max-width: 640px)': {
+    width: '80px',
+    height: '80px',
   },
 });
 
 const StyledText = styled.p({
-  fontSize: '16px',
+  fontSize: '17px',
+  color: '#fff',
+  marginTop: '20px',
   whiteSpace: 'pre-wrap',
+  textAlign: 'center',
+  fontWeight: '500',
 
-  '@media screen and (max-width: 740px)': {
-    fontSize: '12px',
+  '@media screen and (max-width: 640px)': {
+    fontSize: '14px',
   },
 });
 
 function Profile() {
   const theme = useTheme();
 
-  const text =
-    'react-native, Android, React \n 를 개발하는 FrontEnd 개발자 \n 최지웅 입니다.';
+  const intro = 'react-native, React, Android \n front-end developer';
+
+  const style = useMemo<React.CSSProperties>(
+    () => ({
+      color: '#fff',
+      marginTop: '25px',
+      cursor: 'pointer',
+    }),
+    []
+  );
 
   return (
-    <div>
-      <ImageContainer>
-        <Image src={theme.image.profile} alt="" />
-      </ImageContainer>
+    <ProfileContainer>
+      <Title>Application Developer</Title>
 
-      <ContentsContainer>
-        <StyledText>{text}</StyledText>
-      </ContentsContainer>
-    </div>
+      <SubTitle>JIWOOUNG CHOI</SubTitle>
+
+      <StyledText>{intro}</StyledText>
+
+      <ProfileImage src={theme.image.profile} alt="" />
+
+      <a target="_blank" rel="noreferrer" href="https://github.com/jwAndroid">
+        <FaGithub size={50} style={style} />
+      </a>
+    </ProfileContainer>
   );
 }
 

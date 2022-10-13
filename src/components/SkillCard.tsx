@@ -1,32 +1,32 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import styled from '@emotion/styled';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
-import CardData from '../utils/card';
+import { useAppSelector } from '../hooks/useRedux';
 
 const Heading = styled.h1({
   fontSize: '40px',
   textAlign: 'center',
-  paddingTop: '6rem',
+  marginTop: '50px',
 
   '@media screen and (max-width: 740px)': {
     fontSize: '20px',
-    paddingTop: '6.5rem',
   },
 });
 
 const Container = styled.div({
   display: 'grid',
-  maxWidth: '1500px',
+  maxWidth: '1140px',
   margin: 'auto',
   gridTemplateColumns: 'repeat(4, 1fr)',
   gridGap: '50px',
-  marginTop: '3rem',
-  marginBottom: '3rem',
+  marginTop: '20px',
+  marginBottom: '50px',
+  padding: '30px',
 
-  '@media screen and (max-width: 740px)': {
-    maxWidth: '100%',
-    margin: '2rem 3rem',
-    gridTemplateColumns: 'repeat(2, 1fr)',
+  '@media screen and (max-width: 640px)': {
+    gridTemplateColumns: '1fr',
   },
 });
 
@@ -35,31 +35,31 @@ interface IBox {
 }
 const Box = styled.div<IBox>(({ boxShadow }) => ({
   width: '100%',
-  height: 'vh',
   borderRadius: '15px',
+  padding: '20px',
   boxShadow: `1px 2px 5px ${boxShadow}`,
 
   '&:hover': {
     background: 'rgba(0,0,0,0.1)',
-    color: '#fff',
     transition: '0.3s',
     opacity: '0.5',
   },
 
   '@media screen and (max-width: 740px)': {
-    padding: '0.5rem 2rem',
+    padding: '10px 20px',
   },
 }));
 
 const ImageContainer = styled.div({
   width: '100%',
-  height: '150px',
+  height: '120px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  padding: '10px 0px',
 });
 
-const Image = styled.img(() => ({
+const Image = styled(LazyLoadImage)(() => ({
   width: '100px',
   objectFit: 'cover',
 }));
@@ -67,26 +67,43 @@ const Image = styled.img(() => ({
 const CardText = styled.h3({
   fontSize: '20px',
   textAlign: 'center',
-  marginTop: '0.5rem',
-  marginBottom: '1rem',
+  marginTop: '10px',
+  marginBottom: '10px',
+
+  '@media screen and (max-width: 740px)': {
+    fontSize: '10px',
+  },
 });
 
+const StyledAnchor = styled.a({});
+
 function SkillCard() {
+  const cards = useAppSelector((state) => state.card.posts.data);
+
+  const data = useMemo(
+    () =>
+      cards &&
+      cards.map((item) => item).sort((a, b) => b.proficiency - a.proficiency),
+    [cards]
+  );
+
   return (
     <>
       <Heading>Experienced Skills</Heading>
 
       <Container>
-        {CardData.map((item, index) => (
-          <Box key={`${index + 1}`} boxShadow={item.shadowColor}>
-            <a href={item.url} target="blank">
-              <ImageContainer>
-                <Image src={item.image} alt="true" />
-              </ImageContainer>
-              <CardText>{item.title}</CardText>
-            </a>
-          </Box>
-        ))}
+        {data &&
+          data.map((item, index) => (
+            <Box key={`${index + 1}`} boxShadow={item.shadowColor}>
+              <StyledAnchor href={item.url} target="blank">
+                <ImageContainer>
+                  <Image alt={item.image} effect="blur" src={item.image} />
+                </ImageContainer>
+
+                <CardText>{item.title}</CardText>
+              </StyledAnchor>
+            </Box>
+          ))}
       </Container>
     </>
   );

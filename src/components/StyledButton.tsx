@@ -8,21 +8,26 @@ interface IEmotionButton {
 const EmotionButton = styled.button<IEmotionButton>(
   ({ isLight, marginTop }) => ({
     display: 'flex',
-    padding: '1rem 3rem',
+    padding: '15px 35px',
     textTransform: 'uppercase',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '10px',
-    background: isLight ? 'transparent' : 'rgba(248,217,15)',
-    color: isLight ? '#fff' : '#222',
     border: '1px solid #fff',
     cursor: 'pointer',
     marginTop,
+    color: isLight ? '#fff' : '#222',
+    background: isLight ? 'transparent' : 'rgba(248,217,15)',
 
     '&:hover': {
       background: 'rgba(255,255,255,0.1)',
       color: '#fff',
       transition: '0.3s',
+    },
+
+    '@media screen and (max-width: 740px)': {
+      height: '50px',
+      padding: '0px 30px',
     },
   })
 );
@@ -49,7 +54,7 @@ function StyledButton({
 StyledButton.defaultProps = {
   isLight: false,
   onClick: null,
-  marginTop: '0rem',
+  marginTop: '0px',
 };
 
 export default memo(StyledButton);

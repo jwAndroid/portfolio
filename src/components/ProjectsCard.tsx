@@ -1,147 +1,139 @@
-import { memo, ReactNode, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
-import { FaBan } from 'react-icons/fa';
-import { toast, ToastContainer, ToastOptions } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import { ellipsize } from '../utils/text';
-import StyledButton from './StyledButton';
+import { useAppDispatch } from '../hooks/useRedux';
+import { changeRoute } from '../redux/route/slice';
+import { ProjectEntity } from '../types';
 
 const ProjectCard = styled.div(({ theme }) => ({
-  padding: '1rem',
+  padding: '15px',
+  margin: '20px',
   background: theme.color.card,
   borderRadius: '15px',
+  boxShadow: '1px 2px 15px #011627',
+  cursor: 'pointer',
 
   '@media screen and (max-width: 740px)': {
-    margin: '0rem 2rem',
+    margin: '0px 15px',
+  },
+
+  '&:hover': {
+    background: 'rgba(255,255,255,0.1)',
+    transition: '0.3s',
+    opacity: '0.4',
   },
 }));
 
-const ProjectImage = styled.img({
+const ImageContainer = styled.div({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   width: '100%',
-  height: '180px',
-  borderRadius: '15px',
+  height: '150px',
+  overflow: 'hidden',
+});
 
-  '@media screen and (max-width: 740px)': {
-    height: '220px',
-  },
+const ProjectImage = styled(LazyLoadImage)({
+  width: '100%',
+  maxWidth: '100%',
+  height: 'auto',
+  display: 'block',
+  borderRadius: '15px',
 });
 
 const ProjectTitle = styled.h2(({ theme }) => ({
   color: theme.color.white,
-  padding: '1rem 0rem',
+  padding: '10px 0px',
+  fontSize: '25px',
+
+  '@media screen and (max-width: 740px)': {
+    fontSize: '18px',
+  },
+}));
+
+interface IContentsText {
+  fontSize?: string;
+}
+const ContentsText = styled.p<IContentsText>(({ fontSize }) => ({
+  fontSize,
+  textAlign: 'justify',
+  fontWeight: '500',
+
+  '@media screen and (max-width: 740px)': {
+    fontSize: '13px',
+  },
 }));
 
 const TextContainer = styled.div({
   width: '100%',
-  height: '7rem',
-});
+  height: '120px',
 
-const ButtonContainer = styled.div({
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '0.5rem 0',
+  '@media screen and (max-width: 740px)': {
+    height: '100px',
+  },
 });
 
 const ChipContainer = styled.div(() => ({
   display: 'flex',
-  paddingBottom: '0.2rem',
 }));
 
 const Chip = styled.div(({ theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   borderRadius: 10,
-  padding: '0.2rem 0.5rem',
-  marginRight: '0.5rem',
+  padding: '3px 10px',
+  marginRight: '10px',
   border: `1px solid ${theme.color.chip}`,
 }));
 
-interface IText {
-  fontSize?: string;
+interface IProjectsCard {
+  data: ProjectEntity;
 }
-const Text = styled.p<IText>(({ fontSize }) => ({
-  fontSize,
-  textAlign: 'justify',
-}));
+function ProjectsCard({ data }: IProjectsCard) {
+  const dispatch = useAppDispatch();
 
-interface IWorkCard {
-  src: string;
-  title: ReactNode;
-  text: ReactNode;
-  github: string;
-  route: string;
-  stack: string[];
-}
-function ProjectsCard({ src, title, text, github, route, stack }: IWorkCard) {
-  const style = useMemo<React.CSSProperties>(
-    () => ({
-      color: '#fff',
-      margin: '0rem 0.7rem',
-    }),
-    []
-  );
+  const navigate = useNavigate();
 
-  const toastOption = useMemo<ToastOptions>(
-    () => ({
-      position: 'top-right',
-      autoClose: 1500,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    }),
-    []
-  );
-
-  const onClick = useCallback(() => {
-    toast.error('Private Github', toastOption);
-  }, [toastOption]);
+  const src = useMemo(() => data.src, [data.src]);
 
   const onNavigate = useCallback(
-    (route: string) => () => {
-      console.log(`route name: ${route}`);
+    (data: ProjectEntity) => () => {
+      if (data) {
+        dispatch(changeRoute({ routeName: data.route }));
+
+        navigate(`/project/detail/${data.route}`, { state: data });
+      }
     },
-    []
+    [dispatch, navigate]
   );
 
   return (
-    <ProjectCard>
-      <ProjectImage src={src} alt="iman3" />
+    <ProjectCard onClick={onNavigate(data)}>
+      <ImageContainer>
+        <ProjectImage alt={src} effect="blur" src={src} />
+      </ImageContainer>
 
-      <ProjectTitle>{title}</ProjectTitle>
+      <ProjectTitle>{data.title}</ProjectTitle>
 
       <TextContainer>
-        <Text>{ellipsize(text as string, 100)}</Text>
+        <ContentsText fontSize="14px">
+          {ellipsize(data.text as string, 50)}
+        </ContentsText>
       </TextContainer>
 
       <ChipContainer>
-        {stack.map((item, index) => (
+        {data.stack.map((item, index) => (
           <Chip key={`${index + 1}`}>
-            <Text fontSize="12px">{item}</Text>
+            <ContentsText fontSize="12px">{item}</ContentsText>
           </Chip>
         ))}
       </ChipContainer>
-
-      <ButtonContainer>
-        <StyledButton isLight onClick={onNavigate(route)}>
-          <Link to={`/project/detail/${route}`}>Detail</Link>
-        </StyledButton>
-
-        {github !== '' ? (
-          <StyledButton isLight>
-            <a href={github} target="blank">
-              Github
-            </a>
-          </StyledButton>
-        ) : (
-          <StyledButton isLight onClick={onClick}>
-            <FaBan size={20} style={style} />
-          </StyledButton>
-        )}
-      </ButtonContainer>
 
       <ToastContainer />
     </ProjectCard>

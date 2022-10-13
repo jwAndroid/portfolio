@@ -1,24 +1,17 @@
-import { useTheme } from '@emotion/react';
 import { memo } from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import { Background, Footer, NavigationBar } from '../components';
+import { Footer, Header } from '../components';
+import Foreground from '../components/Foreground';
 
 function Home() {
-  const theme = useTheme();
-
   return (
     <>
       <Helmet title="Home" />
 
-      <NavigationBar />
+      <Header />
 
-      <Background
-        backgroundSource={theme.image.intro}
-        title="Application Developer"
-        subTtitle="JI WOOUNG CHOI"
-        showProfile
-      />
+      <Foreground />
 
       <Footer />
     </>

@@ -1,7 +1,8 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useMemo } from 'react';
 import styled from '@emotion/styled';
 
-import CardData from '../utils/card';
+import useWindowEffect from '../hooks/useWindowEffect';
+import { useAppSelector } from '../hooks/useRedux';
 
 const Container = styled.div(() => ({
   display: 'flex',
@@ -20,15 +21,15 @@ const Heading = styled.h2(() => ({
 const ChartContainer = styled.div({
   display: 'flex',
   flexDirection: 'column',
+  padding: '30px 0px',
   margin: 'auto',
-  padding: '2rem 0rem',
 });
 
 const ChartBar = styled.div({
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
-  marginTop: '1rem',
+  marginTop: '20px',
 });
 
 interface IBar {
@@ -37,9 +38,9 @@ interface IBar {
 }
 const Bar = styled.div<IBar>(({ width, background }) => ({
   width,
-  padding: '1rem',
+  padding: '15px',
   background,
-  marginLeft: '1rem',
+  marginLeft: '15px',
   borderTopRightRadius: '10px',
   borderBottomRightRadius: '10px',
   justifyItems: 'center',
@@ -55,13 +56,13 @@ interface ITitle {
   color: string;
 }
 const Title = styled.h4<ITitle>(({ color }) => ({
-  width: '130px',
-  fontSize: '20px',
+  width: '90px',
+  fontSize: '15px',
   fontWeight: '500',
   color,
 
   '@media screen and (max-width: 740px)': {
-    fontSize: '10px',
+    fontSize: '12px',
   },
 }));
 
@@ -69,37 +70,36 @@ const NumberText = styled.h4({
   width: '120px',
   fontSize: '20px',
   fontWeight: '500',
-  marginLeft: '1rem',
+  marginLeft: '10px',
 });
 
 function Chart() {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const cards = useAppSelector((state) => state.card.posts.data);
 
-  useEffect(() => {
-    window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
+  const { windowWidth } = useWindowEffect();
 
-    return () => {
-      window.removeEventListener('resize', () => {
-        return setWindowWidth(window.innerWidth);
-      });
-    };
-  }, [windowWidth]);
+  const data = useMemo(
+    () =>
+      cards &&
+      cards.map((item) => item).sort((a, b) => b.proficiency - a.proficiency),
+    [cards]
+  );
 
   return (
     <Container>
       <Heading>Chart</Heading>
 
       <ChartContainer>
-        {CardData.sort((a, b) => b.proficiency - a.proficiency).map(
-          (item, index) => {
+        {data &&
+          data.map((item, index) => {
             if (item.proficiency !== 0) {
               return (
                 <ChartBar key={`${index + 1}`}>
                   <Title color={item.shadowColor}>{item.title}</Title>
 
-                  {windowWidth >= 740 ? (
+                  {windowWidth >= 1180 ? (
                     <Bar
-                      width={`${String(item.proficiency)}px`}
+                      width={`${String(item.proficiency)}0px`}
                       background={item.shadowColor}
                     />
                   ) : (
@@ -112,8 +112,7 @@ function Chart() {
             }
 
             return null;
-          }
-        )}
+          })}
       </ChartContainer>
     </Container>
   );

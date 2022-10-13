@@ -1,15 +1,23 @@
 import styled from '@emotion/styled';
 import { memo } from 'react';
 
-const StyledDivider = styled.div(({ theme }) => ({
+interface IStyledDivider {
+  marginTop?: string;
+}
+const StyledDivider = styled.div<IStyledDivider>(({ marginTop }) => ({
   display: 'flex',
-  height: '0.5px',
-  margin: '0rem 3rem',
-  background: theme.color.gray,
+  height: '0.1px',
+  background: 'white',
+  opacity: '0.3',
+  marginTop,
 }));
 
 function Divider() {
   return <StyledDivider />;
 }
+
+Divider.defaultProps = {
+  marginTop: '0px',
+};
 
 export default memo(Divider);

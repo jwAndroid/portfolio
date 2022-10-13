@@ -1,14 +1,14 @@
 import { memo } from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import { Chart, Footer, NavigationBar, SkillCard } from '../components';
+import { Chart, Footer, Header, SkillCard } from '../components';
 
 function Experience() {
   return (
     <>
       <Helmet title="Experience" />
 
-      <NavigationBar />
+      <Header />
 
       <SkillCard />
 

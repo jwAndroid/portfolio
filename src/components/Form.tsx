@@ -5,7 +5,6 @@ import { toast, ToastContainer, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import StyledButton from './StyledButton';
-import { PUBLICK_KEY, SERVICE_ID, TEMPLATE_ID } from '../api/emailjs';
 
 const StyledForm = styled.form({
   display: 'flex',
@@ -16,28 +15,28 @@ const StyledForm = styled.form({
   height: '80vh',
 
   '@media screen and (max-width: 740px)': {
-    padding: '7rem 5rem',
+    padding: '50px 30px',
   },
 });
 
 const Label = styled.label({
   color: '#fff',
-  marginBottom: '0.5rem',
+  marginBottom: '10px',
 });
 
 const Input = styled.input({
-  marginBottom: '1rem',
+  marginBottom: '20px',
   padding: '10px 18px',
-  fontSize: '1.2rem',
+  fontSize: '15px',
   backgroundColor: 'rgba(255, 255, 255, 0.1)',
   borderColor: 'rgba(255, 255, 255, 0.1)',
   color: '#f4f4f4',
 });
 
 const Textarea = styled.textarea({
-  marginBottom: '1rem',
+  marginBottom: '20px',
   padding: '10px 18px',
-  fontSize: '1.2rem',
+  fontSize: '20px',
   backgroundColor: 'rgba(255, 255, 255, 0.1)',
   borderColor: 'rgba(255, 255, 255, 0.1)',
   color: '#f4f4f4',
@@ -50,13 +49,13 @@ const Send = styled.p({
 const SubContainer = styled.div({
   display: 'flex',
   flexDirection: 'column',
-  paddingTop: '1rem',
+  paddingTop: '10px',
 });
 
 const SubText = styled.h4({
   fontSize: '12px',
   color: 'gray',
-  marginTop: '0.3rem',
+  marginTop: '5px',
 });
 
 function Form() {
@@ -78,7 +77,12 @@ function Form() {
       e.preventDefault();
 
       emailjs
-        .sendForm(SERVICE_ID, TEMPLATE_ID, e.currentTarget, PUBLICK_KEY)
+        .sendForm(
+          `${process.env.REACT_APP_SERVICE_ID}`,
+          `${process.env.REACT_APP_TEMPLATE_ID}`,
+          e.currentTarget,
+          `${process.env.REACT_APP_PUBLICK_KEY}`
+        )
         .then(
           () => {
             toast.success('Mail has been sent', toastOption);
@@ -104,7 +108,7 @@ function Form() {
       <Label>Message</Label>
       <Textarea rows={6} name="message" placeholder="" />
 
-      <StyledButton isLight marginTop="0.5rem">
+      <StyledButton isLight>
         <Send>Send</Send>
       </StyledButton>
 

@@ -1,12 +1,12 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import styled from '@emotion/styled';
 
-import ProjectData from '../utils/data';
 import ProjectsCard from './ProjectsCard';
+import { useAppSelector } from '../hooks/useRedux';
 
 const ProjectHeading = styled.h1({
   textAlign: 'center',
-  padding: '4rem 0 2rem 0',
+  padding: '30px 0px',
 });
 
 const ProjectContainer = styled.div({
@@ -15,32 +15,32 @@ const ProjectContainer = styled.div({
   margin: 'auto',
   gridTemplateColumns: 'repeat(3, 1fr)',
   gridGap: '40px',
-  paddingBottom: '5rem',
 
-  '@media screen and (max-width: 740px)': {
-    maxWidth: '100%',
-    margin: 'auto',
+  '@media screen and (max-width: 640px)': {
     gridTemplateColumns: '1fr',
+    paddingBottom: '30px',
   },
 });
 
 function Projects() {
+  const projects = useAppSelector((state) => state.project.posts.data);
+
+  const data = useMemo(
+    () =>
+      projects &&
+      projects.map((item) => item).sort((a, b) => a.index - b.index),
+    [projects]
+  );
+
   return (
     <>
       <ProjectHeading>Projects</ProjectHeading>
 
       <ProjectContainer>
-        {ProjectData.map((item, index) => (
-          <ProjectsCard
-            key={`${index + 1}`}
-            src={item.imgsrc}
-            text={item.text}
-            title={item.title}
-            github={item.github}
-            route={item.route}
-            stack={item.stack}
-          />
-        ))}
+        {data &&
+          data.map((item, index) => (
+            <ProjectsCard key={`${index + 1}`} data={item} />
+          ))}
       </ProjectContainer>
     </>
   );
