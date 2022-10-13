@@ -97,9 +97,9 @@ function Chart() {
                 <ChartBar key={`${index + 1}`}>
                   <Title color={item.shadowColor}>{item.title}</Title>
 
-                  {windowWidth >= 740 ? (
+                  {windowWidth >= 1180 ? (
                     <Bar
-                      width={`${String(item.proficiency)}px`}
+                      width={`${String(item.proficiency)}0px`}
                       background={item.shadowColor}
                     />
                   ) : (
