@@ -9,9 +9,9 @@ export interface IContent {
   devYear: string;
   published: boolean;
   publishedUrl: IPublishedUrl;
-  isCompany: boolean;
   createdAt: string;
   videoUrl: string;
+  copyright: string;
 }
 export interface ProjectEntity {
   src: string;
