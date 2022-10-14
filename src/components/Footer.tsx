@@ -154,7 +154,7 @@ function Footer() {
             <FaGithub size={50} style={style} />
           </a>
 
-          <StyledText marginTop="20px">jwandroid.</StyledText>
+          <StyledText marginTop="10px">jwandroid.</StyledText>
         </MarkContainer>
       </Top>
 
