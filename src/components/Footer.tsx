@@ -154,9 +154,7 @@ function Footer() {
             <FaGithub size={50} style={style} />
           </a>
 
-          <StyledText marginTop="25px">Learning Delvelop.</StyledText>
-
-          <StyledText>jwandroid.</StyledText>
+          <StyledText marginTop="20px">jwandroid.</StyledText>
         </MarkContainer>
       </Top>
 
