@@ -10,6 +10,7 @@ import { ellipsize } from '../utils/text';
 import { useAppDispatch } from '../hooks/useRedux';
 import { changeRoute } from '../redux/route/slice';
 import { ProjectEntity } from '../types';
+import { fulfilledDetail } from '../redux/detail/slice';
 
 const ProjectCard = styled.div(({ theme }) => ({
   padding: '15px',
@@ -106,6 +107,8 @@ function ProjectsCard({ data }: IProjectsCard) {
     (data: ProjectEntity) => () => {
       if (data) {
         dispatch(changeRoute({ routeName: data.route }));
+
+        dispatch(fulfilledDetail(data));
 
         navigate(`/project/detail/${data.route}`, { state: data });
       }

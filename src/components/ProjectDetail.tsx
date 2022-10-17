@@ -2,11 +2,11 @@ import { memo, useMemo } from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '@emotion/react';
 import ReactPlayer from 'react-player/youtube';
-import { useLocation } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa';
 
-import { ProjectEntity } from '../types';
 import useWindowEffect from '../hooks/useWindowEffect';
+import { useAppSelector } from '../hooks/useRedux';
+import NotFoundPage from './NotFoundPage';
 
 const Heading = styled.h1({
   fontSize: '40px',
@@ -58,7 +58,6 @@ const TopContainer = styled.div({
 interface IButtonContainer {
   isCenter: boolean;
 }
-
 const ButtonContainer = styled.div<IButtonContainer>(({ isCenter }) => ({
   display: 'flex',
   width: '100%',
@@ -149,9 +148,11 @@ const StyledText = styled.p<IStyledText>(
 const StyledAnchor = styled.a({});
 
 function ProjectDetail() {
+  const prepared = useAppSelector((state) => state.detail.posts.data);
+
   const theme = useTheme();
 
-  const { title, content, github } = useLocation().state as ProjectEntity;
+  const data = useMemo(() => prepared, [prepared]);
 
   const playerStyle = useMemo<React.CSSProperties>(
     () => ({ marginBottom: '20px', marginTop: '10px' }),
@@ -160,44 +161,44 @@ function ProjectDetail() {
 
   const { windowWidth } = useWindowEffect();
 
-  const test = content.text;
+  if (!data || data === undefined) {
+    return <NotFoundPage />;
+  }
 
   return (
     <>
-      <Heading>{title}</Heading>
+      <Heading>{data.title}</Heading>
 
       <Container>
-        {content.videoUrl !== '' ? (
-          <ReactPlayer
-            url={content.videoUrl}
-            width="100%"
-            height={windowWidth >= 640 ? '700px' : '400px'}
-            style={playerStyle}
-            controls
-            muted
-          />
-        ) : null}
+        <ReactPlayer
+          url={data.content.videoUrl}
+          width="100%"
+          height={windowWidth >= 640 ? '700px' : '400px'}
+          style={playerStyle}
+          controls
+          muted
+        />
 
         <ContentsContainer>
           <TopContainer>
-            <StyledText fontSize="30px">{title}</StyledText>
+            <StyledText fontSize="30px">{data.title}</StyledText>
 
             <StyledText fontSize="13px" marginTop="10px" color="#D3D3D3">
-              {content.createdAt}
+              {data.content.createdAt}
             </StyledText>
 
             <StyledText fontSize="15px" marginTop="10px" color="#F2F3F5">
-              {test}
+              {data.text}
             </StyledText>
           </TopContainer>
 
-          <ButtonContainer isCenter={content.published}>
-            {content.publishedUrl.android !== '' && (
+          <ButtonContainer isCenter={data.content.published}>
+            {data.content.publishedUrl.android !== '' ? (
               <FlatformContainer>
                 <StyledAnchor
                   target="_blank"
                   rel="noreferrer"
-                  href={content.publishedUrl.android}
+                  href={data.content.publishedUrl.android}
                 >
                   <ButtonBox>
                     <Button src={theme.image.google_play_store} />
@@ -206,14 +207,14 @@ function ProjectDetail() {
 
                 <FlatformText>Android</FlatformText>
               </FlatformContainer>
-            )}
+            ) : null}
 
-            {content.publishedUrl.ios !== '' && (
+            {data.content.publishedUrl.ios !== '' ? (
               <FlatformContainer>
                 <StyledAnchor
                   target="_blank"
                   rel="noreferrer"
-                  href={content.publishedUrl.ios}
+                  href={data.content.publishedUrl.ios}
                 >
                   <ButtonBox>
                     <Button src={theme.image.app_store} />
@@ -222,17 +223,21 @@ function ProjectDetail() {
 
                 <FlatformText>Apple</FlatformText>
               </FlatformContainer>
-            )}
+            ) : null}
 
-            {github !== '' && (
+            {data.github !== '' ? (
               <FlatformContainer>
-                <StyledAnchor target="_blank" rel="noreferrer" href={github}>
+                <StyledAnchor
+                  target="_blank"
+                  rel="noreferrer"
+                  href={data.github}
+                >
                   <FaGithub size={windowWidth >= 640 ? 50 : 40} color="white" />
                 </StyledAnchor>
 
                 <FlatformText>Github</FlatformText>
               </FlatformContainer>
-            )}
+            ) : null}
           </ButtonContainer>
         </ContentsContainer>
       </Container>
@@ -243,9 +248,7 @@ function ProjectDetail() {
         marginLeft="30px"
         marginTop="-30px"
       >
-        {content.copyright !== ''
-          ? `© ${content.copyright} All rights reserved.`
-          : undefined}
+        {`© ${data.content.copyright} All rights reserved.`}
       </StyledText>
     </>
   );

@@ -14,6 +14,8 @@ const initialState: CardState = {
   },
 };
 
+// TODO: 객체 수정
+
 const cardSlice = createSlice({
   name: 'card',
   initialState,
