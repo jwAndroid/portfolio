@@ -242,14 +242,16 @@ function ProjectDetail() {
         </ContentsContainer>
       </Container>
 
-      <StyledText
-        fontSize="17px"
-        color={theme.color.chip}
-        marginLeft="30px"
-        marginTop="-30px"
-      >
-        {`© ${data.content.copyright} All rights reserved.`}
-      </StyledText>
+      {data.content.copyright !== '' ? (
+        <StyledText
+          fontSize="17px"
+          color={theme.color.chip}
+          marginLeft="30px"
+          marginTop="-30px"
+        >
+          {`© ${data.content.copyright} All rights reserved.`}
+        </StyledText>
+      ) : null}
     </>
   );
 }
