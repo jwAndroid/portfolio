@@ -131,7 +131,7 @@ function Header() {
   return (
     <HeaderContainer>
       {windowWidth >= 640 ? (
-        <HeaderTtitle onClick={onClickH1}>JW Portfoilo</HeaderTtitle>
+        <HeaderTtitle onClick={onClickH1}>Developer JW</HeaderTtitle>
       ) : (
         <GiHamburgerMenu size={20} style={style} onClick={onClickMenu} />
       )}

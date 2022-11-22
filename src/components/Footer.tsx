@@ -12,8 +12,8 @@ const Container = styled.div({
   width: '100%',
   height: '100vh',
   padding: '200px 120px 80px',
-  // backgroundColor: '#1E2937',
   backgroundColor: '#111827',
+
   '@media screen and (max-width: 640px)': {
     padding: '30px',
   },
