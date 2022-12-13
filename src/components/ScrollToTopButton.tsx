@@ -10,9 +10,9 @@ const ScrollContainer = styled.div({
 });
 
 const TopButton = styled.button({
-  padding: '12px',
+  padding: '10px',
   backgroundColor: '#111827',
-  border: '1px solid #fff',
+  border: '0.7px solid #fff',
   borderRadius: '50%',
   cursor: 'pointer',
 
