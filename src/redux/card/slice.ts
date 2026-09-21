@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { CardEntity } from './type';
+import { CardEntity } from "./type";
 
 interface CardState {
   posts: {
@@ -14,10 +14,8 @@ const initialState: CardState = {
   },
 };
 
-// TODO: 객체 수정
-
 const cardSlice = createSlice({
-  name: 'card',
+  name: "card",
   initialState,
   reducers: {
     fulfilledCard(state, action: PayloadAction<CardEntity[]>) {

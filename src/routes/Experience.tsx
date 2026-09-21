@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { Helmet } from "react-helmet-async";
 
-import { Chart, Footer, Header, SkillCard } from "../components";
+import { Footer, Header, SkillCard } from "../components";
 
 function Experience() {
   return (
@@ -9,7 +9,7 @@ function Experience() {
       <Helmet title="Experience" />
       <Header />
       <SkillCard />
-      <Chart />
+      {/* <Chart /> */}
       <Footer />
     </>
   );

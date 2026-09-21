@@ -20,7 +20,7 @@ const HeaderContainer = styled.header({
 });
 
 const HeaderTtitle = styled.h1({
-  fontSize: "30px",
+  fontSize: "24px",
   color: "#E5E7E9",
   cursor: "pointer",
 

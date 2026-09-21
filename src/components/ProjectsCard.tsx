@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo } from "react";
+import { memo, useCallback } from "react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -11,42 +11,6 @@ import { useAppDispatch } from "../hooks/useRedux";
 import { changeRoute } from "../redux/route/slice";
 import { ProjectEntity } from "../types";
 import { fulfilledDetail } from "../redux/detail/slice";
-
-const ProjectCard = styled.div(({ theme }) => ({
-  padding: "15px",
-  margin: "20px",
-  background: theme.color.card,
-  borderRadius: "15px",
-  boxShadow: "1px 2px 15px #011627",
-  cursor: "pointer",
-
-  "@media screen and (max-width: 740px)": {
-    margin: "0px 15px",
-  },
-
-  "&:hover": {
-    background: "rgba(255,255,255,0.1)",
-    transition: "0.3s",
-    opacity: "0.4",
-  },
-}));
-
-const ImageContainer = styled.div({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  width: "100%",
-  height: "150px",
-  overflow: "hidden",
-});
-
-const ProjectImage = styled(LazyLoadImage)({
-  width: "100%",
-  maxWidth: "100%",
-  height: "auto",
-  display: "block",
-  borderRadius: "15px",
-});
 
 const ProjectTitle = styled.h2(({ theme }) => ({
   color: theme.color.white,
@@ -80,36 +44,70 @@ const TextContainer = styled.div({
   },
 });
 
-const ChipContainer = styled.div(() => ({
-  display: "flex",
+const ProjectCard = styled.div(({ theme }) => ({
+  padding: "15px",
+  background: theme.color.card,
+  borderRadius: "15px",
+  boxShadow: "1px 2px 15px #011627",
+  cursor: "pointer",
+  minWidth: 0,
+
+  "&:hover": {
+    background: "rgba(255,255,255,0.1)",
+    transition: "0.3s",
+    opacity: 0.4,
+  },
+
+  "@media screen and (max-width: 740px)": {
+    margin: "0 15px",
+  },
 }));
 
+const ImageContainer = styled.div({
+  width: "100%",
+  aspectRatio: "16 / 9",
+  overflow: "hidden",
+  borderRadius: "15px",
+});
+
+const ProjectImage = styled(LazyLoadImage)({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  objectPosition: "center",
+  display: "block",
+});
+
+const ChipContainer = styled.div({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: "8px",
+});
+
 const Chip = styled.div(({ theme }) => ({
+  display: "flex",
   justifyContent: "center",
   alignItems: "center",
   borderRadius: 10,
   padding: "3px 10px",
-  marginRight: "10px",
   border: `1px solid ${theme.color.chip}`,
 }));
 
 interface IProjectsCard {
   data: ProjectEntity;
 }
+
 function ProjectsCard({ data }: IProjectsCard) {
   const dispatch = useAppDispatch();
-
   const navigate = useNavigate();
 
-  const src = useMemo(() => data.src, [data.src]);
+  // const src = useMemo(() => data.src, [data.src]);
 
   const onNavigate = useCallback(
     (data: ProjectEntity) => () => {
       if (data) {
         dispatch(changeRoute({ routeName: data.route }));
-
         dispatch(fulfilledDetail(data));
-
         navigate(`/project/detail/${data.route}`, { state: data });
       }
     },
@@ -119,7 +117,7 @@ function ProjectsCard({ data }: IProjectsCard) {
   return (
     <ProjectCard onClick={onNavigate(data)}>
       <ImageContainer>
-        <ProjectImage alt={src} effect="blur" src={src} />
+        <ProjectImage alt={data.src} effect="blur" src={data.src} />
       </ImageContainer>
 
       <ProjectTitle>{data.title}</ProjectTitle>
