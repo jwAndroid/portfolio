@@ -27,6 +27,7 @@ function Screens() {
         />
         <Route path="/experience" element={<Experience />} />
         <Route path="/contact" element={<Contact />} />
+
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
