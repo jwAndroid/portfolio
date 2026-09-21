@@ -1,5 +1,9 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
+/**
+ * TODO: create, new firebase storeage key
+ */
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
