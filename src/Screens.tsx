@@ -7,7 +7,7 @@ import { useAppSelector } from './hooks/useRedux';
 import { NotFoundPage, ScrollToTop, ScrollToTopButton } from './components';
 import useCardLoadEffect from './hooks/useCardLoadEffect';
 
-function Screens() {
+function Screens() {3
   const state = useAppSelector((state) => state.route);
 
   useProjectLoadEffect();

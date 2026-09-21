@@ -1,35 +1,35 @@
-import { memo, useMemo } from 'react';
-import styled from '@emotion/styled';
+import { memo, useMemo } from "react";
+import styled from "@emotion/styled";
 
-import useWindowEffect from '../hooks/useWindowEffect';
-import { useAppSelector } from '../hooks/useRedux';
+import useWindowEffect from "../hooks/useWindowEffect";
+import { useAppSelector } from "../hooks/useRedux";
 
-const Container = styled.div(() => ({
-  display: 'flex',
-  flexDirection: 'column',
-}));
+const Container = styled.div({
+  display: "flex",
+  flexDirection: "column",
+});
 
-const Heading = styled.h2(() => ({
-  fontSize: '40px',
-  textAlign: 'center',
+const Heading = styled.h2({
+  fontSize: "40px",
+  textAlign: "center",
 
-  '@media screen and (max-width: 740px)': {
-    fontSize: '20px',
+  "@media screen and (max-width: 740px)": {
+    fontSize: "20px",
   },
-}));
+});
 
 const ChartContainer = styled.div({
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '30px 0px',
-  margin: 'auto',
+  display: "flex",
+  flexDirection: "column",
+  padding: "30px 0px",
+  margin: "auto",
 });
 
 const ChartBar = styled.div({
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  marginTop: '20px',
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  marginTop: "20px",
 });
 
 interface IBar {
@@ -38,17 +38,17 @@ interface IBar {
 }
 const Bar = styled.div<IBar>(({ width, background }) => ({
   width,
-  padding: '15px',
+  padding: "15px",
   background,
-  marginLeft: '15px',
-  borderTopRightRadius: '10px',
-  borderBottomRightRadius: '10px',
-  justifyItems: 'center',
-  alignItems: 'center',
-  opacity: '0.8',
+  marginLeft: "15px",
+  borderTopRightRadius: "10px",
+  borderBottomRightRadius: "10px",
+  justifyItems: "center",
+  alignItems: "center",
+  opacity: "0.8",
 
-  '@media screen and (max-width: 740px)': {
-    display: 'none',
+  "@media screen and (max-width: 740px)": {
+    display: "none",
   },
 }));
 
@@ -56,21 +56,21 @@ interface ITitle {
   color: string;
 }
 const Title = styled.h4<ITitle>(({ color }) => ({
-  width: '90px',
-  fontSize: '15px',
-  fontWeight: '500',
+  width: "90px",
+  fontSize: "15px",
+  fontWeight: "500",
   color,
 
-  '@media screen and (max-width: 740px)': {
-    fontSize: '12px',
+  "@media screen and (max-width: 740px)": {
+    fontSize: "12px",
   },
 }));
 
 const NumberText = styled.h4({
-  width: '120px',
-  fontSize: '20px',
-  fontWeight: '500',
-  marginLeft: '10px',
+  width: "120px",
+  fontSize: "20px",
+  fontWeight: "500",
+  marginLeft: "10px",
 });
 
 function Chart() {
@@ -82,7 +82,7 @@ function Chart() {
     () =>
       cards &&
       cards.map((item) => item).sort((a, b) => b.proficiency - a.proficiency),
-    [cards]
+    [cards],
   );
 
   return (
