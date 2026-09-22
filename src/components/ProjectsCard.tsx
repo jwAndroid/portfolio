@@ -3,8 +3,6 @@ import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-// import 'react-toastify/dist/ReactToastify.css';
-// import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import { ellipsize } from "../utils/text";
 import { useAppDispatch } from "../hooks/useRedux";
@@ -99,9 +97,8 @@ interface IProjectsCard {
 
 function ProjectsCard({ data }: IProjectsCard) {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
-  // const src = useMemo(() => data.src, [data.src]);
+  const navigate = useNavigate();
 
   const onNavigate = useCallback(
     (data: ProjectEntity) => () => {

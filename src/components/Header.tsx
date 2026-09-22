@@ -1,6 +1,7 @@
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 import { RouteEntity } from "../types";
@@ -16,7 +17,7 @@ const HeaderContainer = styled.header({
   padding: "0px 20px",
   top: 0,
   backgroundColor: "#1f2937",
-  zIndex: 1,
+  zIndex: 1000,
 });
 
 const HeaderTtitle = styled.h1({
@@ -64,7 +65,7 @@ const Menubox = styled.div({
   position: "absolute",
   width: "100%",
   height: "40vh",
-  top: 60,
+  top: "70px",
   right: 0,
   paddingTop: "20px",
   background: "#1F2937",
@@ -90,6 +91,8 @@ const MenuText = styled.h4({
 function Header() {
   const navigate = useNavigate();
 
+  const { t } = useTranslation();
+
   const [isMore, setIsMore] = useState(false);
 
   const { windowWidth } = useWindowEffect();
@@ -100,24 +103,12 @@ function Header() {
     }
   }, [windowWidth, isMore]);
 
-  const style = useMemo<React.CSSProperties>(
-    () => ({
-      color: "#fff",
-    }),
-    [],
-  );
-
   const onNavigate = useCallback(
     (route: RouteEntity) => () => {
-      if (isMore) {
-        setIsMore(false);
-
-        navigate(route.routeName);
-      } else {
-        navigate(route.routeName);
-      }
+      setIsMore(false);
+      navigate(route.routeName);
     },
-    [navigate, setIsMore, isMore],
+    [navigate],
   );
 
   const onClickMenu = useCallback(() => {
@@ -133,22 +124,26 @@ function Header() {
       {windowWidth >= 640 ? (
         <HeaderTtitle onClick={onClickH1}>Developer JW</HeaderTtitle>
       ) : (
-        <GiHamburgerMenu size={20} style={style} onClick={onClickMenu} />
+        <GiHamburgerMenu
+          size={20}
+          style={{ color: "#fff" }}
+          onClick={onClickMenu}
+        />
       )}
 
       <NavigationContainer>
-        {HeaderRoutes.map((route, index) => (
-          <RouteName key={`${index + 1}`} onClick={onNavigate(route)}>
-            {route.name}
+        {HeaderRoutes.map((route) => (
+          <RouteName key={route.routeName} onClick={onNavigate(route)}>
+            {t(route.name)}
           </RouteName>
         ))}
       </NavigationContainer>
 
       {isMore ? (
         <Menubox>
-          {HeaderRoutes.map((route, index) => (
-            <MenuText key={`${index + 1}`} onClick={onNavigate(route)}>
-              {route.name}
+          {HeaderRoutes.map((route) => (
+            <MenuText key={route.routeName} onClick={onNavigate(route)}>
+              {t(route.name)}
             </MenuText>
           ))}
         </Menubox>

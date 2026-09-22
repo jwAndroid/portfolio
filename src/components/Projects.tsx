@@ -31,8 +31,6 @@ const ProjectContainer = styled.div({
 function Projects() {
   const projects = useAppSelector((state) => state.project.posts.data);
 
-  console.log(JSON.stringify(projects, null, 2));
-
   const data = useMemo(
     () => projects?.toSorted((a, b) => a.index - b.index),
     [projects],
