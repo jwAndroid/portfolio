@@ -9,11 +9,9 @@ import HeaderRoutes from '../routes/routes';
 const Container = styled.div({
   display: 'flex',
   flexDirection: 'column',
-  width: '100%',
-  height: '100vh',
-  padding: '200px 120px 80px',
-  // backgroundColor: '#1E2937',
+  padding: '200px 100px 50px',
   backgroundColor: '#111827',
+
   '@media screen and (max-width: 640px)': {
     padding: '30px',
   },
@@ -31,11 +29,11 @@ const Top = styled.div({
 
 const Bottom = styled.div({
   width: '100%',
-  height: '100px',
 });
 
 const AboutContainer = styled.div({
   flex: 1,
+  paddingBottom: '50px',
 });
 
 const NavigationContainer = styled.div({

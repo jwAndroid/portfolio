@@ -1,19 +1,19 @@
 const HeaderRoutes = [
   {
-    routeName: '/',
-    name: 'Home',
+    name: "Home",
+    routeName: "/",
   },
   {
-    routeName: '/project',
-    name: 'Project',
+    name: "Project",
+    routeName: "/project",
   },
   {
-    routeName: '/experience',
-    name: 'Experience',
+    name: "Experience",
+    routeName: "/experience",
   },
   {
-    routeName: '/contact',
-    name: 'Contact',
+    name: "Contact",
+    routeName: "/contact",
   },
 ];
 
