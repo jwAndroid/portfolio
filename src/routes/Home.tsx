@@ -35,7 +35,7 @@ function Home() {
           localStorage.setItem("language", "jp");
         }}
       >
-        日本語
+        日本語222
       </button>
 
       <button
