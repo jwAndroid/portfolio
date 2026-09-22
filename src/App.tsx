@@ -10,8 +10,6 @@ import GlobalStyle from "./GlobalStyle";
 import Screens from "./Screens";
 
 function App() {
-  console.log(`dotenv api23 key: ${process.env.REACT_APP_AUTH_DOMAIN}`);
-
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

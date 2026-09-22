@@ -41,6 +41,7 @@
     "no-param-reassign": "off",
     "array-callback-return": "off",
     "no-console": "off",
-    "quotes": "off"
+    "quotes": "off",
+    "react/require-default-props": "off"
   }
 }
