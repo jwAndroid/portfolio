@@ -8,21 +8,21 @@ import { RouteEntity } from "../types";
 import useWindowEffect from "../hooks/useWindowEffect";
 import HeaderRoutes from "../routes/routes";
 
-const HeaderContainer = styled.header({
+const HeaderContainer = styled.header(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
   position: "sticky",
   height: "70px",
-  padding: "0px 20px",
+  padding: "0 20px",
   top: 0,
-  backgroundColor: "#1f2937",
+  backgroundColor: theme.color.surface,
   zIndex: 1000,
-});
+}));
 
-const HeaderTtitle = styled.h1({
+const HeaderTtitle = styled.h1(({ theme }) => ({
   fontSize: "24px",
-  color: "#E5E7E9",
+  color: theme.color.text,
   cursor: "pointer",
 
   "&:hover": {
@@ -33,19 +33,19 @@ const HeaderTtitle = styled.h1({
   "@media screen and (max-width: 640px)": {
     fontSize: "15px",
   },
-});
+}));
 
 const NavigationContainer = styled.div({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  padding: "10px 0px",
+  padding: "10px 0",
 });
 
-const RouteName = styled.h3({
+const RouteName = styled.h3(({ theme }) => ({
   fontSize: "18px",
-  color: "#E5E7E9",
-  padding: "0px 10px",
+  color: theme.color.text,
+  padding: "0 10px",
   cursor: "pointer",
   fontWeight: "600",
 
@@ -57,9 +57,9 @@ const RouteName = styled.h3({
   "@media screen and (max-width: 640px)": {
     display: "none",
   },
-});
+}));
 
-const Menubox = styled.div({
+const Menubox = styled.div(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   position: "absolute",
@@ -68,13 +68,13 @@ const Menubox = styled.div({
   top: "70px",
   right: 0,
   paddingTop: "20px",
-  background: "#1F2937",
-  boxShadow: "2px 3px 8px #000",
-});
+  background: theme.color.surface,
+  boxShadow: `2px 3px 8px ${theme.color.border}`,
+}));
 
-const MenuText = styled.h4({
+const MenuText = styled.h4(({ theme }) => ({
   fontSize: "18px",
-  color: "#E5E7E9",
+  color: theme.color.text,
   padding: "20px 10px",
   cursor: "pointer",
   fontWeight: "600",
@@ -83,10 +83,10 @@ const MenuText = styled.h4({
     width: "100%",
     transition: "0.3s",
     opacity: "0.2",
-    background: "#fff",
-    color: "#000",
+    background: theme.color.background,
+    color: theme.color.text,
   },
-});
+}));
 
 function Header() {
   const navigate = useNavigate();

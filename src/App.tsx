@@ -1,5 +1,4 @@
 import { memo } from "react";
-import { ThemeProvider } from "@emotion/react";
 import { HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -9,19 +8,22 @@ import GlobalStyle from "./GlobalStyle";
 import { I18n } from "./i18n";
 import { persistor, store } from "./redux/store";
 import Screens from "./Screens";
-import { AppTheme } from "./theme";
+import AppThemeProvider from "./AppThemeProvider";
+import AppInitializer from "./AppInitializer";
 
 function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <HelmetProvider>
-          <ThemeProvider theme={AppTheme}>
+          <AppThemeProvider>
             <I18nextProvider i18n={I18n}>
-              <GlobalStyle />
-              <Screens />
+              <AppInitializer>
+                <GlobalStyle />
+                <Screens />
+              </AppInitializer>
             </I18nextProvider>
-          </ThemeProvider>
+          </AppThemeProvider>
         </HelmetProvider>
       </PersistGate>
     </Provider>

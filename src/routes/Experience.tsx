@@ -9,7 +9,6 @@ function Experience() {
       <Helmet title="Experience" />
       <Header />
       <SkillCard />
-      {/* <Chart /> */}
       <Footer />
     </>
   );

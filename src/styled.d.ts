@@ -1,19 +1,21 @@
-import '@emotion/react';
+import "@emotion/react";
 
-import { image } from './theme';
+import { image } from "./theme";
 
-declare module '*.png';
-declare module '*.jpg';
-declare module '*.jpeg';
+declare module "*.png";
+declare module "*.jpg";
+declare module "*.jpeg";
 
-declare module '@emotion/react' {
+declare module "@emotion/react" {
   export interface Theme {
     image: typeof image;
     color: {
-      white: string;
-      gray: string;
+      background: string;
+      surface: string;
+      text: string;
+      textSecondary: string;
+      border: string;
       yellow: string;
-      card: string;
       chip: string;
     };
   }

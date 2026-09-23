@@ -1,8 +1,8 @@
 import { memo } from "react";
-import { css, Global } from "@emotion/react";
+import { css, Global, Theme } from "@emotion/react";
 
-const globalStyles = css`
-  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"rel="stylesheet");
+const globalStyles = (theme: Theme) => css`
+  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
   *,
   *::before,
@@ -17,8 +17,12 @@ const globalStyles = css`
   body {
     margin: 0;
     padding: 0;
-    background: #111827;
-    font-family: "Outfit", sans-serif;
+    background: ${theme.color.background};
+    color: ${theme.color.text};
+    font-family: "Open Sans", sans-serif;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
   }
 
   h1,
@@ -28,7 +32,7 @@ const globalStyles = css`
   p,
   a {
     margin: 0;
-    color: #fff;
+    color: ${theme.color.text};
   }
 
   a {

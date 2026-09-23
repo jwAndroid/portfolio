@@ -1,13 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
+/**
+ *  Experimental version for testing purposes.
+ *  Available free of charge
+ */
 const firebaseConfig = {
-  apiKey: "AIzaSyDvIMNKjniW74DfmTVaLS4hEr4L32hE71U",
-  authDomain: "portfoilo-29cc4.firebaseapp.com",
-  projectId: "portfoilo-29cc4",
-  storageBucket: "portfoilo-29cc4.appspot.com",
-  messagingSenderId: "990315075865",
-  appId: "1:990315075865:web:8af3c800aa740d5e758d88",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);

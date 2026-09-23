@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
 
-import { useAppDispatch } from './useRedux';
-import { db } from '../firebase/config';
-import { CardEntity } from '../redux/card/type';
-import { fulfilledCard } from '../redux/card/slice';
+import { useAppDispatch } from "./useRedux";
+import { db } from "../firebase/config";
+import { CardEntity } from "../redux/card/type";
+import { fulfilledCard } from "../redux/card/slice";
 
 export default function useCardLoadEffect() {
   const dispatch = useAppDispatch();
@@ -17,7 +17,7 @@ export default function useCardLoadEffect() {
 
       const snapshot = await getDocs(ref);
 
-      const prepared = snapshot.docs.map((doc) => doc.data() as CardEntity, []);
+      const prepared = snapshot.docs.map((doc) => doc.data() as CardEntity);
 
       dispatch(fulfilledCard(prepared));
 

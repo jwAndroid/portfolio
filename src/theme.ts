@@ -6,13 +6,34 @@ export const image = {
   profile: require("../src/assets/image/profile.jpg"),
 };
 
-export const AppTheme: Theme = {
+const commonTheme = {
   image,
+};
+
+export const BlackTheme: Theme = {
+  ...commonTheme,
   color: {
-    white: "#fff",
-    gray: "#333333",
-    yellow: "#FFDC5E",
-    card: "#1e2937",
-    chip: "#24ddb9",
+    background: "#09090B",
+    surface: "#18181B",
+    text: "#FAFAFA",
+    textSecondary: "#A1A1AA",
+    border: "#27272A",
+    yellow: "#FACC15",
+    chip: "#2DD4BF",
   },
 };
+
+export const LightTheme: Theme = {
+  ...commonTheme,
+  color: {
+    background: "#FFFFFF",
+    surface: "#F8FAFC",
+    text: "#18181B",
+    textSecondary: "#71717A",
+    border: "#E4E4E7",
+    yellow: "#EAB308",
+    chip: "#0D9488",
+  },
+};
+
+export const AppTheme = BlackTheme;

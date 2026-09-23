@@ -1,57 +1,57 @@
-import { memo, useMemo } from 'react';
-import styled from '@emotion/styled';
-import { useTheme } from '@emotion/react';
-import ReactPlayer from 'react-player/youtube';
-import { FaGithub } from 'react-icons/fa';
+import { memo, useMemo } from "react";
+import styled from "@emotion/styled";
+import { useTheme } from "@emotion/react";
+import ReactPlayer from "react-player/youtube";
+import { FaGithub } from "react-icons/fa";
 
-import useWindowEffect from '../hooks/useWindowEffect';
-import { useAppSelector } from '../hooks/useRedux';
-import NotFoundPage from './NotFoundPage';
+import useWindowEffect from "../hooks/useWindowEffect";
+import { useAppSelector } from "../hooks/useRedux";
+// import NotFoundPage from './NotFoundPage';
 
 const Heading = styled.h1({
-  fontSize: '40px',
-  textAlign: 'start',
-  marginLeft: '30px',
-  paddingTop: '30px',
+  fontSize: "40px",
+  textAlign: "start",
+  marginLeft: "30px",
+  paddingTop: "30px",
 
-  '@media screen and (max-width: 740px)': {
-    fontSize: '20px',
+  "@media screen and (max-width: 740px)": {
+    fontSize: "20px",
   },
 });
 
 const Container = styled.div({
-  display: 'flex',
-  padding: '10px 30px',
-  marginTop: '10px',
-  paddingBottom: '50px',
+  display: "flex",
+  padding: "10px 30px",
+  marginTop: "10px",
+  paddingBottom: "50px",
 
-  '@media screen and (max-width: 740px)': {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+  "@media screen and (max-width: 740px)": {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
 const ContentsContainer = styled.div({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '430px',
-  alignItems: 'start',
-  padding: '20px',
-  marginTop: '10px',
-  marginBottom: '20px',
-  background: '#1e2937',
-  borderRadius: '15px',
-  marginLeft: '30px',
+  display: "flex",
+  flexDirection: "column",
+  width: "430px",
+  alignItems: "start",
+  padding: "20px",
+  marginTop: "10px",
+  marginBottom: "20px",
+  background: "#1e2937",
+  borderRadius: "15px",
+  marginLeft: "30px",
 
-  '@media screen and (max-width: 640px)': {
-    width: '100%',
-    marginLeft: '0px',
+  "@media screen and (max-width: 640px)": {
+    width: "100%",
+    marginLeft: "0px",
   },
 });
 
 const TopContainer = styled.div({
-  width: '100%',
+  width: "100%",
   flex: 1,
 });
 
@@ -59,63 +59,63 @@ interface IButtonContainer {
   isCenter: boolean;
 }
 const ButtonContainer = styled.div<IButtonContainer>(({ isCenter }) => ({
-  display: 'flex',
-  width: '100%',
-  justifyContent: isCenter ? 'space-between' : 'center',
-  alignItems: 'center',
-  padding: '0px 20px',
+  display: "flex",
+  width: "100%",
+  justifyContent: isCenter ? "space-between" : "center",
+  alignItems: "center",
+  padding: "0px 20px",
 
-  '@media screen and (max-width: 640px)': {
-    marginTop: '70px',
+  "@media screen and (max-width: 640px)": {
+    marginTop: "70px",
   },
 }));
 
 const ButtonBox = styled.div({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '50px',
-  height: '50px',
-  borderRadius: '50%',
-  background: 'white',
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "50px",
+  height: "50px",
+  borderRadius: "50%",
+  background: "white",
 
-  '@media screen and (max-width: 640px)': {
-    width: '40px',
-    height: '40px',
+  "@media screen and (max-width: 640px)": {
+    width: "40px",
+    height: "40px",
   },
 });
 
 const Button = styled.img({
-  width: '37px',
-  height: '37px',
+  width: "37px",
+  height: "37px",
 
-  '@media screen and (max-width: 640px)': {
-    width: '30px',
-    height: '30px',
+  "@media screen and (max-width: 640px)": {
+    width: "30px",
+    height: "30px",
   },
 });
 
 const FlatformContainer = styled.div({
-  display: 'flex',
-  alignItems: 'center',
-  flexDirection: 'column',
-  cursor: 'pointer',
+  display: "flex",
+  alignItems: "center",
+  flexDirection: "column",
+  cursor: "pointer",
 
-  '&:hover': {
-    background: 'rgba(0,0,0,0.1)',
-    color: '#fff',
-    transition: '0.3s',
-    opacity: '0.5',
+  "&:hover": {
+    background: "rgba(0,0,0,0.1)",
+    color: "#fff",
+    transition: "0.3s",
+    opacity: "0.5",
   },
 });
 
 const FlatformText = styled.p({
-  fontSize: '10px',
-  marginTop: '5px',
-  fontWeight: '400',
+  fontSize: "10px",
+  marginTop: "5px",
+  fontWeight: "400",
 
-  '@media screen and (max-width: 640px)': {
-    display: 'none',
+  "@media screen and (max-width: 640px)": {
+    display: "none",
   },
 });
 
@@ -128,8 +128,8 @@ interface IStyledText {
 }
 const StyledText = styled.p<IStyledText>(
   ({
-    fontSize = '15px',
-    color = '#fff',
+    fontSize = "15px",
+    color = "#fff",
     marginTop = 0,
     marginBottom = 0,
     marginLeft = 0,
@@ -138,11 +138,11 @@ const StyledText = styled.p<IStyledText>(
     marginTop,
     marginBottom,
     marginLeft,
-    wordBreak: 'break-all',
-    whiteSpace: 'pre-wrap',
-    fontWeight: '400',
+    wordBreak: "break-all",
+    whiteSpace: "pre-wrap",
+    fontWeight: "400",
     color,
-  })
+  }),
 );
 
 const StyledAnchor = styled.a({});
@@ -155,14 +155,14 @@ function ProjectDetail() {
   const data = useMemo(() => prepared, [prepared]);
 
   const playerStyle = useMemo<React.CSSProperties>(
-    () => ({ marginBottom: '20px', marginTop: '10px' }),
-    []
+    () => ({ marginBottom: "20px", marginTop: "10px" }),
+    [],
   );
 
   const { windowWidth } = useWindowEffect();
 
   if (!data || data === undefined) {
-    return <NotFoundPage />;
+    return <div />;
   }
 
   return (
@@ -173,7 +173,7 @@ function ProjectDetail() {
         <ReactPlayer
           url={data.content.videoUrl}
           width="100%"
-          height={windowWidth >= 640 ? '700px' : '400px'}
+          height={windowWidth >= 640 ? "700px" : "400px"}
           style={playerStyle}
           controls
           muted
@@ -193,7 +193,7 @@ function ProjectDetail() {
           </TopContainer>
 
           <ButtonContainer isCenter={data.content.published}>
-            {data.content.publishedUrl.android !== '' ? (
+            {data.content.publishedUrl.android !== "" ? (
               <FlatformContainer>
                 <StyledAnchor
                   target="_blank"
@@ -209,7 +209,7 @@ function ProjectDetail() {
               </FlatformContainer>
             ) : null}
 
-            {data.content.publishedUrl.ios !== '' ? (
+            {data.content.publishedUrl.ios !== "" ? (
               <FlatformContainer>
                 <StyledAnchor
                   target="_blank"
@@ -225,7 +225,7 @@ function ProjectDetail() {
               </FlatformContainer>
             ) : null}
 
-            {data.github !== '' ? (
+            {data.github !== "" ? (
               <FlatformContainer>
                 <StyledAnchor
                   target="_blank"
@@ -242,7 +242,7 @@ function ProjectDetail() {
         </ContentsContainer>
       </Container>
 
-      {data.content.copyright !== '' ? (
+      {data.content.copyright !== "" ? (
         <StyledText
           fontSize="17px"
           color={theme.color.chip}

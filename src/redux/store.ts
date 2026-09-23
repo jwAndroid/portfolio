@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux';
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
@@ -9,24 +9,26 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-import { card } from './card';
-import { project } from './project';
-import { route } from './route';
-import { detail } from './detail';
+import { card } from "./card";
+import { project } from "./project";
+import { route } from "./route";
+import { detail } from "./detail";
+import { app } from "./app";
 
 const reducers = combineReducers({
+  app,
   card,
+  detail,
   project,
   route,
-  detail,
 });
 
 const persistConfig = {
-  key: 'root',
-  version: 1,
+  key: "root",
+  version: 2,
   storage,
 };
 
