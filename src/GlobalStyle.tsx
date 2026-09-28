@@ -2,7 +2,7 @@ import { memo } from "react";
 import { css, Global, Theme } from "@emotion/react";
 
 const globalStyles = (theme: Theme) => css`
-  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"rel="stylesheet");
 
   *,
   *::before,
@@ -19,7 +19,6 @@ const globalStyles = (theme: Theme) => css`
     padding: 0;
     background: ${theme.color.background};
     color: ${theme.color.text};
-    font-family: "Open Sans", sans-serif;
     transition:
       background-color 0.2s ease,
       color 0.2s ease;

@@ -1,13 +1,13 @@
-import { memo } from 'react';
-import styled from '@emotion/styled';
+import { memo } from "react";
+import styled from "@emotion/styled";
 
-import Profile from './Profile';
+import { Profile } from ".";
 
 const Container = styled.div({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100%',
-  height: '100vh',
+  display: "flex",
+  flexDirection: "column",
+  width: "100%",
+  height: "100vh",
 });
 
 function Foreground() {

@@ -1,15 +1,14 @@
 import { memo } from "react";
 import { Helmet } from "react-helmet-async";
 
-import { Footer, Header, SkillCard } from "../components";
+import { SkillCard } from "../components";
 
 function Experience() {
   return (
     <>
       <Helmet title="Experience" />
-      <Header />
+
       <SkillCard />
-      <Footer />
     </>
   );
 }
