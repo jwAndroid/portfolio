@@ -20,6 +20,7 @@ export const BlackTheme: Theme = {
     border: "#27272A",
     yellow: "#FACC15",
     chip: "#2DD4BF",
+    primary: "#4F46E5",
   },
 };
 
@@ -33,6 +34,7 @@ export const LightTheme: Theme = {
     border: "#E4E4E7",
     yellow: "#EAB308",
     chip: "#0D9488",
+    primary: "#4F46E5",
   },
 };
 

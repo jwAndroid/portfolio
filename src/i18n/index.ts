@@ -5,9 +5,12 @@ import { error as enError, main as enMain } from "./locales/en";
 import { error as jpError, main as jpMain } from "./locales/jp";
 import { error as koError, main as koMain } from "./locales/ko";
 
-type Language = "ko" | "en" | "jp";
+export type Language = "ko" | "en" | "jp";
+export const ko: string = "ko";
+export const en: string = "en";
+export const jp: string = "jp";
 
-const getLanguage = (): Language => {
+export const getLanguage = (): Language => {
   const savedLanguage = localStorage.getItem("language");
 
   if (

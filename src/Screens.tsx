@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { Contact, Detail, Experience, Home, Project } from "./routes";
+import { Career, Contact, Detail, Home, Skills } from "./routes";
 import { useAppSelector } from "./hooks/useRedux";
 import { PageNotFound, ScrollToTop, ScrollToTopButton } from "./components";
 
@@ -18,12 +18,12 @@ function Screens() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path="/project" element={<Project />} />
+          <Route path="/career" element={<Career />} />
           <Route
-            path={`/project/detail/${state.routeName}`}
+            path={`/career/detail/${state.routeName}`}
             element={<Detail />}
           />
-          <Route path="/experience" element={<Experience />} />
+          <Route path="/skills" element={<Skills />} />
           <Route path="/contact" element={<Contact />} />
         </Route>
 

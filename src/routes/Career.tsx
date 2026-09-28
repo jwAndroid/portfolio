@@ -3,13 +3,13 @@ import { Helmet } from "react-helmet-async";
 
 import { Projects } from "../components";
 
-function Project() {
+function Career() {
   return (
     <>
-      <Helmet title="Project" />
+      <Helmet title="Career" />
       <Projects />
     </>
   );
 }
 
-export default memo(Project);
+export default memo(Career);

@@ -1,57 +1,51 @@
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { MdBrightness3, MdBrightness4, MdArrowDropDown } from "react-icons/md";
 
-import { RouteEntity } from "../types";
-import useWindowEffect from "../hooks/useWindowEffect";
+import { useAppDispatch, useAppSelector } from "../hooks/useRedux";
+import { usePointerDownOutside, useWindowEffect } from "../hooks";
 import HeaderRoutes from "../routes/routes";
+import { toggleTheme } from "../redux/app/slice";
+import { en, jp, ko, Language } from "../i18n";
 
-const HeaderContainer = styled.header(({ theme }) => ({
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  position: "sticky",
-  height: "70px",
-  padding: "0 20px",
-  top: 0,
-  backgroundColor: theme.color.surface,
-  zIndex: 1000,
-}));
+const HeaderContainer = styled.header<{ isVisible: boolean }>(
+  ({ theme, isVisible }) => ({
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    position: "sticky",
+    height: "70px",
+    padding: "0 20px",
+    top: 0,
+    zIndex: 1000,
+    background: theme.color.surface,
 
-const HeaderTtitle = styled.h1(({ theme }) => ({
-  fontSize: "24px",
-  color: theme.color.text,
-  cursor: "pointer",
+    transform: isVisible ? "translateY(0)" : "translateY(-100%)",
+    transition: "transform 0.3s ease",
+  }),
+);
 
-  "&:hover": {
-    transition: "0.3s",
-    opacity: "0.5",
-  },
-
-  "@media screen and (max-width: 640px)": {
-    fontSize: "15px",
-  },
-}));
-
-const NavigationContainer = styled.div({
+const NavigationContainer = styled.nav({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   padding: "10px 0",
 });
 
-const RouteName = styled.h3(({ theme }) => ({
+const NavigationItem = styled(Link)(({ theme }) => ({
   fontSize: "18px",
   color: theme.color.text,
   padding: "0 10px",
   cursor: "pointer",
-  fontWeight: "600",
+  fontWeight: 600,
+  textDecoration: "none",
 
   "&:hover": {
+    opacity: 0.5,
     transition: "0.3s",
-    opacity: "0.5",
   },
 
   "@media screen and (max-width: 640px)": {
@@ -59,7 +53,12 @@ const RouteName = styled.h3(({ theme }) => ({
   },
 }));
 
-const Menubox = styled.div(({ theme }) => ({
+const MenuButton = styled(GiHamburgerMenu)(({ theme }) => ({
+  color: theme.color.text,
+  cursor: "pointer",
+}));
+
+const MenuBox = styled.div(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   position: "absolute",
@@ -72,82 +71,261 @@ const Menubox = styled.div(({ theme }) => ({
   boxShadow: `2px 3px 8px ${theme.color.border}`,
 }));
 
-const MenuText = styled.h4(({ theme }) => ({
+const MenuText = styled(Link)(({ theme }) => ({
   fontSize: "18px",
   color: theme.color.text,
   padding: "20px 10px",
   cursor: "pointer",
-  fontWeight: "600",
+  fontWeight: 600,
+  textDecoration: "none",
 
   "&:hover": {
     width: "100%",
+    opacity: 0.2,
     transition: "0.3s",
-    opacity: "0.2",
     background: theme.color.background,
-    color: theme.color.text,
+  },
+}));
+
+const ActionContainer = styled.div({
+  display: "flex",
+  margin: "0px 0px 0px 10px",
+});
+
+const ButtonContainer = styled.div<{
+  marginRight?: string;
+}>(({ marginRight }) => ({
+  display: "flex",
+  marginRight,
+  alignItems: "center",
+  marginTop: "5px",
+  marginBottom: "5px",
+  cursor: "pointer",
+
+  "&:hover": {
+    opacity: 0.5,
+    transition: "0.3s",
+  },
+}));
+
+const Sun = styled(MdBrightness4)(({ theme }) => ({
+  color: theme.color.text,
+  cursor: "pointer",
+  fontSize: "20px",
+}));
+
+const Luna = styled(MdBrightness3)(({ theme }) => ({
+  color: theme.color.text,
+  cursor: "pointer",
+  fontSize: "20px",
+}));
+
+const LanguageText = styled.h2({
+  fontSize: "12px",
+  caretColor: "transparent",
+});
+
+const LanguageWrapper = styled.div({
+  position: "relative",
+});
+
+const LanguageMenu = styled.div<{ isOpen: boolean }>(({ theme, isOpen }) => ({
+  position: "absolute",
+  top: "calc(100% + 8px)",
+  right: 0,
+  minWidth: "80px",
+  padding: "6px",
+  borderRadius: "8px",
+  backgroundColor: theme.color.surface,
+  boxShadow: `0 4px 12px ${theme.color.border}`,
+
+  opacity: isOpen ? 1 : 0,
+  transform: isOpen ? "translateY(0)" : "translateY(-6px)",
+  visibility: isOpen ? "visible" : "hidden",
+  pointerEvents: isOpen ? "auto" : "none",
+
+  transition: "opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease",
+
+  zIndex: 1001,
+}));
+
+const LanguageItem = styled.button(({ theme }) => ({
+  display: "block",
+  width: "100%",
+  padding: "8px 12px",
+  border: "none",
+  borderRadius: "6px",
+  backgroundColor: "transparent",
+  color: theme.color.text,
+  fontSize: "12px",
+  textAlign: "left",
+  cursor: "pointer",
+
+  "&:hover": {
+    backgroundColor: theme.color.background,
+  },
+}));
+
+const Mark = styled.div(({ theme }) => ({
+  display: "inline-flex",
+  alignItems: "baseline",
+  fontFamily: "Inter, sans-serif",
+  fontSize: "24px",
+  fontWeight: 800,
+  letterSpacing: "1px",
+  lineHeight: 1,
+  color: theme.color.text,
+  cursor: "pointer",
+  userSelect: "none",
+
+  "&::after": {
+    content: '""',
+    width: "5px",
+    height: "5px",
+    marginLeft: "3px",
+    marginBottom: "2px",
+    borderRadius: "50%",
+    backgroundColor: theme.color.primary,
+    transition: "transform 0.2s ease",
+  },
+
+  "&:hover::after": {
+    transform: "scale(1.4)",
   },
 }));
 
 function Header() {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const { t } = useTranslation();
-
-  const [isMore, setIsMore] = useState(false);
-
+  const { t, i18n } = useTranslation();
   const { windowWidth } = useWindowEffect();
 
+  const mode = useAppSelector((state) => state.app.mode);
+
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [isMore, setIsMore] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const [language, setLanguage] = useState(
+    () => localStorage.getItem("language") ?? "ko",
+  );
+
+  const languageRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
+
   useEffect(() => {
-    if (isMore && windowWidth >= 640) {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY <= 0) {
+        setIsHeaderVisible(true);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      if (currentScrollY > lastScrollY.current) {
+        setIsHeaderVisible(false);
+      } else {
+        setIsHeaderVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  usePointerDownOutside(languageRef, () => {
+    setIsLanguageOpen(false);
+  });
+
+  useEffect(() => {
+    if (windowWidth >= 640) {
       setIsMore(false);
     }
-  }, [windowWidth, isMore]);
-
-  const onNavigate = useCallback(
-    (route: RouteEntity) => () => {
-      setIsMore(false);
-      navigate(route.routeName);
-    },
-    [navigate],
-  );
+  }, [windowWidth]);
 
   const onClickMenu = useCallback(() => {
     setIsMore((prev) => !prev);
   }, []);
 
-  const onClickH1 = useCallback(() => {
-    navigate("/");
-  }, [navigate]);
+  const onToggleTheme = useCallback(() => {
+    dispatch(toggleTheme());
+  }, [dispatch]);
+
+  const onChangeLanguage = useCallback(
+    async (language: Language) => {
+      try {
+        await i18n.changeLanguage(language);
+        localStorage.setItem("language", language);
+        setLanguage(language);
+        setIsLanguageOpen(false);
+      } catch (error) {
+        console.error("changing language error");
+      }
+    },
+    [i18n],
+  );
 
   return (
-    <HeaderContainer>
+    <HeaderContainer isVisible={isHeaderVisible}>
       {windowWidth >= 640 ? (
-        <HeaderTtitle onClick={onClickH1}>Developer JW</HeaderTtitle>
+        <Mark onClick={() => navigate("/")}>JW</Mark>
       ) : (
-        <GiHamburgerMenu
-          size={20}
-          style={{ color: "#fff" }}
-          onClick={onClickMenu}
-        />
+        <MenuButton size={20} onClick={onClickMenu} />
       )}
 
       <NavigationContainer>
         {HeaderRoutes.map((route) => (
-          <RouteName key={route.routeName} onClick={onNavigate(route)}>
+          <NavigationItem key={route.routeName} to={route.routeName}>
             {t(route.name)}
-          </RouteName>
+          </NavigationItem>
         ))}
       </NavigationContainer>
 
-      {isMore ? (
-        <Menubox>
+      <ActionContainer>
+        <ButtonContainer marginRight="16px" onClick={onToggleTheme}>
+          {mode === "dark" ? <Sun /> : <Luna />}
+        </ButtonContainer>
+
+        <LanguageWrapper ref={languageRef}>
+          <ButtonContainer onClick={() => setIsLanguageOpen((prev) => !prev)}>
+            <LanguageText>{language.toUpperCase()}</LanguageText>
+            <MdArrowDropDown />
+          </ButtonContainer>
+
+          <LanguageMenu isOpen={isLanguageOpen}>
+            <LanguageItem onClick={() => onChangeLanguage("ko")}>
+              {ko.toUpperCase()}
+            </LanguageItem>
+
+            <LanguageItem onClick={() => onChangeLanguage("en")}>
+              {en.toUpperCase()}
+            </LanguageItem>
+
+            <LanguageItem onClick={() => onChangeLanguage("jp")}>
+              {jp.toUpperCase()}
+            </LanguageItem>
+          </LanguageMenu>
+        </LanguageWrapper>
+      </ActionContainer>
+
+      {isMore && (
+        <MenuBox>
           {HeaderRoutes.map((route) => (
-            <MenuText key={route.routeName} onClick={onNavigate(route)}>
+            <MenuText
+              key={route.routeName}
+              to={route.routeName}
+              onClick={() => setIsMore(false)}
+            >
               {t(route.name)}
             </MenuText>
           ))}
-        </Menubox>
-      ) : null}
+        </MenuBox>
+      )}
     </HeaderContainer>
   );
 }

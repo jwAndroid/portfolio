@@ -3,14 +3,13 @@ import { Helmet } from "react-helmet-async";
 
 import { SkillCard } from "../components";
 
-function Experience() {
+function Skills() {
   return (
     <>
-      <Helmet title="Experience" />
-
+      <Helmet title="Skills" />
       <SkillCard />
     </>
   );
 }
 
-export default memo(Experience);
+export default memo(Skills);

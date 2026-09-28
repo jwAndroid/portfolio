@@ -17,7 +17,7 @@ const globalStyles = (theme: Theme) => css`
   body {
     margin: 0;
     padding: 0;
-    background: ${theme.color.background};
+    background: ${theme.color.surface};
     color: ${theme.color.text};
     transition:
       background-color 0.2s ease,

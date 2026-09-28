@@ -4,11 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-import { ellipsize } from "../utils/text";
 import { useAppDispatch } from "../hooks/useRedux";
 import { changeRoute } from "../redux/route/slice";
 import { ProjectEntity } from "../types";
 import { fulfilledDetail } from "../redux/detail/slice";
+
+function ellipsize(text: string, size: number) {
+  if (text.length < size) {
+    return text;
+  }
+
+  return `${text.substring(0, size)}...`;
+}
 
 const ProjectTitle = styled.h2(({ theme }) => ({
   color: theme.color.white,
@@ -44,7 +51,7 @@ const TextContainer = styled.div({
 
 const ProjectCard = styled.div(({ theme }) => ({
   padding: "15px",
-  background: theme.color.card,
+  background: theme.color.border,
   borderRadius: "15px",
   boxShadow: "1px 2px 15px #011627",
   cursor: "pointer",
@@ -105,7 +112,7 @@ function ProjectsCard({ data }: IProjectsCard) {
       if (data) {
         dispatch(changeRoute({ routeName: data.route }));
         dispatch(fulfilledDetail(data));
-        navigate(`/project/detail/${data.route}`, { state: data });
+        navigate(`/career/detail/${data.route}`, { state: data });
       }
     },
     [dispatch, navigate],
