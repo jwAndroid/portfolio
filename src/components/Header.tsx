@@ -10,6 +10,7 @@ import { usePointerDownOutside, useWindowEffect } from "../hooks";
 import HeaderRoutes from "../routes/routes";
 import { toggleTheme } from "../redux/app/slice";
 import { en, jp, ko, Language } from "../i18n";
+import Mark from "./Mark";
 
 const HeaderContainer = styled.header<{ isVisible: boolean }>(
   ({ theme, isVisible }) => ({
@@ -166,34 +167,6 @@ const LanguageItem = styled.button(({ theme }) => ({
   },
 }));
 
-const Mark = styled.div(({ theme }) => ({
-  display: "inline-flex",
-  alignItems: "baseline",
-  fontFamily: "Inter, sans-serif",
-  fontSize: "24px",
-  fontWeight: 800,
-  letterSpacing: "1px",
-  lineHeight: 1,
-  color: theme.color.text,
-  cursor: "pointer",
-  userSelect: "none",
-
-  "&::after": {
-    content: '""',
-    width: "5px",
-    height: "5px",
-    marginLeft: "3px",
-    marginBottom: "2px",
-    borderRadius: "50%",
-    backgroundColor: theme.color.primary,
-    transition: "transform 0.2s ease",
-  },
-
-  "&:hover::after": {
-    transform: "scale(1.4)",
-  },
-}));
-
 function Header() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -273,7 +246,9 @@ function Header() {
   return (
     <HeaderContainer isVisible={isHeaderVisible}>
       {windowWidth >= 640 ? (
-        <Mark onClick={() => navigate("/")}>JW</Mark>
+        <Mark fontSize={30} onClick={() => navigate("/")}>
+          JW
+        </Mark>
       ) : (
         <MenuButton size={20} onClick={onClickMenu} />
       )}

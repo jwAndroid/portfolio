@@ -1,24 +1,24 @@
-import { memo, useCallback, useEffect, useState } from 'react';
-import styled from '@emotion/styled';
-import { FaArrowUp } from 'react-icons/fa';
+import { memo, useCallback, useEffect, useState } from "react";
+import styled from "@emotion/styled";
+import { FaArrowUp } from "react-icons/fa";
 
 const ScrollContainer = styled.div({
-  position: 'fixed',
-  right: '5%',
-  bottom: '5%',
-  zIndex: '1',
+  position: "fixed",
+  right: "5%",
+  bottom: "5%",
+  zIndex: "1",
 });
 
 const TopButton = styled.button({
-  padding: '10px',
-  backgroundColor: '#111827',
-  border: '0.7px solid #fff',
-  borderRadius: '50%',
-  cursor: 'pointer',
+  padding: "10px",
+  backgroundColor: "red",
+  border: "0.7px solid #fff",
+  borderRadius: "50%",
+  cursor: "pointer",
 
-  '&:hover': {
-    background: 'rgba(255,255,255,0.1)',
-    transition: '0.3s',
+  "&:hover": {
+    background: "rgba(255,255,255,0.1)",
+    transition: "0.3s",
   },
 });
 
@@ -34,17 +34,17 @@ function ScrollToTopButton() {
       }
     };
 
-    window.addEventListener('scroll', handleShowButton);
+    window.addEventListener("scroll", handleShowButton);
 
     return () => {
-      window.removeEventListener('scroll', handleShowButton);
+      window.removeEventListener("scroll", handleShowButton);
     };
   }, []);
 
   const scrollToTop = useCallback(() => {
     window.scroll({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   }, []);
 

@@ -2,6 +2,7 @@ export { default as Divider } from "./Divider";
 export { default as Footer } from "./Footer";
 export { default as Form } from "./Form";
 export { default as Header } from "./Header";
+export { default as Mark } from "./Mark";
 export { default as PageNotFound } from "./PageNotFound";
 export { default as Projects } from "./Projects";
 export { default as ProjectsCard } from "./ProjectsCard";

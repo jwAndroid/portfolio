@@ -21,6 +21,7 @@ export const BlackTheme: Theme = {
     yellow: "#FACC15",
     chip: "#2DD4BF",
     primary: "#4F46E5",
+    divider: "#E5E7EB",
   },
 };
 
@@ -35,6 +36,7 @@ export const LightTheme: Theme = {
     yellow: "#EAB308",
     chip: "#0D9488",
     primary: "#4F46E5",
+    divider: "#262A31",
   },
 };
 

@@ -1,168 +1,101 @@
-import { memo, useCallback, useMemo } from 'react';
-import styled from '@emotion/styled';
-import { FaGithub } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { memo } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "@emotion/styled";
+import { FaGithub } from "react-icons/fa";
+import { MdMail } from "react-icons/md";
 
-import { RouteEntity } from '../types';
-import HeaderRoutes from '../routes/routes';
+import Mark from "./Mark";
 
-const Container = styled.div({
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '200px 100px 50px',
-  backgroundColor: '#111827',
+const about =
+  "Software Developer & Builder\nBuilding applications and services. \n\nBroad Experience.\nFrom Ideas to Execution.";
 
-  '@media screen and (max-width: 640px)': {
-    padding: '30px',
-  },
-});
+const Container = styled.div(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  padding: "30px 30px 30px 30px",
+  backgroundColor: theme.color.surface,
 
-const Top = styled.div({
-  display: 'flex',
-  flex: 1,
-  width: '100%',
-
-  '@media screen and (max-width: 640px)': {
-    display: 'initial',
-  },
-});
-
-const Bottom = styled.div({
-  width: '100%',
-});
-
-const AboutContainer = styled.div({
-  flex: 1,
-  paddingBottom: '50px',
-});
-
-const NavigationContainer = styled.div({
-  padding: '0px 40px',
-
-  '@media screen and (max-width: 640px)': {
-    padding: '80px 0px',
-  },
-});
-
-const MarkContainer = styled.div({
-  display: 'flex',
-  flex: 1,
-  flexDirection: 'column',
-  alignItems: 'center',
-
-  '@media screen and (max-width: 640px)': {
-    alignItems: 'start',
-  },
-});
-
-const SectionTitle = styled.h2({
-  fontSize: '22px',
-  fontWeight: '700',
-
-  '@media screen and (max-width: 640px)': {
-    fontSize: '16px',
-  },
-});
-
-interface IStyledText {
-  marginTop?: string;
-  isCursor?: boolean;
-}
-const StyledText = styled.p<IStyledText>(
-  ({ marginTop = 0, isCursor = false }) => ({
-    fontSize: '16px',
-    whiteSpace: 'pre-wrap',
-    marginTop,
-    cursor: isCursor ? 'pointer' : undefined,
-
-    '@media screen and (max-width: 640px)': {
-      fontSize: '13px',
-    },
-  })
-);
-
-interface IStyledDivider {
-  marginBottom?: string;
-}
-const StyledDivider = styled.div<IStyledDivider>(({ marginBottom = 0 }) => ({
-  display: 'flex',
-  height: '0.1px',
-  background: 'white',
-  opacity: '0.3',
-  marginBottom,
-
-  '@media screen and (max-width: 640px)': {
-    display: 'none',
+  "@media screen and (max-width: 640px)": {
+    padding: 30,
   },
 }));
 
-function Footer() {
-  const navigate = useNavigate();
+interface IStyledText {
+  marginTop?: number;
+  isCursor?: boolean;
+  fontSize?: number;
+}
+const StyledText = styled.p<IStyledText>(
+  ({ marginTop = 0, isCursor = false, fontSize }) => ({
+    fontSize,
+    whiteSpace: "pre-wrap",
+    marginTop,
+    cursor: isCursor ? "pointer" : undefined,
 
-  const about =
-    'JI Wooung Choi Portfoilo\n- \n성함:  최지웅 (ji wooung choi) \n이메일:  cjd9408abcd@gmail.com \n주소:  인천시 계양구\n -';
-
-  const style = useMemo<React.CSSProperties>(
-    () => ({
-      color: '#fff',
-      cursor: 'pointer',
-    }),
-    []
-  );
-
-  const onNavigate = useCallback(
-    (route: RouteEntity) => () => {
-      navigate(route.routeName);
+    "@media screen and (max-width: 640px)": {
+      fontSize: "13px",
     },
-    [navigate]
-  );
+  }),
+);
+
+interface IStyledDivider {
+  marginTop?: number;
+}
+const StyledDivider = styled.div<IStyledDivider>(({ theme, marginTop }) => ({
+  width: "100%",
+  height: "0.1px",
+  background: theme.color.divider,
+  opacity: 0.2,
+  marginTop,
+
+  "@media screen and (max-width: 640px)": {
+    display: "none",
+  },
+}));
+
+const MailIcon = styled(MdMail)(({ theme }) => ({
+  color: theme.color.text,
+  fontSize: 24,
+  marginLeft: 14,
+  cursor: "grabbing",
+}));
+
+const GithubIcon = styled(FaGithub)(({ theme }) => ({
+  color: theme.color.text,
+  fontSize: 24,
+  cursor: "grabbing",
+}));
+
+const ActionContainer = styled.div({
+  display: "flex",
+  marginTop: 24,
+  flexDirection: "row",
+});
+
+function Footer() {
+  const nav = useNavigate();
 
   return (
     <Container>
-      <StyledDivider marginBottom="50px" />
+      <Mark fontSize={20}>JW</Mark>
 
-      <Top>
-        <AboutContainer>
-          <SectionTitle>ABOUT.</SectionTitle>
+      <StyledText marginTop={8}>{about}</StyledText>
 
-          <StyledText marginTop="20px">{about}</StyledText>
-        </AboutContainer>
+      <ActionContainer>
+        <a target="_blank" rel="noreferrer" href="https://github.com/jwAndroid">
+          <GithubIcon />
+        </a>
 
-        <NavigationContainer>
-          <SectionTitle>NAVIGATION.</SectionTitle>
+        <MailIcon
+          onClick={() => {
+            nav("/contact");
+          }}
+        />
+      </ActionContainer>
 
-          {HeaderRoutes.map((route, index) => (
-            <StyledText
-              marginTop="15px"
-              key={`${index + 1}`}
-              onClick={onNavigate(route)}
-              isCursor
-            >
-              {route.name}
-            </StyledText>
-          ))}
-        </NavigationContainer>
-
-        <MarkContainer>
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://github.com/jwAndroid"
-          >
-            <FaGithub size={50} style={style} />
-          </a>
-
-          <StyledText marginTop="10px">jwandroid.</StyledText>
-        </MarkContainer>
-      </Top>
-
-      <Bottom>
-        <StyledDivider />
-
-        <StyledText marginTop="30px">
-          © 2022 JI WOOUNG CHOI. All rights reserved.
-        </StyledText>
-      </Bottom>
+      <StyledDivider marginTop={30} />
+      <StyledText marginTop={30}>© 2026 JW</StyledText>
     </Container>
   );
 }

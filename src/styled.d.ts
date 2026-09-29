@@ -18,6 +18,7 @@ declare module "@emotion/react" {
       yellow: string;
       chip: string;
       primary: string;
+      divider: string;
     };
   }
 }
