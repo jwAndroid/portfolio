@@ -59,7 +59,7 @@ const MenuButton = styled(GiHamburgerMenu)(({ theme }) => ({
   cursor: "pointer",
 }));
 
-const MenuBox = styled.div(({ theme }) => ({
+const MenuBox = styled.div({
   display: "flex",
   flexDirection: "column",
   position: "absolute",
@@ -68,9 +68,16 @@ const MenuBox = styled.div(({ theme }) => ({
   top: "70px",
   right: 0,
   paddingTop: "20px",
-  background: theme.color.surface,
-  boxShadow: `2px 3px 8px ${theme.color.border}`,
-}));
+
+  background: "rgba(255, 255, 255, 0.25)",
+
+  backdropFilter: "blur(16px) saturate(160%)",
+  WebkitBackdropFilter: "blur(16px) saturate(160%)",
+
+  borderBottom: "1px solid rgba(255, 255, 255, 0.25)",
+  borderRadius: "0 0 16px 16px",
+  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.15)",
+});
 
 const MenuText = styled(Link)(({ theme }) => ({
   fontSize: "18px",
@@ -79,12 +86,10 @@ const MenuText = styled(Link)(({ theme }) => ({
   cursor: "pointer",
   fontWeight: 600,
   textDecoration: "none",
+  transition: "background 0.3s",
 
   "&:hover": {
-    width: "100%",
-    opacity: 0.2,
-    transition: "0.3s",
-    background: theme.color.background,
+    background: "rgba(255, 255, 255, 0.15)",
   },
 }));
 

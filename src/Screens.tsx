@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { Career, Contact, Detail, Home, Skills } from "./routes";
 import { useAppSelector } from "./hooks/useRedux";
-import { PageNotFound, ScrollToTop, ScrollToTopButton } from "./components";
+import { PageNotFound, ScrollToTop } from "./components";
 import MainLayout from "./MainLayout";
 
 function Screens() {
@@ -27,8 +27,6 @@ function Screens() {
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-
-      <ScrollToTopButton />
     </Router>
   );
 }

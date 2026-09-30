@@ -43,6 +43,7 @@
     "array-callback-return": "off",
     "no-console": "off",
     "quotes": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "function-paren-newline": "off"
   }
 }
