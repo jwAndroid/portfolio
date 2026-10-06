@@ -1,40 +1,20 @@
-import { memo } from "react";
 import { css, Global, Theme } from "@emotion/react";
 
-const globalStyles = (theme: Theme) => css`
-  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"rel="stylesheet");
-
+const styles = (theme: Theme) => css`
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
     margin: 0;
-    padding: 0;
     background: ${theme.color.surface};
     color: ${theme.color.text};
-    transition:
-      background-color 0.2s ease,
-      color 0.2s ease;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  p,
-  a {
-    margin: 0;
-    color: ${theme.color.text};
   }
 
   a {
+    color: inherit;
     text-decoration: none;
   }
 
@@ -52,8 +32,6 @@ const globalStyles = (theme: Theme) => css`
   }
 `;
 
-function GlobalStyle() {
-  return <Global styles={globalStyles} />;
+export default function GlobalStyle() {
+  return <Global styles={styles} />;
 }
-
-export default memo(GlobalStyle);

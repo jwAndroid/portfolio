@@ -4,6 +4,7 @@ export const image = {
   app_store: require("../src/assets/image/app_store.png"),
   google_play_store: require("../src/assets/image/google_play_store.png"),
   profile: require("../src/assets/image/profile.jpg"),
+  profile_me: require("../src/assets/image/profile_me.jpg"),
 };
 
 const commonTheme = {

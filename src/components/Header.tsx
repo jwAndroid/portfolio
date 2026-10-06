@@ -33,15 +33,15 @@ const NavigationContainer = styled.nav({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  padding: "10px 0",
+  marginRight: 20,
 });
 
 const NavigationItem = styled(Link)(({ theme }) => ({
-  fontSize: "18px",
+  fontSize: "14px",
   color: theme.color.text,
   padding: "0 10px",
   cursor: "pointer",
-  fontWeight: 600,
+  // fontWeight: 600,
   textDecoration: "none",
 
   "&:hover": {
@@ -258,15 +258,15 @@ function Header() {
         <MenuButton size={20} onClick={onClickMenu} />
       )}
 
-      <NavigationContainer>
-        {HeaderRoutes.map((route) => (
-          <NavigationItem key={route.routeName} to={route.routeName}>
-            {t(route.name)}
-          </NavigationItem>
-        ))}
-      </NavigationContainer>
-
       <ActionContainer>
+        <NavigationContainer>
+          {HeaderRoutes.map((route) => (
+            <NavigationItem key={route.routeName} to={route.routeName}>
+              {t(route.name)}
+            </NavigationItem>
+          ))}
+        </NavigationContainer>
+
         <ButtonContainer marginRight="16px" onClick={onToggleTheme}>
           {mode === "dark" ? <Sun /> : <Luna />}
         </ButtonContainer>
