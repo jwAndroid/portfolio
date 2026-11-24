@@ -7,7 +7,6 @@ function Contact() {
   return (
     <>
       <Helmet title="Contact" />
-
       <Form />
     </>
   );

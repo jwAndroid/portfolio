@@ -7,7 +7,6 @@ function Detail() {
   return (
     <>
       <Helmet title="Detail" />
-
       <ProjectDetail />
     </>
   );

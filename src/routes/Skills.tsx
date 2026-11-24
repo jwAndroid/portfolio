@@ -1,13 +1,15 @@
 import { memo } from "react";
 import { Helmet } from "react-helmet-async";
 
-import { SkillCard } from "../components";
+import Progress from "../components/Progress";
 
 function Skills() {
   return (
     <>
       <Helmet title="Skills" />
-      <SkillCard />
+      {/* <SkillCard /> */}
+
+      <Progress />
     </>
   );
 }

@@ -1,13 +1,14 @@
 import { memo } from "react";
 import { Helmet } from "react-helmet-async";
 
-import { Projects } from "../components";
+import Progress from "../components/Progress";
 
 function Career() {
   return (
     <>
       <Helmet title="Career" />
-      <Projects />
+      {/* <Projects /> */}
+      <Progress />
     </>
   );
 }
